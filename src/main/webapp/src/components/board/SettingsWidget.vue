@@ -35,7 +35,7 @@
     <div id="settings-box" :style="settingsBoxStyleObject">
       <div>
         &nbsp;Columns:
-        <input type="range" min="1" max="6" v-model="columnCount" :title="columnCount" id="column-slider">
+        <input type="range" min="1" max="6" id="column-slider">
       </div>
       <a href="configure" id="settings-configure-link" :title="'Configure ' + board">Board configuration</a>
       <button id="settings-close-button" v-on:click="toggleSettingsBoxVisibility">Close</button>
