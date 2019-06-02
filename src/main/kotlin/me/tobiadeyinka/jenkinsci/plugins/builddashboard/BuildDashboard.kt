@@ -44,6 +44,7 @@ import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfo
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.MonitoredJob
 
 import net.sf.json.JSONArray
+import net.sf.json.JSONObject
 import net.sf.json.JSONSerializer.toJSON
 
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -88,7 +89,7 @@ class BuildDashboard
     /**
      * @return The installed version of the plugin
      */
-    fun getBuildVersion(): String = BuildInfo.version()
+    fun getBuildVersion(): String = BuildInfo().version()
 
     /**
      * @return The number of jobs on the board
@@ -104,6 +105,9 @@ class BuildDashboard
     @JavaScriptMethod
     fun getMonitoredJobsAsJSON(): JSONArray = toJSON(getObjectMapper().writeValueAsString(getMonitoredJobs())) as JSONArray
 
+    @JavaScriptMethod
+    fun getBuildInfoAsJSON(): JSONObject = toJSON(getObjectMapper().writeValueAsString(BuildInfo())) as JSONObject
+
     /**
      * Creates [MonitoredJob] instances of all the jobs on the
      * board and returns a list of these instances
@@ -116,9 +120,6 @@ class BuildDashboard
         return monitoredJobs
     }
 
-    /**
-     * Configures an object mapper to serialize [MonitoredJob] instances before transfer to the vue webapp
-     */
     private fun getObjectMapper(): ObjectMapper {
         return ObjectMapper()
             .registerModule(KotlinModule())
@@ -135,7 +136,7 @@ class BuildDashboard
         /**
          *  Sets the display name that jenkins identifies the plugin with
          */
-        override fun getDisplayName(): String = BuildInfo.pluginName()
+        override fun getDisplayName(): String = BuildInfo().pluginName()
 
     }
 

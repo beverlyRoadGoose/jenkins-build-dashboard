@@ -21,33 +21,42 @@
   - SOFTWARE.
 -->
 
-<!-- Dashboard view -->
+<template>
+  <div id="footer">
+    <a href="https://github.com/beverlyRoadGoose/jenkins-build-dashboard" class="footer-link" target="_blank">Build Dashboard Plugin</a>
+    By <a href="https://github.com/beverlyRoadGoose" class="footer-link" target="_blank">Oluwatobi Adeyinka</a>
+    <a href="https://github.com/beverlyRoadGoose/jenkins-build-dashboard/releases" id="build-version" target="_blank">v{{JSON.parse(build).version}}</a>
+  </div>
+</template>
 
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:x="jelly:xml">
-  <st:contentType value="text/html;charset=UTF-8"/>
-  <st:setHeader name="Expires" value="0"/>
-  <st:setHeader name="Cache-Control" value="no-cache,no-store,must-revalidate"/>
-  <x:doctype name="html"/>
-  <j:set var="resourcesURL" value="${resURL}/plugin/build-dashboard-plugin"/>
-  <html>
-    <head>
-      <j:if test="${isMSIE}">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-      </j:if>
-      <title>Jenkins | ${it.title}</title>
-      <script type="module" src="${resourcesURL}/webapp/webapp.js"></script>
-    </head>
-    <body>
-      <st:bind var="window.pluginInstance" value="${it}"/>
-      <div id="webapp">
-        <build-dashboard
-            resources-url="${resourcesURL}"
-            board="${it.getViewName()}"
-            board-title="${it.title}"
-            jobs="${it.getMonitoredJobsAsJSON()}"
-            build="${it.getBuildInfoAsJSON()}"
-        ></build-dashboard>
-      </div>
-    </body>
-  </html>
-</j:jelly>
+<script>
+  export default {
+    name: 'DashboardFooter',
+
+    props: ['build']
+  }
+</script>
+
+<style scoped>
+  #footer {
+    padding: 5px;
+    color: #3B3D3B;
+    font-size: .8em;
+    text-shadow: 1px 1px 1px #000000;
+  }
+
+  #footer a {
+    color: #38B0DE;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #666666;
+  }
+
+  #footer a:hover {
+    color: #38B0DE;
+    text-decoration: underline;
+  }
+
+  #build-version {
+    float: right;
+  }
+</style>

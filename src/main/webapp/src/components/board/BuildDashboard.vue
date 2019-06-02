@@ -24,6 +24,7 @@
 <template>
   <div id="dashboard">
     <dashboard-header :resources-url="resourcesUrl" :board="board" :board-title="boardTitle"></dashboard-header>
+
     <div id="monitor-wrapper">
       <div v-if="thereAreNoJobs" id="empty-board-notice">
         <span>There's nothing here.</span>
@@ -37,21 +38,25 @@
         <monitored-job v-for="(job, index) in JSON.parse(jobs)" :key="index" :job-data="job"></monitored-job>
       </div>
     </div>
+
+    <dashboard-footer :build="build"></dashboard-footer>
   </div>
 </template>
 
 <script>
+  import MonitoredJob from '../job/MonitoredJob';
   import DashboardHeader from './DashboardHeader';
-  import MonitoredJob from '../job/MonitoredJob'
+  import DashboardFooter from "./DashboardFooter";
 
   export default {
     name: 'BuildDashboard',
 
-    props: ['resourcesUrl', 'board', 'boardTitle', 'jobs'],
+    props: ['resourcesUrl', 'board', 'boardTitle', 'jobs', 'build'],
 
     components: {
+      MonitoredJob,
       DashboardHeader,
-      MonitoredJob
+      DashboardFooter
     },
 
     computed: {
@@ -63,8 +68,16 @@
 </script>
 
 <style scoped>
+  #dashboard {
+    height: 100%;
+  }
+
   #monitor-wrapper {
     padding: 3px;
+    width: 100%;
+    height: calc(100% - 75px);
+    height: -moz-calc(100% - 75px);
+    height: -webkit-calc(100% - 75px);
   }
 
   #empty-board-notice {

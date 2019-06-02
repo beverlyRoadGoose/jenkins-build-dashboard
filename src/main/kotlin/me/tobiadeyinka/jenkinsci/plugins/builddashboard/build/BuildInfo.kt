@@ -33,10 +33,10 @@ import java.io.InputStream
  *
  * @property[version] The installed version of the plugin
  */
-object BuildInfo {
+class BuildInfo {
 
-    private var pluginName: String
-    private var version: String
+    private val pluginName: String
+    private val version: String
 
     init {
         val properties = Properties()
