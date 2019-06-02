@@ -1,7 +1,6 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val run: String = "run"
 val hpi: String = "hpi"
 val webAppDir: String = "src/main/webapp"
 val npmInstall: String = "npmInstall"
