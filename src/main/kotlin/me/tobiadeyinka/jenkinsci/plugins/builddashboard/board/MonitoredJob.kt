@@ -98,7 +98,10 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
      */
     private val isRunnable: Boolean = jenkinsJob.isBuildable()
 
-    private val description: String? = latestRun?.getDescription()
+    /*
+     * Description of the latest/current run
+     */
+    private val latestRunDescription: String? = latestRun?.getDescription()
 
     /**
      * @return the number of runs in queue

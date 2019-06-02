@@ -32,20 +32,26 @@
           <a :href="'/view/' + board + '/configure'" class="transitions">Add jobs to the board</a> to be able to monitor them.
         </span>
       </div>
+
+      <div v-else id="monitored-jobs-wrapper">
+        <monitored-job v-for="(job, index) in JSON.parse(jobs)" :key="index" :job-data="job"></monitored-job>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import DashboardHeader from "./DashboardHeader";
+  import DashboardHeader from './DashboardHeader';
+  import MonitoredJob from '../job/MonitoredJob'
 
   export default {
-    name: "BuildDashboard",
+    name: 'BuildDashboard',
 
     props: ['resourcesUrl', 'board', 'boardTitle', 'jobs'],
 
     components: {
-      DashboardHeader
+      DashboardHeader,
+      MonitoredJob
     },
 
     computed: {

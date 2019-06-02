@@ -26,7 +26,7 @@
 import Vue from 'vue';
 import VueHead from 'vue-head';
 import VueResource from 'vue-resource';
-import BuildDashboard from './components/BuildDashboard'
+import BuildDashboard from './components/board/BuildDashboard'
 
 Vue.use(VueHead);
 Vue.use(VueResource);
