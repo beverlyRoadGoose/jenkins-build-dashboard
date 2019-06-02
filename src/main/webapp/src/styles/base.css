@@ -36,6 +36,9 @@ img, a {
 body {
   background-color: #F7F7F7;
   font-family: 'Lato', sans-serif;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 .npbm {

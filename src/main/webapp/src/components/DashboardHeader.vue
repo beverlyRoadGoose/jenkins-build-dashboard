@@ -21,33 +21,58 @@
   - SOFTWARE.
 -->
 
-<!-- Dashboard view -->
+<template>
+  <div id="header">
+    <a href="/" title="Jenkins Home" id="home-link">
+      <img :src="resourcesUrl + '/src/assets/img/jenkins.png'" id="jenkins-logo"/>
+    </a>
 
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:x="jelly:xml">
-  <st:contentType value="text/html;charset=UTF-8"/>
-  <st:setHeader name="Expires" value="0"/>
-  <st:setHeader name="Cache-Control" value="no-cache,no-store,must-revalidate"/>
-  <x:doctype name="html"/>
-  <j:set var="resourcesURL" value="${resURL}/plugin/build-dashboard-plugin"/>
-  <html>
-    <head>
-      <j:if test="${isMSIE}">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-      </j:if>
-      <title>Jenkins | ${it.title}</title>
-      <script type="module" src="${resourcesURL}/webapp/webapp.js"></script>
-    </head>
-    <body>
-      <st:bind var="window.pluginInstance" value="${it}"/>
+    <a :href="'/view/' + board + '/configure'" :title="'Configure ' + board" id="configure-link">
+      <h1 id="board-title">{{boardTitle}}</h1>
+    </a>
+  </div>
+</template>
 
-      <div id="webapp">
-        <build-dashboard
-            resources-url="${resourcesURL}"
-            board="${it.getViewName()}"
-            board-title="${it.title}"
-            jobs="${it.getMonitoredJobsAsJSON()}"
-        ></build-dashboard>
-      </div>
-    </body>
-  </html>
-</j:jelly>
+<script>
+  export default {
+    name: "DashboardHeader",
+
+    props: ['resourcesUrl', 'board', 'boardTitle']
+  }
+</script>
+
+<style scoped>
+  #header {
+    padding: 3px;
+    overflow: auto;
+  }
+
+  #home-link {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    float: left;
+  }
+
+  #jenkins-logo {
+    width: 40px;
+    height: 40px;
+    outline: none;
+  }
+
+  #configure-link {
+    float: left;
+  }
+
+  #board-title {
+    color: #3B3D3B;
+    display: inline-block;
+    text-shadow: 1px 1px 1px #000000;
+    margin: 2px 0 0 5px;
+  }
+
+  #board-title:hover {
+    text-decoration: underline;
+  }
+</style>

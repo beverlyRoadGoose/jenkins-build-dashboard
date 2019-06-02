@@ -23,15 +23,21 @@
 
 <template>
   <div id="dashboard">
-    {{this.data}}
+    <dashboard-header :resources-url="resourcesUrl" :board="board" :board-title="boardTitle"></dashboard-header>
   </div>
 </template>
 
 <script>
+  import DashboardHeader from "./DashboardHeader";
+
   export default {
     name: "BuildDashboard",
 
-    props: ['data']
+    props: ['resourcesUrl', 'board', 'boardTitle', 'jobs'],
+
+    components: {
+      DashboardHeader
+    }
   }
 </script>
 
