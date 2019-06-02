@@ -24,6 +24,7 @@
 <template>
   <div id="dashboard">
     <dashboard-header :resources-url="resourcesUrl" :board="board" :board-title="boardTitle"></dashboard-header>
+    <settings-widget :resources-url="resourcesUrl" :board="board"></settings-widget>
 
     <div id="monitor-wrapper">
       <div v-if="thereAreNoJobs" id="empty-board-notice">
@@ -46,7 +47,8 @@
 <script>
   import MonitoredJob from '../job/MonitoredJob';
   import DashboardHeader from './DashboardHeader';
-  import DashboardFooter from "./DashboardFooter";
+  import DashboardFooter from './DashboardFooter';
+  import SettingsWidget from "./SettingsWidget";
 
   export default {
     name: 'BuildDashboard',
@@ -54,6 +56,7 @@
     props: ['resourcesUrl', 'board', 'boardTitle', 'jobs', 'build'],
 
     components: {
+      SettingsWidget,
       MonitoredJob,
       DashboardHeader,
       DashboardFooter
