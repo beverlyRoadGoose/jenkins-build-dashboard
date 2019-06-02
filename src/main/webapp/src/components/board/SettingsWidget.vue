@@ -135,7 +135,7 @@
     margin-top: 10px;
     padding: 5px;
     border-radius: 3px;
-    border:1px solid #cacaca;
+    border: 1px solid #cacaca;
     background-color: #E6E6E6;
     background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
     background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
@@ -147,7 +147,7 @@
   }
 
   #settings-configure-link:hover {
-    border:1px solid #b3b3b3;
+    border: 1px solid #b3b3b3;
     background-color: #cdcdcd;
     background-image: -o-linear-gradient(top, #cdcdcd, #b3b3b3);
     background-image: -ms-linear-gradient(top, #cdcdcd, #b3b3b3);
