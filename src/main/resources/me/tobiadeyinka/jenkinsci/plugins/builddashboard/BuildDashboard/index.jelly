@@ -42,7 +42,7 @@ SOFTWARE.
       -->
       <st:bind var="window.buildDashboardPluginInstance" value="${it}"/>
       <div id="webapp">
-        <bind-check></bind-check>
+        <build-dashboard data="${it.getMonitoredJobsAsJSON()}"></build-dashboard>
       </div>
     </body>
   </html>

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueHead from 'vue-head';
 import VueResource from 'vue-resource';
-import BindCheck from './components/BindCheck'
+import BuildDashboard from './components/BuildDashboard'
 
 Vue.use(VueHead);
 Vue.use(VueResource);
@@ -13,7 +13,7 @@ window.onload = () => {
     el: '#webapp',
 
     components: {
-      BindCheck
+      BuildDashboard
     }
   });
 };
