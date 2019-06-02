@@ -25,7 +25,7 @@ version = "0.1.0"
 description = "A dashboard for monitoring the status of builds"
 
 jenkinsPlugin {
-    coreVersion = "2.60.3"
+    coreVersion = "2.160"
     displayName = "Build Dashboard"
     url = "https://github.com/beverlyRoadGoose/jenkins-build-dashboard"
     gitHubUrl = "https://github.com/beverlyRoadGoose/jenkins-build-dashboard"

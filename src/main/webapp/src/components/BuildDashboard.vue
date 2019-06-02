@@ -5,10 +5,16 @@
 </template>
 
 <script>
+  import {Constants} from "../constants";
+
   export default {
     name: "BuildDashboard",
 
-    props: ['data']
+    props: ['data'],
+
+    mounted() {
+      console.log(Constants.pluginInstance.getMonitoredJobsAsJSON());
+    }
   }
 </script>
 

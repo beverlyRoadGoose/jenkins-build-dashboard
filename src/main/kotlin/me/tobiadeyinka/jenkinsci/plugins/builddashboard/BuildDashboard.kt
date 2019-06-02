@@ -83,7 +83,7 @@ class BuildDashboard
     /**
      * @return true when there are no jobs configured on the jenkins instance
      */
-    fun jenkinsInstanceHasNoJobsConfigured(): Boolean = Functions.getAllTopLevelItems(ownerItemGroup).isEmpty()
+    fun jenkinsInstanceHasNoJobsConfigured(): Boolean = Functions.getAllTopLevelItems(owner.itemGroup).isEmpty()
 
     /**
      * @return The installed version of the plugin
@@ -110,11 +110,9 @@ class BuildDashboard
      */
     private fun getMonitoredJobs(): List<MonitoredJob> {
         val monitoredJobs: MutableList<MonitoredJob> = mutableListOf()
-        filter(allItems, Job::class.java).forEach {monitoredJobs.add(
-            MonitoredJob(
-                it
-            )
-        )}
+        filter(allItems, Job::class.java).forEach {
+            monitoredJobs.add(MonitoredJob(it))
+        }
         return monitoredJobs
     }
 
@@ -124,7 +122,7 @@ class BuildDashboard
     private fun getObjectMapper(): ObjectMapper {
         return ObjectMapper()
             .registerModule(KotlinModule())
-            .setVisibility(FIELD, JsonAutoDetect.Visibility.ANY) // enable jackson to see private fields since there are no public getters
+            .setVisibility(FIELD, JsonAutoDetect.Visibility.ANY) // enable jackson to see private fields as there are no public getters
             .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
     }
 

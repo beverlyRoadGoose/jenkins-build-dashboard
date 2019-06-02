@@ -40,7 +40,7 @@ SOFTWARE.
         Bind an instance of the BuildDashboard class to a window variable that would be used to
         access the javascript exposed methods from the vue application.
       -->
-      <st:bind var="window.buildDashboardPluginInstance" value="${it}"/>
+      <st:bind var="window.pluginInstance" value="${it}"/>
       <div id="webapp">
         <build-dashboard data="${it.getMonitoredJobsAsJSON()}"></build-dashboard>
       </div>
