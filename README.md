@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Jenkins Build Dashboard
 ![screenshot](https://i.imgur.com/YwYzw8T.gif)
 
@@ -15,14 +17,14 @@ You need to have [Gradle](https://gradle.org/) installed.
 The quickest way to get the plugin running is by running this command from the root directory of the repo to spin 
 up a local instance of jenkins with the plugin installed which you can access on `localhost:8080`
 ```console
-foo@bar:~$ bash util/run.sh
+foo@bar:~$ gradle server
 ```
 
 #### Installing on an existing jenkins instance
 If you want to install the plugin on an existing instance of jenkins, you need to generate the hpi file and then install
 it. Generate the file by running:
 ```console
-foo@bar:~$ bash util/hpi.sh
+foo@bar:~$ gradle hpi
 ```
 You can find the generated hpi file in the root directory of the repo.
 

@@ -1,0 +1,49 @@
+<!--
+MIT License
+Copyright (c) 2019 Oluwatobi Adeyinka
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!-- Dashboard view -->
+
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:x="jelly:xml">
+  <st:contentType value="text/html;charset=UTF-8"/>
+  <st:setHeader name="Expires" value="0"/>
+  <st:setHeader name="Cache-Control" value="no-cache,no-store,must-revalidate"/>
+  <x:doctype name="html"/>
+  <j:set var="viewName" value="${it.getViewName()}"/>
+  <j:set var="resourcesURL" value="${resURL}/plugin/build-dashboard-plugin"/>
+  <html>
+    <head>
+      <j:if test="${isMSIE}">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+      </j:if>
+      <title>Jenkins | ${it.title}</title>
+      <script type="module" src="${resourcesURL}/webapp/webapp.js"></script>
+    </head>
+    <body>
+      <!--
+        Bind an instance of the BuildDashboard class to a window variable that would be used to
+        access the javascript exposed methods from the vue application.
+      -->
+      <st:bind var="window.buildDashboardPluginInstance" value="${it}"/>
+      <div id="webapp">
+        <bind-check></bind-check>
+      </div>
+    </body>
+  </html>
+</j:jelly>
