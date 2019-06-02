@@ -33,3 +33,5 @@ out
 
 build
 work
+
+!src/main/kotlin/me/tobiadeyinka/jenkinsci/plugins/builddashboard/build
