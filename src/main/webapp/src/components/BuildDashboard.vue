@@ -24,6 +24,15 @@
 <template>
   <div id="dashboard">
     <dashboard-header :resources-url="resourcesUrl" :board="board" :board-title="boardTitle"></dashboard-header>
+    <div id="monitor-wrapper">
+      <div v-if="thereAreNoJobs" id="empty-board-notice">
+        <span>There's nothing here.</span>
+        <br>
+        <span>
+          <a :href="'/view/' + board + '/configure'" class="transitions">Add jobs to the board</a> to be able to monitor them.
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -37,10 +46,51 @@
 
     components: {
       DashboardHeader
+    },
+
+    computed: {
+      thereAreNoJobs: function () {
+        return JSON.parse(this.jobs).length === 0;
+      }
     }
   }
 </script>
 
 <style scoped>
+  #monitor-wrapper {
+    padding: 3px;
+  }
 
+  #empty-board-notice {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #3B3D3B;
+    text-shadow: 1px 1px 1px #000000;
+    text-align: center;
+  }
+
+  #empty-board-notice span:first-of-type {
+    font-size: 2em;
+  }
+
+  #empty-board-notice a {
+    color: #38B0DE;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #666666;
+  }
+
+  #empty-board-notice a:visited {
+    color: #38B0DE;
+  }
+
+  #empty-board-notice a:hover {
+    color: #38B0DE;
+    text-decoration: underline;
+  }
 </style>
