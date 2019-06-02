@@ -1,4 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CircleCI](https://circleci.com/gh/beverlyRoadGoose/jenkins-build-dashboard.svg?style=svg&circle-token=e5e2acc9dc19e91cee13b063f4937fbbcc474df0)](https://circleci.com/gh/beverlyRoadGoose/jenkins-build-dashboard)
 
 ## Jenkins Build Dashboard
 ![screenshot](https://i.imgur.com/YwYzw8T.gif)
