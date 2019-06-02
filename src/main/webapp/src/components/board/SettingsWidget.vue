@@ -115,7 +115,7 @@
     border: 1px solid rgba(50, 50, 50, 1);
     color: #ffffff;
     width: 200px;
-    font-size: .6em;
+    font-size: .8em;
     text-shadow: 1px 1px 1px #000000;
   }
 
