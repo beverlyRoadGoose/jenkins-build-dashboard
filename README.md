@@ -9,7 +9,7 @@ This is a plugin for [Jenkins](https://jenkins.io/) that makes it possible to cr
 ### Features
 - Customisable layout for each board
 - Displays an automatically updated status of the jobs added to a board
-- Runs can be re-triggered right from the board (requires the jenkins [rebuild plugin](https://github.com/jenkinsci/rebuild-plugin))
+- Runs can be re-triggered from the board (requires the jenkins [rebuild plugin](https://github.com/jenkinsci/rebuild-plugin))
 
 ### Running the plugin
 You need to have [Gradle](https://gradle.org/) installed.
