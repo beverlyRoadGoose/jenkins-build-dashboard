@@ -55,13 +55,13 @@
 
     props: ['resourcesUrl', 'board', 'jobData'],
 
-    created: function () {
+    created() {
       this.$root.$on(Events.COLUMN_COUNT_RETRIEVED, (event, columnCount) => {
         this.columnCountRetrievedHandler(event, columnCount)
       });
     },
 
-    data: function () {
+    data() {
       let columnCount = CookieManager.cookieExists(this.board.split(' ').join('_') + '_columnCount') ? this.getColumnCountFromCookie() : 1;
       let width = (100 / ++columnCount) + '%';
 

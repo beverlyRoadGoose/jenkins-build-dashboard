@@ -52,7 +52,7 @@
 
     props: ['resourcesUrl', 'board'],
 
-    data: function () {
+    data() {
       return {
         settingsBoxStyleObject: {
           display: 'none'
