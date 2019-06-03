@@ -34,7 +34,7 @@ module.exports = {
 
   entry: {
     vue: 'vue',
-    index: resolve('src/webapp.js'),
+    index: resolve('src/Webapp.js'),
   },
 
   output: {

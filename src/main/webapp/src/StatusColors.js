@@ -23,49 +23,10 @@
  *
  */
 
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+let StatusColors = Object.freeze({
+  SUCCESS: '#E0F2E0',
+  ERROR: '#FFC6C3',
+  NORMAL:'#d2d2d2'
+});
 
-* {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-
-img, a {
-  outline: none;
-}
-
-html {
-  height: 100%;
-}
-
-body {
-  background-color: #F7F7F7;
-  font-family: 'Lato', sans-serif;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  overflow: hidden;
-}
-
-.npbm {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-.transitions{
-  transition: .5s;
-  -moz-transition: .5s;
-  -webkit-transition: .5s;
-  -o-transition: .5s
-}
-
-#webapp {
-  height: 100%;
-}
+export {StatusColors};

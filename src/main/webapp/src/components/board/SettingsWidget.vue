@@ -35,7 +35,7 @@
     <div id="settings-box" :style="settingsBoxStyleObject">
       <div>
         &nbsp;Columns:
-        <input type="range" min="1" max="6" id="column-slider">
+        <input type="range" min="1" max="6" v-model="columnCount" v-bind:title="columnCount" id="column-slider">
       </div>
       <a href="configure" id="settings-configure-link" :title="'Configure ' + board">Board configuration</a>
       <button id="settings-close-button" v-on:click="toggleSettingsBoxVisibility">Close</button>
@@ -44,6 +44,9 @@
 </template>
 
 <script>
+  import {Events} from "../../Events";
+  import CookieManager from '../../util/CookieManager';
+
   export default {
     name: 'SettingsWidget',
 
@@ -59,6 +62,26 @@
           opacity: .5
         }
       };
+    },
+
+    computed: {
+      /**
+       * Load the configured number of columns from cookie
+       *
+       * @returns The configured number of columns
+       */
+      columnCount: {
+        get: function () {
+          return CookieManager.cookieExists(this.board.split(' ').join('_') + '_columnCount') ? this.getColumnCountFromCookie() : 1;
+        },
+
+        set: function (value) {
+          let columnCountCookieName = this.board.split(' ').join('_') + '_columnCount';
+          this.$root.$emit(Events.COLUMN_COUNT_RETRIEVED, this.$event, value);
+          CookieManager.deleteCookie(columnCountCookieName);
+          CookieManager.createCookie(columnCountCookieName, value, 365);
+        }
+      }
     },
 
     methods: {
@@ -79,7 +102,11 @@
             this.settingsBoxStyleObject.display = 'none';
           }
         }
-      }
+      },
+
+      getColumnCountFromCookie: function () {
+        return CookieManager.readCookie(this.board.split(' ').join('_') + '_columnCount');
+      },
     }
   }
 </script>
@@ -117,6 +144,7 @@
     width: 200px;
     font-size: .8em;
     text-shadow: 1px 1px 1px #000000;
+    z-index: 10;
   }
 
   #column-slider {

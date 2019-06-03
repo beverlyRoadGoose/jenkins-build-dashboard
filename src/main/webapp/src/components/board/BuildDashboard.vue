@@ -36,7 +36,13 @@
       </div>
 
       <div v-else id="monitored-jobs-wrapper">
-        <monitored-job v-for="(job, index) in JSON.parse(jobs)" :key="index" :job-data="job"></monitored-job>
+        <monitored-job
+            v-for="(job, index) in JSON.parse(jobs)"
+            :key="index"
+            :resources-url="resourcesUrl"
+            :board="board"
+            :job-data="job"
+        ></monitored-job>
       </div>
     </div>
 
@@ -81,6 +87,19 @@
     height: calc(100% - 75px);
     height: -moz-calc(100% - 75px);
     height: -webkit-calc(100% - 75px);
+    min-height: calc(100% - 75px);
+    min-height: -moz-calc(100% - 75px);
+    min-height: -webkit-calc(100% - 75px);
+  }
+
+  #monitored-jobs-wrapper {
+    padding: 3px;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   #empty-board-notice {
