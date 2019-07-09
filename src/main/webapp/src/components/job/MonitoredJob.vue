@@ -185,7 +185,7 @@
 
   .monitored-job-last-build {
     color: #3B3D3B;
-    font-size: 0.7em;
+    font-size: 0.8em;
     display: inline-block;
     margin: 0;
   }
@@ -195,7 +195,7 @@
     cursor: pointer;
     opacity: .5;
     position: relative;
-    top: 3px;
+    top: 2px;
     width: 13px;
     height: 13px;
   }
