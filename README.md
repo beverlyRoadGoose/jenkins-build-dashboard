@@ -27,7 +27,7 @@ foo@bar:~$ gradle hpi
 ```
 You can find the generated hpi file in the root directory of the repo.
 
-The plugin is developed against Jenkins version `2.160` and isn't tested on earlier versions, it would probably work fine, but there are no guarantees.
+The plugin is developed against Jenkins version `2.164.3` and isn't tested on earlier versions, it would probably work fine, but there are no guarantees.
 
 ### Usage
 To create a board, go to the `/newView` page on jenkins, enter a name for the dashboard and select `Build Dashboard` as 

@@ -112,7 +112,6 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: #3B3D3B;
-    text-shadow: 1px 1px 1px #000000;
     text-align: center;
   }
 
@@ -123,7 +122,6 @@
   #empty-board-notice a {
     color: #38B0DE;
     text-decoration: none;
-    text-shadow: 1px 1px 1px #666666;
   }
 
   #empty-board-notice a:visited {

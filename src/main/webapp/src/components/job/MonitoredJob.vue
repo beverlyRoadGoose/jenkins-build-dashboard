@@ -188,7 +188,6 @@
     font-size: 0.7em;
     display: inline-block;
     margin: 0;
-    text-shadow: 1px 1px 1px #000000;
   }
 
   .repeat-button {

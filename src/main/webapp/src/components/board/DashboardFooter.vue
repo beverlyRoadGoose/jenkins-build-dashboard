@@ -42,13 +42,11 @@
     padding: 5px 10px;
     color: #3B3D3B;
     font-size: .8em;
-    text-shadow: 1px 1px 1px #000000;
   }
 
   #footer a {
     color: #38B0DE;
     text-decoration: none;
-    text-shadow: 1px 1px 1px #666666;
   }
 
   #footer a:hover {
