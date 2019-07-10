@@ -34,8 +34,16 @@
 
     <div id="settings-box" :style="settingsBoxStyleObject">
       <div>
-        &nbsp;Columns:
-        <input type="range" min="1" max="6" v-model="columnCount" v-bind:title="columnCount" id="column-slider">
+        Columns:
+        <input
+            type="range"
+            min="1"
+            max="6"
+            v-model="columnCount"
+            v-bind:title="columnCount"
+            v-on:change="updateBoardLayout(columnCount)"
+            id="column-slider"
+        >
       </div>
       <a href="configure" id="settings-configure-link" :title="'Configure ' + board">Board configuration</a>
       <button id="settings-close-button" v-on:click="toggleSettingsBoxVisibility">Close</button>
@@ -60,28 +68,12 @@
 
         settingsIconStyleObject: {
           opacity: .5
-        }
-      };
-    },
-
-    computed: {
-      /**
-       * Load the configured number of columns from cookie
-       *
-       * @returns The configured number of columns
-       */
-      columnCount: {
-        get: function () {
-          return CookieManager.cookieExists(this.board.split(' ').join('_') + '_columnCount') ? this.getColumnCountFromCookie() : 1;
         },
 
-        set: function (value) {
-          let columnCountCookieName = this.board.split(' ').join('_') + '_columnCount';
-          this.$root.$emit(Events.COLUMN_COUNT_RETRIEVED, this.$event, value);
-          CookieManager.deleteCookie(columnCountCookieName);
-          CookieManager.createCookie(columnCountCookieName, value, 365);
-        }
-      }
+        columnCountCookieName: this.board.split(' ').join('_') + '_columnCount',
+
+        columnCount: CookieManager.cookieExists(this.board.split(' ').join('_') + '_columnCount') ? this.getColumnCountFromCookie() : 1
+      };
     },
 
     methods: {
@@ -105,8 +97,14 @@
       },
 
       getColumnCountFromCookie: function () {
-        return CookieManager.readCookie(this.board.split(' ').join('_') + '_columnCount');
+        return CookieManager.readCookie(this.columnCountCookieName);
       },
+
+      updateBoardLayout: function (value) {
+        this.$root.$emit(Events.COLUMN_COUNT_RETRIEVED, this.$event, value);
+        CookieManager.deleteCookie(this.columnCountCookieName);
+        CookieManager.createCookie(this.columnCountCookieName, value, 365);
+      }
     }
   }
 </script>
