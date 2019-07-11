@@ -80,9 +80,11 @@
 
     methods: {
       startTimelyRequestsForLatestData: function () {
-        window.pluginInstance.getMonitoredJobsAsJSON(jobsData => {
-          console.log(jobsData.responseJSON);
-        });
+        setInterval(() => {
+          window.pluginInstance.getMonitoredJobsAsJSON(jobsData => {
+            console.log(jobsData.responseJSON);
+          });
+        }, 3000);
       }
     }
   }
