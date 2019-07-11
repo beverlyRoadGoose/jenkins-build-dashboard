@@ -98,10 +98,30 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
      */
     private val isRunnable: Boolean = jenkinsJob.isBuildable()
 
-    /*
+    /**
      * Description of the latest/current run
      */
     private val latestRunDescription: String? = latestRun?.getDescription()
+
+    /**
+     * Human readable format of the time a job has been running for.
+     */
+    private val currentRunDurationPretty: String? = latestRun?.getTimestampString()
+
+    /**
+     * Milliseconds representation of the time the current run started
+     */
+    private val startTime: Long? = latestRun?.getStartTimeInMillis()
+
+    /**
+     * Milliseconds representation of the time the last complete run started
+     */
+    private val lastCompleteRunStartTime: Long? = lastCompleteRun?.getStartTimeInMillis()
+
+    /**
+     * Milliseconds representation of the time it took for the last complete run to finish.
+     */
+    private val lastCompleteRunDuration: Long? = lastCompleteRun?.getDuration()
 
     /**
      * @return the number of runs in queue

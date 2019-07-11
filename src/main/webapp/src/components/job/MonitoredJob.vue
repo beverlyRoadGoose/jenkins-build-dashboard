@@ -185,7 +185,7 @@
 
   .monitored-job-last-build {
     color: #3B3D3B;
-    font-size: 0.8em;
+    font-size: 1em;
     display: inline-block;
     margin: 0;
     font-weight: bolder;
@@ -197,8 +197,8 @@
     opacity: .5;
     position: relative;
     top: 2px;
-    width: 13px;
-    height: 13px;
+    width: 15px;
+    height: 15px;
   }
 
   .repeat-button:hover {

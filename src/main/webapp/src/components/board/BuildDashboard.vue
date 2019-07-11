@@ -80,7 +80,7 @@
 
     computed: {
       thereAreNoJobs: function () {
-        return JSON.parse(this.jobs).length === 0;
+        return this.jobsData.length === 0;
       }
     },
 
