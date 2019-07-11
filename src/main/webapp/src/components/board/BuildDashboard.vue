@@ -68,9 +68,21 @@
       DashboardFooter
     },
 
+    mounted() {
+      this.startTimelyRequestsForLatestData();
+    },
+
     computed: {
       thereAreNoJobs: function () {
         return JSON.parse(this.jobs).length === 0;
+      }
+    },
+
+    methods: {
+      startTimelyRequestsForLatestData: function () {
+        window.pluginInstance.getMonitoredJobsAsJSON(jobsData => {
+          console.log(jobsData.responseJSON);
+        });
       }
     }
   }
