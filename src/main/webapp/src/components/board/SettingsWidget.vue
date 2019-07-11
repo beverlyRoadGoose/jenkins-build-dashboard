@@ -72,8 +72,12 @@
 
         columnCountCookieName: this.board.split(' ').join('_') + '_columnCount',
 
-        columnCount: CookieManager.cookieExists(this.board.split(' ').join('_') + '_columnCount') ? this.getColumnCountFromCookie() : 1
+        columnCount: 1
       };
+    },
+
+    mounted() {
+      this.columnCount = this.getColumnCountFromCookie();
     },
 
     methods: {
@@ -97,7 +101,8 @@
       },
 
       getColumnCountFromCookie: function () {
-        return CookieManager.readCookie(this.columnCountCookieName);
+        let count = CookieManager.readCookie(this.columnCountCookieName);
+        return count === null ? 1 : count;
       },
 
       updateBoardLayout: function (value) {

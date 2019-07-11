@@ -37,8 +37,8 @@
 
       <div v-else id="monitored-jobs-wrapper">
         <monitored-job
-            v-for="(job, index) in JSON.parse(jobs)"
-            :key="index"
+            v-for="job in jobsData"
+            v-bind:key="job.displayName"
             :resources-url="resourcesUrl"
             :board="board"
             :job-data="job"
@@ -61,6 +61,12 @@
 
     props: ['resourcesUrl', 'board', 'boardTitle', 'jobs', 'build'],
 
+    data() {
+      return {
+        jobsData: JSON.parse(this.jobs)
+      }
+    },
+
     components: {
       SettingsWidget,
       MonitoredJob,
@@ -82,7 +88,8 @@
       startTimelyRequestsForLatestData: function () {
         setInterval(() => {
           window.pluginInstance.getMonitoredJobsAsJSON(jobsData => {
-            console.log(jobsData.responseJSON);
+            this.jobsData.length = 0;
+            this.jobsData.push(JSON.parse(jobsData));
           });
         }, 3000);
       }
