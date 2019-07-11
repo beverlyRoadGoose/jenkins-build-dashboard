@@ -22,7 +22,7 @@
 -->
 
 <template>
-  <div :class="'monitored-job transitions ' + jobStateClass" :style="styleObject">
+  <div :class="'transitions monitored-job ' + jobStateClass" :style="styleObject">
     <a
         v-if="jobData.latestRunNumber > 0"
         :href="'job/' + jobData.displayName + '/' + jobData.latestRunNumber"

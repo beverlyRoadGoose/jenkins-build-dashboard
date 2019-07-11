@@ -37,8 +37,8 @@
 
       <div v-else id="monitored-jobs-wrapper">
         <monitored-job
-            v-for="job in jobsData"
-            v-bind:key="job.displayName"
+            v-for="(job, index) in this.jobsData"
+            :key="index"
             :resources-url="resourcesUrl"
             :board="board"
             :job-data="job"
@@ -86,10 +86,10 @@
 
     methods: {
       startTimelyRequestsForLatestData: function () {
+        let self = this;
         setInterval(() => {
-          window.pluginInstance.getMonitoredJobsAsJSON(jobsData => {
-            this.jobsData.length = 0;
-            this.jobsData.push(JSON.parse(jobsData));
+          window.pluginInstance.getMonitoredJobsAsJSON(updatedData => {
+              self.jobsData = updatedData.responseJSON;
           });
         }, 3000);
       }
