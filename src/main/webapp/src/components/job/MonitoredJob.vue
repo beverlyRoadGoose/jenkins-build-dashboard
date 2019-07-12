@@ -181,7 +181,7 @@
 
   .monitored-job-name {
     width: max-content;
-    font-size: 2.5em;
+    font-size: 3em;
     font-weight: 700;
     text-align: center;
     display: block;
@@ -211,12 +211,12 @@
     height: 15px;
     z-index: 10;
     position: absolute;
-    bottom: 10px;
+    bottom: 15px;
   }
 
   .monitored-job-last-build {
     color: #3B3D3B;
-    font-size: 1em;
+    font-size: 1.3em;
     display: inline-block;
     margin: 0;
     font-weight: 900;
@@ -227,9 +227,9 @@
     cursor: pointer;
     opacity: .5;
     position: relative;
-    top: 2px;
-    width: 15px;
-    height: 15px;
+    top: 1px;
+    width: 17px;
+    height: 17px;
   }
 
   .repeat-button:hover {

@@ -194,7 +194,7 @@
     width: max-content;
     background-color: #d2d2d2;
     color: #3B3D3B;
-    font-size: .8em;
+    font-size: 1em;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #999999;
