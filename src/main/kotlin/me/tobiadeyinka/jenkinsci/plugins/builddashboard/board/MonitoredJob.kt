@@ -111,7 +111,7 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
     /**
      * Milliseconds representation of the time the current run started
      */
-    private val startTime: Long? = latestRun?.getStartTimeInMillis()
+    private val latestRunStartTime: Long? = latestRun?.getStartTimeInMillis()
 
     /**
      * Milliseconds representation of the time the last complete run started
