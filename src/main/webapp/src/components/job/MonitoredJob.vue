@@ -23,24 +23,26 @@
 
 <template>
   <div :class="'transitions monitored-job ' + jobStateClass" :style="styleObject">
-    <a
-        v-if="jobData.latestRun.buildNumber > 0"
+    <div class="monitored-job-top-row">
+      <a v-bind:href="'job/' + jobData.displayName" class="monitored-job-name npbm">{{jobData.displayName}}</a>
+    </div>
+
+    <div class="monitored-job-bottom-row">
+      <a
+        v-if="jobData.latestRun !== null"
         :href="'job/' + jobData.displayName + '/' + jobData.latestRun.buildNumber"
         class="monitored-job-last-build">
-      {{jobData.latestRun.displayName}}
-    </a>
-    <a v-else :href="'job/' + jobData.displayName" class="monitored-job-last-build">No Builds</a>
+        {{jobData.latestRun.displayName}}
+      </a>
+      <a v-else :href="'job/' + jobData.displayName" class="monitored-job-last-build">No Builds</a>
 
-    <img
-        v-if="jobData.latestRun.buildNumber > 0"
+      <img
+        v-if="jobData.latestRun !== null && jobData.latestRun.buildNumber > 0"
         :src="resourcesUrl + '/src/assets/img/repeat.png'"
         class="repeat-button transitions"
         title="Rebuild"
         @click="rebuild(jobData.latestRun.buildNumber)"
-    >
-
-    <div class="monitored-job-mid-row">
-      <a v-bind:href="'job/' + jobData.displayName" class="monitored-job-name npbm">{{jobData.displayName}}</a>
+      >
     </div>
   </div>
 </template>
@@ -82,6 +84,10 @@
        * @returns string name of the class to be assigned
        */
       jobStateClass: function () {
+        if (this.jobData.lastCompleteRun === null) {
+          return 'monitored-job-aborted';
+        }
+
         switch (this.jobData.lastCompleteRun.result.name) {
           case 'SUCCESS': return 'monitored-job-successful';
           case 'FAILURE': return 'monitored-job-failed';
@@ -173,15 +179,26 @@
 
   .monitored-job-name {
     width: max-content;
-    font-size: 1.5em;
+    font-size: 2.5em;
+    font-weight: 700;
     text-align: center;
+    display: block;
+    margin: auto;
     color: #3B3D3B;
-    display: inline-block;
     text-shadow: 1px 1px 1px #000000;
   }
 
-  .monitored-job-mid-row {
-    margin-bottom: 5px;
+  .monitored-job-top-row {
+    height: 100%;
+    position: relative;
+    z-index: 9;
+  }
+
+  .monitored-job-bottom-row {
+    height: 15px;
+    z-index: 10;
+    position: absolute;
+    bottom: 10px;
   }
 
   .monitored-job-last-build {

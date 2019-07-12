@@ -119,7 +119,7 @@
         setTimeout(() => {
           this.infoBoxStyleObject.opacity = 0;
           this.informationMessage = '';
-        }, 5000);
+        }, 10000);
       }
     }
   }

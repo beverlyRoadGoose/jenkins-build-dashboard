@@ -49,12 +49,12 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
     /**
      * Last/current run of the job
      */
-    private val latestRun: LatestRun = LatestRun(jenkinsJob.getLastBuild())
+    private val latestRun: LatestRun? = jenkinsJob.getLastBuild()?.let { LatestRun(it) }
 
     /**
      * Last complete run of the job
      */
-    private val lastCompleteRun: CompleteRun = CompleteRun(jenkinsJob.getLastCompletedBuild())
+    private val lastCompleteRun: CompleteRun? = jenkinsJob.getLastCompletedBuild()?.let { CompleteRun(it) }
 
     /**
      * @return the number of runs in queue
