@@ -199,5 +199,6 @@
     border-radius: 5px;
     border: 1px solid #999999;
     box-shadow: 1px 1px 1px #cccccc;
+    font-weight: 700;
   }
 </style>

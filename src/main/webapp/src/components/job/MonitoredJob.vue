@@ -24,7 +24,9 @@
 <template>
   <div :class="'transitions monitored-job ' + jobStateClass" :style="styleObject">
     <div class="monitored-job-top-row">
-      <a v-bind:href="'job/' + jobData.displayName" class="monitored-job-name npbm">{{jobData.displayName}}</a>
+      <div class="top-row-content-wrapper">
+        <a v-bind:href="'job/' + jobData.displayName" class="monitored-job-name npbm">{{jobData.displayName}}</a>
+      </div>
     </div>
 
     <div class="monitored-job-bottom-row">
@@ -192,6 +194,17 @@
     height: 100%;
     position: relative;
     z-index: 9;
+  }
+
+  .top-row-content-wrapper {
+    width: max-content;
+    height: max-content;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
   .monitored-job-bottom-row {
