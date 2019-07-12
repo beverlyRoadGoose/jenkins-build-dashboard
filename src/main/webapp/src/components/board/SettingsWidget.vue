@@ -34,7 +34,7 @@
 
     <div id="settings-box" :style="settingsBoxStyleObject">
       <div>
-        Columns:
+        Columns: {{columnCount}}
         <input
             type="range"
             min="1"
