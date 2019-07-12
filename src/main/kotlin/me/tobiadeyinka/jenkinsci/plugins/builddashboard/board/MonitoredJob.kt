@@ -104,7 +104,7 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
     private val latestRunDescription: String? = latestRun?.getDescription()
 
     /**
-     * Human readable format of the time a job has been running for.
+     * Human readable format of the time a run was started.
      */
     private val currentRunDurationPretty: String? = latestRun?.getTimestampString()
 
