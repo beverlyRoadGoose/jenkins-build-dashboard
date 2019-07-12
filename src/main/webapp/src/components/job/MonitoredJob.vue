@@ -188,7 +188,7 @@
     font-size: 1em;
     display: inline-block;
     margin: 0;
-    font-weight: bolder;
+    font-weight: 900;
   }
 
   .repeat-button {
