@@ -50,11 +50,6 @@ open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
     protected val description: String? = run.getDescription()
 
     /**
-     * Human readable format of the time since a run was started.
-     */
-    protected val timeSinceStart: String? = run.getTimestampString()
-
-    /**
      * Milliseconds representation of the time the run started
      */
     protected val startTime: Long? = run.getStartTimeInMillis()

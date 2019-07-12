@@ -31,7 +31,7 @@
 
     <div class="monitored-job-bottom-row">
       <a
-        v-if="jobData.latestRun !== null"
+        v-if="this.jobHasBeenRun()"
         :href="'job/' + jobData.displayName + '/' + jobData.latestRun.buildNumber"
         class="monitored-job-last-build">
         {{jobData.latestRun.displayName}}
@@ -39,12 +39,14 @@
       <a v-else :href="'job/' + jobData.displayName" class="monitored-job-last-build">No Builds</a>
 
       <img
-        v-if="jobData.latestRun !== null && jobData.latestRun.buildNumber > 0"
+        v-if="this.jobHasBeenRun()"
         :src="resourcesUrl + '/src/assets/img/repeat.png'"
         class="repeat-button transitions"
         title="Rebuild"
         @click="rebuild(jobData.latestRun.buildNumber)"
       >
+
+      <div class="start-time" v-if="this.jobHasBeenRun()">{{this.prettyStartTime}} ago</div>
     </div>
   </div>
 </template>
@@ -52,6 +54,8 @@
 <script>
   import {Events} from '../../Events';
   import {StatusColors} from '../../StatusColors';
+
+  import PrettyMilliseconds from 'pretty-ms'
   import CookieManager from '../../util/CookieManager';
 
   export default {
@@ -96,6 +100,11 @@
           case 'NOT_BUILT': return 'monitored-job-aborted';
           case 'ABORTED': return 'monitored-job-aborted';
         }
+      },
+
+      prettyStartTime: function () {
+        return PrettyMilliseconds(Date.now() - this.jobData.latestRun.startTime, {compact: true, verbose: true})
+                .replace('~','');
       }
     },
 
@@ -133,6 +142,10 @@
         };
 
         request.send();
+      },
+
+      jobHasBeenRun: function () {
+        return this.jobData.latestRun !== null;
       }
     }
   }
@@ -212,20 +225,31 @@
     z-index: 10;
     position: absolute;
     bottom: 15px;
+    left: 10px;
+    right: 10px;
   }
 
   .monitored-job-last-build {
     color: #3B3D3B;
     font-size: 1.3em;
     display: inline-block;
-    margin: 0;
     font-weight: 900;
+    opacity: .7;
+  }
+
+  .start-time {
+    display: inline-block;
+    color: #3B3D3B;
+    font-size: 1.3em;
+    font-weight: 900;
+    float: right;
+    opacity: .6;
   }
 
   .repeat-button {
     display: inline-block;
     cursor: pointer;
-    opacity: .5;
+    opacity: .6;
     position: relative;
     top: 1px;
     width: 17px;

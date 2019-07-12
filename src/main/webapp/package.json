@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/beverlyRoadGoose/jenkins-build-dashboard#readme",
   "dependencies": {
+    "pretty-ms": "^5.0.0",
     "typed.js": "^2.0.10",
     "vue": "^2.6.9",
     "vue-head": "^2.1.1",
