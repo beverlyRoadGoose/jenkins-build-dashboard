@@ -147,7 +147,6 @@
     color: #ffffff;
     width: 200px;
     font-size: .8em;
-    text-shadow: 1px 1px 1px #000000;
     z-index: 10;
   }
 
@@ -163,7 +162,7 @@
     text-decoration: none;
     text-align: center;
     display: block;
-    color: #ffffff;
+    color: #3B3D3B;
     margin-top: 10px;
     padding: 5px;
     border-radius: 3px;
@@ -202,7 +201,6 @@
     border:1px solid #616261;
     background-color: #7d7e7d;
     font-size: .9em;
-    text-shadow: 1px 1px 1px #000000;
     background-image: -o-linear-gradient(top, #7d7e7d, #0e0e0e);
     background-image: -ms-linear-gradient(top, #7d7e7d, #0e0e0e);
     background-image: -moz-linear-gradient(top, #7d7e7d, #0e0e0e);

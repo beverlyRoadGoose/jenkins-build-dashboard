@@ -68,7 +68,6 @@
   #board-title {
     color: #3B3D3B;
     display: inline-block;
-    text-shadow: 1px 1px 1px #000000;
     margin: 2px 0 0 5px;
   }
 
