@@ -53,7 +53,7 @@
 
 <script>
   import {Events} from '../../Events';
-  import MonitoredJob from '../job/MonitoredJob';
+  import MonitoredJob from './MonitoredJob';
   import DashboardHeader from './DashboardHeader';
   import DashboardFooter from './DashboardFooter';
   import SettingsWidget from "./SettingsWidget";
