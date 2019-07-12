@@ -110,7 +110,8 @@
         let rebuildUrl = 'job/' + this.jobData.displayName + '/' + buildNumber + '/rebuild';
         let triggerMessage = 'Triggering rebuild for ' + this.jobData.displayName + ' #' + buildNumber;
         let successMessage = 'Triggered rebuild for ' + this.jobData.displayName + ' #' + buildNumber;
-        let failureMessage = 'Failed to trigger rebuild for ' + this.jobData.displayName + ' #' + buildNumber;
+        let failureMessage = 'Failed to trigger rebuild for ' + this.jobData.displayName + ' #' + buildNumber +
+                '.\nDo you have the Rebuilder plugin installed?';
 
         this.$root.$emit(Events.NEW_INFORMATION, this.$event, triggerMessage, StatusColors.NORMAL);
 

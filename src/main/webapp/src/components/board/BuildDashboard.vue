@@ -24,6 +24,7 @@
 <template>
   <div id="dashboard">
     <dashboard-header :resources-url="resourcesUrl" :board="board" :board-title="boardTitle"></dashboard-header>
+    <div id="info-box" class="transitions" v-bind:style="infoBoxStyleObject">{{this.informationMessage}}</div>
     <settings-widget :resources-url="resourcesUrl" :board="board"></settings-widget>
 
     <div id="monitor-wrapper">
@@ -51,6 +52,7 @@
 </template>
 
 <script>
+  import {Events} from '../../Events';
   import MonitoredJob from '../job/MonitoredJob';
   import DashboardHeader from './DashboardHeader';
   import DashboardFooter from './DashboardFooter';
@@ -63,7 +65,14 @@
 
     data() {
       return {
-        jobsData: JSON.parse(this.jobs)
+        jobsData: JSON.parse(this.jobs),
+
+        infoBoxStyleObject: {
+          opacity: 0,
+          'background-color': '#d2d2d2'
+        },
+
+        informationMessage: ''
       }
     },
 
@@ -72,6 +81,10 @@
       MonitoredJob,
       DashboardHeader,
       DashboardFooter
+    },
+
+    created: function () {
+      this.$root.$on(Events.NEW_INFORMATION, (event, message, statusColor) => this.displayInformation(event, message, statusColor));
     },
 
     mounted() {
@@ -94,6 +107,19 @@
               self.jobsData = updatedData.responseJSON;
           });
         }, 3000);
+      },
+
+      displayInformation: function (event, message, statusColor) {
+        this.informationMessage = message;
+        this.infoBoxStyleObject = {
+          opacity: 1,
+          "background-color": statusColor
+        };
+
+        setTimeout(() => {
+          this.infoBoxStyleObject.opacity = 0;
+          this.informationMessage = '';
+        }, 5000);
       }
     }
   }
@@ -154,5 +180,24 @@
   #empty-board-notice a:hover {
     color: #38B0DE;
     text-decoration: underline;
+  }
+
+  #info-box {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: max-content;
+    background-color: #d2d2d2;
+    color: #3B3D3B;
+    font-size: .8em;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #999999;
+    box-shadow: 1px 1px 1px #cccccc;
   }
 </style>
