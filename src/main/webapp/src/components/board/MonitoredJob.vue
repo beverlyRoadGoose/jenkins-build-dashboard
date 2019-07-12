@@ -193,14 +193,15 @@
   }
 
   .monitored-job-name {
-    width: max-content;
-    font-size: 3em;
+    width: fit-content;
+    font-size: 2.5em;
     font-weight: 700;
     text-align: center;
     display: block;
     margin: auto;
     color: #3B3D3B;
     text-shadow: 1px 1px 1px #000000;
+    word-wrap: break-word;
   }
 
   .monitored-job-top-row {
@@ -210,7 +211,6 @@
   }
 
   .top-row-content-wrapper {
-    width: max-content;
     height: max-content;
     position: absolute;
     top:0;
