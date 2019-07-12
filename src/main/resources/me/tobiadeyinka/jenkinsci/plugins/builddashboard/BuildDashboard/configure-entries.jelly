@@ -58,7 +58,9 @@
     <f:entry title="${%Jobs}" help="${descriptor.getHelpFile('dashboardJobs')}">
       <j:choose>
         <j:when test="${it.jenkinsInstanceHasNoJobsConfigured()}">
-          <div>It's empty in here. <a href="${rootURL}/view/${it.getViewName()}/newJob">Configure new jobs</a> to be able to add them to the dashboard from here.</div>
+          <div>
+            It's empty in here. <a href="${rootURL}/view/${it.getViewName()}/newJob">Configure new jobs</a> to be able to add them to the dashboard from here.
+          </div>
         </j:when>
         <j:otherwise>
           <div>
