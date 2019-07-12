@@ -24,19 +24,19 @@
 <template>
   <div :class="'transitions monitored-job ' + jobStateClass" :style="styleObject">
     <a
-        v-if="jobData.latestRunNumber > 0"
-        :href="'job/' + jobData.displayName + '/' + jobData.latestRunNumber"
+        v-if="jobData.latestRun.buildNumber > 0"
+        :href="'job/' + jobData.displayName + '/' + jobData.latestRun.buildNumber"
         class="monitored-job-last-build">
-      {{jobData.latestRunName}}
+      {{jobData.latestRun.displayName}}
     </a>
     <a v-else :href="'job/' + jobData.displayName" class="monitored-job-last-build">No Builds</a>
 
     <img
-        v-if="jobData.latestRunNumber > 0"
+        v-if="jobData.latestRun.buildNumber > 0"
         :src="resourcesUrl + '/src/assets/img/repeat.png'"
         class="repeat-button transitions"
         title="Rebuild"
-        @click="rebuild(jobData.latestRunNumber)"
+        @click="rebuild(jobData.latestRun.buildNumber)"
     >
 
     <div class="monitored-job-mid-row">
@@ -82,7 +82,7 @@
        * @returns string name of the class to be assigned
        */
       jobStateClass: function () {
-        switch (this.jobData.lastCompleteRunResult.name) {
+        switch (this.jobData.lastCompleteRun.result.name) {
           case 'SUCCESS': return 'monitored-job-successful';
           case 'FAILURE': return 'monitored-job-failed';
           case 'NOT_BUILT': return 'monitored-job-aborted';

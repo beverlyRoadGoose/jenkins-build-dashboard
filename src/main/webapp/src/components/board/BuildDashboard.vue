@@ -75,7 +75,9 @@
     },
 
     mounted() {
-      this.startTimelyRequestsForLatestData();
+      if (this.jobsData.length > 0) {
+        this.startTimelyRequestsForLatestData();
+      }
     },
 
     computed: {
