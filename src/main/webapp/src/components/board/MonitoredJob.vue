@@ -231,7 +231,7 @@
 
   .monitored-job-last-build {
     color: #3B3D3B;
-    font-size: 1.3em;
+    font-size: 1em;
     display: inline-block;
     font-weight: 900;
     opacity: .7;
@@ -240,7 +240,7 @@
   .start-time {
     display: inline-block;
     color: #3B3D3B;
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: 900;
     float: right;
     opacity: .6;
@@ -251,9 +251,9 @@
     cursor: pointer;
     opacity: .6;
     position: relative;
-    top: 1px;
-    width: 17px;
-    height: 17px;
+    top: 2px;
+    width: 15px;
+    height: 15px;
   }
 
   .repeat-button:hover {
