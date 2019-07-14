@@ -2,6 +2,8 @@
 [![CircleCI](https://circleci.com/gh/beverlyRoadGoose/jenkins-build-dashboard.svg?style=svg&circle-token=e5e2acc9dc19e91cee13b063f4937fbbcc474df0)](https://circleci.com/gh/beverlyRoadGoose/jenkins-build-dashboard)
 
 ## Jenkins Build Dashboard
+![Demo](https://i.imgur.com/skzfPEU.gif)
+
 This is a plugin for [Jenkins](https://jenkins.io/) that makes it possible to create customisable dashboards for monitoring the status of your jobs or builds.
 
 ### Features
