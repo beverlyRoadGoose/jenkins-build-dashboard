@@ -84,7 +84,11 @@
     },
 
     created: function () {
-      this.$root.$on(Events.NEW_INFORMATION, (event, message, statusColor) => this.displayInformation(event, message, statusColor));
+      this.$root.$on(Events.NEW_INFORMATION, (event, message, statusColor) => this.displayInformation(
+        event,
+        message,
+        statusColor
+      ));
     },
 
     mounted() {
