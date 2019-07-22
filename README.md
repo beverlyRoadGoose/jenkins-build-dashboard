@@ -21,6 +21,9 @@ up a local instance of jenkins with the plugin installed which you can access on
 foo@bar:~$ gradle server
 ```
 
+#### Running on Docker
+A Dockerfile is available in the root of the project if you'd prefer to run Jenkins & the plugin on a [Docker](https://www.docker.com/) container.
+
 #### Installing on an existing jenkins instance
 If you want to install the plugin on an existing instance of jenkins, you need to generate the hpi file and then install
 it. Generate the file by running:
