@@ -26,6 +26,7 @@
     <div
       class="progress-bar"
       v-if="this.jobIsRunning()"
+      :class="this.getProgressBarBlinkClass()"
       :style="{width: this.getProgressPercentage() + '%', 'min-width': '5%', 'background-color': this.getProgressBarColor()}">
       <span class="progress-percentage">{{this.getProgressPercentage()}}%</span>
     </div>
@@ -110,8 +111,7 @@
       },
 
       prettyStartTime: function () {
-        return PrettyMilliseconds(Date.now() - this.jobData.latestRun.startTime, {compact: true, verbose: true})
-                .replace('~','');
+        return PrettyMilliseconds(Date.now() - this.jobData.latestRun.startTime, {compact: true, verbose: true}).replace('~','');
       }
     },
 
@@ -177,12 +177,93 @@
           case 'NOT_BUILT':
           case 'ABORTED': return '#ababab';
         }
+      },
+
+      getProgressBarBlinkClass: function () {
+        switch (this.jobData.lastCompleteRun.result.name) {
+          case 'SUCCESS': return 'blink-green';
+          case 'FAILURE': return 'blink-red';
+          case 'NOT_BUILT':
+          case 'ABORTED': return 'blink-grey';
+        }
       }
     }
   }
 </script>
 
 <style scoped>
+  @-moz-keyframes green-blink {
+    0% {background-color: rgba(152, 211, 152, 1)}
+    50% {background-color: rgba(152, 211, 152, 0.5)}
+    100% {background-color: rgba(152, 211, 152, 1)}
+  }
+
+  @-webkit-keyframes green-blink {
+    0% {background-color: rgba(152, 211, 152, 1)}
+    50% {background-color: rgba(152, 211, 152, 0.5)}
+    100% {background-color: rgba(152, 211, 152, 1)}
+  }
+
+  @-ms-keyframes green-blink {
+    0% {background-color: rgba(152, 211, 152, 1)}
+    50% {background-color: rgba(152, 211, 152, 0.5)}
+    100% {background-color: rgba(152, 211, 152, 1)}
+  }
+
+  @keyframes green-blink {
+    0% {background-color: rgba(152, 211, 152, 1)}
+    50% {background-color: rgba(152, 211, 152, 0.5)}
+    100% {background-color: rgba(152, 211, 152, 1)}
+  }
+
+  @-moz-keyframes red-blink {
+    0% {background-color: rgba(255 , 125, 119, 1)}
+    50% {background-color: rgba(255 , 125, 119, 0.5)}
+    100% {background-color: rgba(255 , 125, 119, 1)}
+  }
+
+  @-webkit-keyframes red-blink {
+    0% {background-color: rgba(255 , 125, 119, 1)}
+    50% {background-color: rgba(255 , 125, 119, 0.5)}
+    100% {background-color: rgba(255 , 125, 119, 1)}
+  }
+
+  @-ms-keyframes red-blink {
+    0% {background-color: rgba(255 , 125, 119, 1)}
+    50% {background-color: rgba(255 , 125, 119, 0.5)}
+    100% {background-color: rgba(255 , 125, 119, 1)}
+  }
+
+  @keyframes red-blink {
+    0% {background-color: rgba(255 , 125, 119, 1)}
+    50% {background-color: rgba(255 , 125, 119, 0.5)}
+    100% {background-color: rgba(255 , 125, 119, 1)}
+  }
+
+  @-moz-keyframes grey-blink {
+    0% {background-color: rgba(171 , 171, 171, 1)}
+    50% {background-color: rgba(171 , 171, 171, 0.5)}
+    100% {background-color: rgba(171 , 171, 171, 1)}
+  }
+
+  @-webkit-keyframes grey-blink {
+    0% {background-color: rgba(171 , 171, 171, 1)}
+    50% {background-color: rgba(171 , 171, 171, 0.5)}
+    100% {background-color: rgba(171 , 171, 171, 1)}
+  }
+
+  @-ms-keyframes grey-blink {
+    0% {background-color: rgba(171 , 171, 171, 1)}
+    50% {background-color: rgba(171 , 171, 171, 0.5)}
+    100% {background-color: rgba(171 , 171, 171, 1)}
+  }
+
+  @keyframes grey-blink {
+    0% {background-color: rgba(171 , 171, 171, 1)}
+    50% {background-color: rgba(171 , 171, 171, 0.5)}
+    100% {background-color: rgba(171 , 171, 171, 1)}
+  }
+
   .monitored-job {
     color: #3B3D3B;
     padding: 0;
@@ -199,6 +280,29 @@
   .progress-bar {
     position: absolute;
     height: 100%;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+  }
+
+  .blink-green {
+    -moz-animation: green-blink normal 3s infinite ease-in-out;
+    -webkit-animation: green-blink normal 3s infinite ease-in-out;
+    -ms-animation: green-blink normal 3s infinite ease-in-out;
+    animation: green-blink normal 3s infinite ease-in-out;
+  }
+
+  .blink-red {
+    -moz-animation: red-blink normal 3s infinite ease-in-out;
+    -webkit-animation: red-blink normal 3s infinite ease-in-out;
+    -ms-animation: red-blink normal 3s infinite ease-in-out;
+    animation: red-blink normal 3s infinite ease-in-out;
+  }
+
+  .blink-grey {
+    -moz-animation: grey-blink normal 3s infinite ease-in-out;
+    -webkit-animation: grey-blink normal 3s infinite ease-in-out;
+    -ms-animation: grey-blink normal 3s infinite ease-in-out;
+    animation: grey-blink normal 3s infinite ease-in-out;
   }
 
   .progress-percentage {
