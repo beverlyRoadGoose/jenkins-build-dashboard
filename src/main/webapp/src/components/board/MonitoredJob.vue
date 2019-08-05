@@ -23,7 +23,10 @@
 
 <template>
   <div :class="'transitions monitored-job ' + jobStateClass" :style="styleObject">
-    <div class="progress-bar" v-if="this.jobIsRunning()" :style="{width: this.getProgressPercentage() + '%', 'min-width': '5%'}">
+    <div
+      class="progress-bar"
+      v-if="this.jobIsRunning()"
+      :style="{width: this.getProgressPercentage() + '%', 'min-width': '5%', 'background-color': this.getProgressBarColor()}">
       <span class="progress-percentage">{{this.getProgressPercentage()}}%</span>
     </div>
 
@@ -101,7 +104,7 @@
         switch (this.jobData.lastCompleteRun.result.name) {
           case 'SUCCESS': return 'monitored-job-successful';
           case 'FAILURE': return 'monitored-job-failed';
-          case 'NOT_BUILT': return 'monitored-job-aborted';
+          case 'NOT_BUILT':
           case 'ABORTED': return 'monitored-job-aborted';
         }
       },
@@ -165,6 +168,15 @@
           return percentage > 100 ? 100 : percentage;
         }
         else return 0;
+      },
+
+      getProgressBarColor: function () {
+        switch (this.jobData.lastCompleteRun.result.name) {
+          case 'SUCCESS': return '#98d398';
+          case 'FAILURE': return '#ff7d77';
+          case 'NOT_BUILT':
+          case 'ABORTED': return '#ababab';
+        }
       }
     }
   }
@@ -215,15 +227,15 @@
   }
 
   .monitored-job-successful {
-    background-color: #E0F2E0;
+    background-color: #BBE2BB;
   }
 
   .monitored-job-failed {
-    background-color: #FFC6C3;
+    background-color: #FFA39E;
   }
 
   .monitored-job-aborted {
-    background-color: #d2d2d2;
+    background-color: #C4C4C4;
   }
 
   .monitored-job-name {
