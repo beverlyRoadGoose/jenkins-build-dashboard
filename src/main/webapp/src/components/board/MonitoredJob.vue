@@ -165,7 +165,11 @@
           let estimatedDuration = this.jobData.latestRun.estimatedDuration;
           let percentage = Math.ceil((duration / estimatedDuration) * 100);
 
-          return percentage > 100 ? 100 : percentage;
+          if (percentage < 0 || percentage > 100) {
+            percentage = 100;
+          }
+
+          return percentage;
         }
         else return 0;
       },
