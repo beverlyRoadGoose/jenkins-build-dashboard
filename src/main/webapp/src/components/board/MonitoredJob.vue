@@ -23,6 +23,10 @@
 
 <template>
   <div :class="'transitions monitored-job ' + jobStateClass" :style="styleObject">
+    <div class="progress-bar" v-if="this.jobIsRunning()" :style="{width: this.getProgressPercentage() + '%', 'min-width': '5%'}">
+      <span class="progress-percentage">{{this.getProgressPercentage()}}%</span>
+    </div>
+
     <div class="monitored-job-top-row">
       <div class="top-row-content-wrapper">
         <a v-bind:href="'job/' + jobData.displayName" class="monitored-job-name npbm">{{jobData.displayName}}</a>
@@ -146,6 +150,21 @@
 
       jobHasBeenRun: function () {
         return this.jobData.latestRun !== null;
+      },
+
+      jobIsRunning: function () {
+        return this.jobHasBeenRun() && this.jobData.latestRun.isRunning;
+      },
+
+      getProgressPercentage: function () {
+        if (this.jobIsRunning()) {
+          let duration = Date.now() - this.jobData.latestRun.startTime;
+          let estimatedDuration = this.jobData.latestRun.estimatedDuration;
+          let percentage = Math.ceil((duration / estimatedDuration) * 100);
+
+          return percentage > 100 ? 100 : percentage;
+        }
+        else return 0;
       }
     }
   }
@@ -154,7 +173,7 @@
 <style scoped>
   .monitored-job {
     color: #3B3D3B;
-    padding: 10px;
+    padding: 0;
     margin: 3px;
     border-radius: 7px;
     box-sizing: border-box;
@@ -162,6 +181,21 @@
     position: relative;
     display: inline-block;
     border: 1px solid #999999;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    position: absolute;
+    height: 100%;
+  }
+
+  .progress-percentage {
+    padding: 10px;
+    float: right;
+    color: #3B3D3B;
+    font-size: .9em;
+    font-weight: 900;
+    opacity: .6;
   }
 
   .monitored-job a {

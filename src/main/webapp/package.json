@@ -21,23 +21,23 @@
   "dependencies": {
     "pretty-ms": "^5.0.0",
     "typed.js": "^2.0.10",
-    "vue": "^2.6.9",
-    "vue-head": "^2.1.1",
+    "vue": "^2.6.10",
+    "vue-head": "^2.1.2",
     "vue-resource": "^1.5.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "babel-loader": "^8.0.5",
+    "@babel/core": "^7.5.5",
+    "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
-    "css-loader": "^2.1.1",
-    "file-loader": "^3.0.1",
-    "image-webpack-loader": "^4.6.0",
-    "url-loader": "^1.1.2",
-    "vue-loader": "^15.7.0",
+    "css-loader": "^3.1.0",
+    "file-loader": "^4.1.0",
+    "image-webpack-loader": "^5.0.0",
+    "url-loader": "^2.1.0",
+    "vue-loader": "^15.7.1",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.9",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
   }
 }

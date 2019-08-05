@@ -55,7 +55,7 @@ open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
     protected val startTime: Long? = run.getStartTimeInMillis()
 
     /**
-     * Milliseconds representation of the time it took for the last complete run to finish/has been running.
+     * Milliseconds representation of the time it took for the last complete run to finish
      */
     protected val duration: Long? = run.getDuration()
 
