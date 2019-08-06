@@ -1,4 +1,4 @@
-[![version](https://badge.fury.io/gh/beverlyRoadGoose%2jenkins-build-dashboard.svg)](https://github.com/beverlyRoadGoose/jenkins-build-dashboard/releases)
+<!-- [![version](https://badge.fury.io/gh/beverlyRoadGoose%2jenkins-build-dashboard.svg)](https://github.com/beverlyRoadGoose/jenkins-build-dashboard/releases) -->
 [![CircleCI](https://circleci.com/gh/beverlyRoadGoose/jenkins-build-dashboard.svg?style=svg&circle-token=e5e2acc9dc19e91cee13b063f4937fbbcc474df0)](https://circleci.com/gh/beverlyRoadGoose/jenkins-build-dashboard)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
