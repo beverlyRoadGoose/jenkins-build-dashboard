@@ -25,14 +25,15 @@ foo@bar:~$ gradle server
 A Dockerfile is available in the root of the project if you'd prefer to run Jenkins & the plugin in a [Docker](https://www.docker.com/) container.
 
 #### Installing on an existing jenkins instance
-If you want to install the plugin on an existing instance of jenkins, you need to generate the hpi file and then install
-it. Generate the file by running:
+If you want to install the plugin on an existing instance of jenkins, you need to generate the jpi file and then install
+it or your server. Generate the file by running:
 ```console
-foo@bar:~$ gradle hpi
+foo@bar:~$ gradle dist
 ```
-You can find the generated hpi file in the root directory of the repo.
+You can find the generated jpi file in the root directory of the repo.
 
-The plugin is developed against Jenkins version `2.164.3` and isn't tested on earlier versions, it would probably work fine, but there are no guarantees.
+The plugin is developed against Jenkins version `2.164.3` and isn't tested on earlier versions, it would probably work fine,
+but there are no guarantees.
 
 ### Usage
 To create a board, go to the `/newView` page on jenkins, enter a name for the dashboard and select `Build Dashboard` as 

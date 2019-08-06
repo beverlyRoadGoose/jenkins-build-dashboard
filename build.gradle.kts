@@ -1,7 +1,9 @@
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jenkinsci.gradle.plugins.jpi.JpiDeveloper
+import org.jenkinsci.gradle.plugins.jpi.JpiLicense
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val hpi: String = "hpi"
+val dist: String = "dist"
 val webAppDir: String = "src/main/webapp"
 val npmInstall: String = "npmInstall"
 val webAppDev: String = "webAppDev"
@@ -26,10 +28,26 @@ description = "A dashboard for monitoring the status of builds"
 
 jenkinsPlugin {
     coreVersion = "2.164.3"
-    displayName = "Build Dashboard"
+    displayName = "Build Dashboard Plugin"
     url = "https://github.com/beverlyRoadGoose/jenkins-build-dashboard"
     gitHubUrl = "https://github.com/beverlyRoadGoose/jenkins-build-dashboard"
-    shortName = "build-dashboard-plugin"
+    shortName = "build-dashboard-plugin-$version"
+    fileExtension = "jpi"
+
+    developers = this.Developers().apply {
+        developer(delegateClosureOf<JpiDeveloper> {
+            setProperty("id", "beverlyRoadGoose")
+            setProperty("name", "Oluwatobi Adeyinka")
+            setProperty("email", "adeyinka.oluwatobi@yahoo.com")
+        })
+    }
+
+    licenses = this.Licenses().apply {
+        license(delegateClosureOf<JpiLicense> {
+            setProperty("name", "MIT License")
+            setProperty("url", "https://opensource.org/licenses/MIT")
+        })
+    }
 }
 
 repositories {
@@ -87,12 +105,12 @@ val jpiTask by tasks.named<Task>("jpi") {
     mustRunAfter(webAppDistTask)
 }
 
-val hpiTask by tasks.register<Exec>(hpi) {
+val distTask by tasks.register<Exec>(dist) {
     group = "Build"
-    description = "Generates a hpi file of the plugin that can be installed on a Jenkins instance"
+    description = "Generates a jpi file of the plugin that can be installed on a Jenkins instance"
     dependsOn(jpiTask)
     mustRunAfter(jpiTask)
-    commandLine = listOf("cp", "build/libs/build-dashboard-plugin.hpi", ".")
+    commandLine = listOf("cp", "build/libs/build-dashboard-plugin-$version.jpi", ".")
 }
 
 val deleteWorkDirTask by tasks.register<Exec>(deleteWorkDir) {
