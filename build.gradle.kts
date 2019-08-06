@@ -23,7 +23,7 @@ plugins {
 }
 
 group = "me.tobiadeyinka.jenkinsci.plugins"
-version = "0.1.0"
+version = "0.1.1"
 description = "A dashboard for monitoring the status of builds"
 
 jenkinsPlugin {
@@ -31,7 +31,7 @@ jenkinsPlugin {
     displayName = "Build Dashboard Plugin"
     url = "https://github.com/beverlyRoadGoose/jenkins-build-dashboard"
     gitHubUrl = "https://github.com/beverlyRoadGoose/jenkins-build-dashboard"
-    shortName = "build-dashboard-plugin-$version"
+    shortName = "build-dashboard-plugin"
     fileExtension = "jpi"
 
     developers = this.Developers().apply {
@@ -110,7 +110,7 @@ val distTask by tasks.register<Exec>(dist) {
     description = "Generates a jpi file of the plugin that can be installed on a Jenkins instance"
     dependsOn(jpiTask)
     mustRunAfter(jpiTask)
-    commandLine = listOf("cp", "build/libs/build-dashboard-plugin-$version.jpi", ".")
+    commandLine = listOf("cp", "build/libs/build-dashboard-plugin.jpi", ".")
 }
 
 val deleteWorkDirTask by tasks.register<Exec>(deleteWorkDir) {
