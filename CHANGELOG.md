@@ -1,5 +1,8 @@
 ## Change Log
 
+##### v0.1.3-beta.3 ~ 2019.08.06
+- Corrected build version in build properties file
+
 ##### v0.1.2 ~ 2019.08.06
 - Corrected info message status colors
 
