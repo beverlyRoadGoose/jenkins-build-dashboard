@@ -23,7 +23,7 @@ plugins {
 }
 
 group = "me.tobiadeyinka.jenkinsci.plugins"
-version = "0.1.1"
+version = "0.1.2"
 description = "A dashboard for monitoring the status of builds"
 
 jenkinsPlugin {

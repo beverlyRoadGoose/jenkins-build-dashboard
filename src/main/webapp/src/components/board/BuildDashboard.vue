@@ -24,7 +24,7 @@
 <template>
   <div id="dashboard">
     <dashboard-header :resources-url="resourcesUrl" :board="board" :board-title="boardTitle"></dashboard-header>
-    <div id="info-box" class="transitions" v-bind:style="infoBoxStyleObject">{{this.informationMessage}}</div>
+    <div id="info-box" class="transitions" :style="infoBoxStyleObject">{{this.informationMessage}}</div>
     <settings-widget :resources-url="resourcesUrl" :board="board"></settings-widget>
 
     <div id="monitor-wrapper">

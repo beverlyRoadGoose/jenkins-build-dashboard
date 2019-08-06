@@ -1,5 +1,8 @@
 ## Change Log
 
+##### v0.1.2 ~ 2019.08.06
+- Corrected info message status colors
+
 ##### v0.1.1 ~ 2019.08.06
 - Fixed 404 issue when resolving dashboard js script
 
