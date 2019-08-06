@@ -75,12 +75,6 @@ class BuildDashboardTest {
     }
 
     @Test
-    fun getBuildVersion() {
-        val dashboard = BuildDashboard(TEST_BOARD_NAME, null)
-        assertThat(dashboard.getBuildVersion()).isEqualTo("0.1.0")
-    }
-
-    @Test
     fun addJobToBoard() {
         val dashboard = BuildDashboard(TEST_BOARD_NAME, null)
         val job: TopLevelItem = mockk(relaxed = true)
