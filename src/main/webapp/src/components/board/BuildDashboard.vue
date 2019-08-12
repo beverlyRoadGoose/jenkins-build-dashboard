@@ -42,8 +42,8 @@
             :key="index"
             :resources-url="resourcesUrl"
             :board="board"
-            :job-data="job"
-        ></monitored-job>
+            :job-data="job">
+        </monitored-job>
       </div>
     </div>
 
