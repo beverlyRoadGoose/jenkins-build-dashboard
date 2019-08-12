@@ -155,6 +155,10 @@
         return this.jobData.latestRun !== null;
       },
 
+      jobHasACompleteRun: function () {
+        return this.jobData.lastCompleteRun !== null;
+      },
+
       jobIsRunning: function () {
         return this.jobHasBeenRun() && this.jobData.latestRun.isRunning;
       },
@@ -175,6 +179,10 @@
       },
 
       getProgressBarColor: function () {
+        if (!this.jobHasACompleteRun()) {
+          return '#ababab';
+        }
+
         switch (this.jobData.lastCompleteRun.result.name) {
           case 'SUCCESS': return '#98d398';
           case 'FAILURE': return '#ff7d77';
@@ -184,6 +192,10 @@
       },
 
       getProgressBarBlinkClass: function () {
+        if (!this.jobHasACompleteRun()) {
+          return 'blink-grey';
+        }
+
         switch (this.jobData.lastCompleteRun.result.name) {
           case 'SUCCESS': return 'blink-green';
           case 'FAILURE': return 'blink-red';
