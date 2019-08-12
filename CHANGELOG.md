@@ -1,5 +1,7 @@
 ## Change Log
 
+#### v0.3.0-beta.5
+
 #### v0.2.0-beta.4 ~ 2019.08.12
 - Fixed bug where jobs added to the board while running were not displayed
 
