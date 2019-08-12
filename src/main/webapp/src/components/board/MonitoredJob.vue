@@ -34,6 +34,7 @@
     <div class="monitored-job-top-row">
       <div class="top-row-content-wrapper">
         <a v-bind:href="'job/' + jobData.displayName" class="monitored-job-name npbm">{{jobData.displayName}}</a>
+        <div class="monitored-job-description">{{this.jobData.latestRun.description}}</div>
       </div>
     </div>
 
@@ -42,7 +43,7 @@
         v-if="this.jobHasBeenRun()"
         :href="'job/' + jobData.displayName + '/' + jobData.latestRun.buildNumber"
         class="monitored-job-last-build">
-        {{jobData.latestRun.displayName}}
+        {{this.jobData.latestRun.displayName}}
       </a>
       <a v-else :href="'job/' + jobData.displayName" class="monitored-job-last-build">No Builds</a>
 
@@ -364,10 +365,16 @@
     font-weight: 700;
     text-align: center;
     display: block;
-    margin: auto;
+    margin: auto auto 10px;
     color: #3B3D3B;
     text-shadow: 1px 1px 1px #000000;
     word-wrap: break-word;
+  }
+
+  .monitored-job-description {
+    width: fit-content;
+    margin: auto;
+    font-weight: 700;
   }
 
   .monitored-job-top-row {
