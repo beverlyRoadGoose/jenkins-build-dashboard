@@ -299,26 +299,26 @@
     height: 100%;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
+    -moz-box-shadow: 0 0 7px -3px #000;
+    -webkit-box-shadow: 0 0 7px -3px #000;
+    box-shadow: 0 0 7px -3px #000;
   }
 
   .blink-green {
     -moz-animation: green-blink normal 3s infinite ease-in-out;
     -webkit-animation: green-blink normal 3s infinite ease-in-out;
-    -ms-animation: green-blink normal 3s infinite ease-in-out;
     animation: green-blink normal 3s infinite ease-in-out;
   }
 
   .blink-red {
     -moz-animation: red-blink normal 3s infinite ease-in-out;
     -webkit-animation: red-blink normal 3s infinite ease-in-out;
-    -ms-animation: red-blink normal 3s infinite ease-in-out;
     animation: red-blink normal 3s infinite ease-in-out;
   }
 
   .blink-grey {
     -moz-animation: grey-blink normal 3s infinite ease-in-out;
     -webkit-animation: grey-blink normal 3s infinite ease-in-out;
-    -ms-animation: grey-blink normal 3s infinite ease-in-out;
     animation: grey-blink normal 3s infinite ease-in-out;
   }
 
