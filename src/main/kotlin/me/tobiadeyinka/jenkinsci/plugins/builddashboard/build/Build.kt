@@ -25,12 +25,30 @@
 
 package me.tobiadeyinka.jenkinsci.plugins.builddashboard.build
 
-data class BuildInfo constructor(private var build: Build? = null) {
+/**
+ * Manages build information for installation instances
+ *
+ * @property[pluginName] The name of the plugin
+ * @property[version] The installed version of the plugin
+ */
+data class Build constructor(private var pluginName: String = "", private var version: String = "") {
 
-    fun build(): Build = this.build!!
+    /**
+     * @return The name of the plugin
+     */
+    fun pluginName(): String = pluginName
 
-    fun setBuild(build: Build) {
-        this.build = build
+    /**
+     * @return The currently installed version of the plugin
+     */
+    fun version(): String = version
+
+    fun setPluginName(pluginName: String) {
+        this.pluginName = pluginName
+    }
+
+    fun setVersion(version: String) {
+        this.version = version
     }
 
 }

@@ -40,7 +40,9 @@ import org.kohsuke.stapler.StaplerRequest
 import org.kohsuke.stapler.DataBoundConstructor
 import org.kohsuke.stapler.bind.JavaScriptMethod
 
-import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfo
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Build
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfoLoader
+
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
 
 import net.sf.json.JSONArray
@@ -48,10 +50,13 @@ import net.sf.json.JSONObject
 import net.sf.json.JSONSerializer.toJSON
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
+
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect
 import com.fasterxml.jackson.annotation.PropertyAccessor.*
-import com.fasterxml.jackson.databind.SerializationFeature
+
 
 /**
  * Main entity definition of the plugin.
@@ -61,6 +66,10 @@ import com.fasterxml.jackson.databind.SerializationFeature
  */
 class BuildDashboard
 @DataBoundConstructor constructor(private val name: String?, private var title: String?) : ListView(name) {
+
+    private val build: Build = BuildInfoLoader()
+        .getBuildInfo()
+        .build()
 
     /**
      * Handles the dashboard settings form data on submit
@@ -89,7 +98,7 @@ class BuildDashboard
     /**
      * @return The installed version of the plugin
      */
-    fun getBuildVersion(): String = BuildInfo().version()
+    fun getBuildVersion(): String = build.version()
 
     /**
      * @return The number of jobs on the board
@@ -106,7 +115,7 @@ class BuildDashboard
     fun getMonitoredJobsAsJSON(): JSONArray = toJSON(getObjectMapper().writeValueAsString(getMonitoredJobs())) as JSONArray
 
     @JavaScriptMethod
-    fun getBuildInfoAsJSON(): JSONObject = toJSON(getObjectMapper().writeValueAsString(BuildInfo())) as JSONObject
+    fun getBuildInfoAsJSON(): JSONObject = toJSON(getObjectMapper().writeValueAsString(build)) as JSONObject
 
     /**
      * Creates [MonitoredJob] instances of all the jobs on the
@@ -131,12 +140,15 @@ class BuildDashboard
      * Integration point with jenkins
      */
     @Extension
-    class BuildDashboardDescriptor : ListView.DescriptorImpl() {
+    class BuildDashboardDescriptor : hudson.model.ListView.DescriptorImpl() {
 
         /**
          *  Sets the display name that jenkins identifies the plugin with
          */
-        override fun getDisplayName(): String = BuildInfo().pluginName()
+        override fun getDisplayName(): String = BuildInfoLoader()
+            .getBuildInfo()
+            .build()
+            .pluginName()
 
     }
 

@@ -25,12 +25,21 @@
 
 package me.tobiadeyinka.jenkinsci.plugins.builddashboard.build
 
-data class BuildInfo constructor(private var build: Build? = null) {
+import org.yaml.snakeyaml.Yaml
+import org.yaml.snakeyaml.constructor.Constructor
 
-    fun build(): Build = this.build!!
+/**
+ * creates a [BuildInfo] object after parsing the values from the build.yml resource file
+ */
+class BuildInfoLoader {
 
-    fun setBuild(build: Build) {
-        this.build = build
+    private val buildInfo: BuildInfo
+
+    init {
+        val yaml = Yaml(Constructor(BuildInfo::class.java))
+        buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
     }
+
+    fun getBuildInfo(): BuildInfo = buildInfo
 
 }
