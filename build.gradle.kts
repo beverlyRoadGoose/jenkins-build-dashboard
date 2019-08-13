@@ -23,10 +23,12 @@
  *
  */
 
+import org.yaml.snakeyaml.Yaml
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jenkinsci.gradle.plugins.jpi.JpiDeveloper
 import org.jenkinsci.gradle.plugins.jpi.JpiLicense
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.load.kotlin.JvmType
 
 val dist: String = "dist"
 val webAppDir: String = "src/main/webapp"
@@ -39,6 +41,17 @@ val generateDocumentation: String = "generateDocumentation"
 val deleteDocumentation: String = "deleteDocumentation"
 val deleteWorkDir: String = "deleteWorkDir"
 
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.yaml:snakeyaml:1.24")
+    }
+}
+
 plugins {
     java
     kotlin("jvm") version "1.3.31"
@@ -47,8 +60,11 @@ plugins {
     id("org.jetbrains.dokka") version "0.9.17"
 }
 
+val buildInfo: MutableMap<String, JvmType.Object> = (Yaml().load(File("src/main/resources/build.yml").inputStream()) as MutableMap<String, JvmType.Object>)
+val build: MutableMap<String, JvmType.Object> = buildInfo["build"] as MutableMap<String, JvmType.Object>
+
 group = "me.tobiadeyinka.jenkinsci.plugins"
-version = "0.3.0-beta.5-SNAPSHOT"
+version = build["version"].toString()
 description = "A dashboard for monitoring the status of builds"
 
 jenkinsPlugin {
