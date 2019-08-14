@@ -69,7 +69,7 @@ class BuildDashboard
 
     private val build: Build = BuildInfoLoader()
         .getBuildInfo()
-        .build()
+        .build!!
 
     /**
      * Handles the dashboard settings form data on submit
@@ -98,7 +98,7 @@ class BuildDashboard
     /**
      * @return The installed version of the plugin
      */
-    fun getBuildVersion(): String = build.version()
+    fun getBuildVersion(): String = build.version
 
     /**
      * @return The number of jobs on the board
@@ -147,8 +147,8 @@ class BuildDashboard
          */
         override fun getDisplayName(): String = BuildInfoLoader()
             .getBuildInfo()
-            .build()
-            .pluginName()
+            .build!!
+            .pluginName
 
     }
 

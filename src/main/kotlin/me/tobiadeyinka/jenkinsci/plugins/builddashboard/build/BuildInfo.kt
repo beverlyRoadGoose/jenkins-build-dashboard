@@ -25,12 +25,4 @@
 
 package me.tobiadeyinka.jenkinsci.plugins.builddashboard.build
 
-data class BuildInfo constructor(private var build: Build? = null) {
-
-    fun build(): Build = this.build!!
-
-    fun setBuild(build: Build) {
-        this.build = build
-    }
-
-}
+data class BuildInfo(var build: Build? = null)

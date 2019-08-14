@@ -49,19 +49,30 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
     /**
      * Last/current run of the job
      */
-    private val latestRun: LatestRun? = jenkinsJob.getLastBuild()?.let { LatestRun(it) }
+    private val latestRun: LatestRun? = jenkinsJob.getLastBuild()?.let {
+        LatestRun(it)
+    }
 
     /**
      * Last complete run of the job
      */
-    private val lastCompleteRun: CompleteRun? = jenkinsJob.getLastCompletedBuild()?.let { CompleteRun(it) }
+    private val lastCompleteRun: CompleteRun? = jenkinsJob.getLastCompletedBuild()?.let {
+        CompleteRun(it)
+    }
 
     /**
+     * loop through all the queued items on the Jenkins instance and increment a counter
+     * when an item matches this job
+     *
      * @return the number of runs in queue
      */
     @JsonProperty("numberOfQueuedRuns")
     fun numberOfQueuedRuns(): Int {
-        return 0
+        var jobQueueCount = 0
+
+        // TODO queue count logic
+
+        return jobQueueCount
     }
 
 }

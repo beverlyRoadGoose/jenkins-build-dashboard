@@ -38,11 +38,11 @@ class LatestRun constructor(@JsonIgnore private val run: Run<*, *>) : me.tobiade
     /**
      * State of the run, running or not.
      */
-    protected val isRunning: Boolean = run.isBuilding()
+    private val isRunning: Boolean = run.isBuilding()
 
     /**
      * The estimated amount of time this run would take in milliseconds, if it is running.
      */
-    protected val estimatedDuration: Long? = run.getEstimatedDuration()
+    private val estimatedDuration: Long? = run.getEstimatedDuration()
 
 }

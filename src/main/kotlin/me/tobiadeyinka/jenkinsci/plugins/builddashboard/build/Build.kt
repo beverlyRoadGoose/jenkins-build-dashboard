@@ -31,24 +31,4 @@ package me.tobiadeyinka.jenkinsci.plugins.builddashboard.build
  * @property[pluginName] The name of the plugin
  * @property[version] The installed version of the plugin
  */
-data class Build constructor(private var pluginName: String = "", private var version: String = "") {
-
-    /**
-     * @return The name of the plugin
-     */
-    fun pluginName(): String = pluginName
-
-    /**
-     * @return The currently installed version of the plugin
-     */
-    fun version(): String = version
-
-    fun setPluginName(pluginName: String) {
-        this.pluginName = pluginName
-    }
-
-    fun setVersion(version: String) {
-        this.version = version
-    }
-
-}
+data class Build(var pluginName: String = "", var version: String = "")

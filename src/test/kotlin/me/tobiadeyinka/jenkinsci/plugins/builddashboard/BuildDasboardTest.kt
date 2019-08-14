@@ -46,7 +46,7 @@ class BuildDashboardTest {
     @Before
     fun setup() {
         mockkStatic(Jenkins::class).run {
-            every { Jenkins.getInstance() } returns jenkins
+            every { Jenkins.get() } returns jenkins
         }
     }
 
