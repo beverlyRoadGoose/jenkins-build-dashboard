@@ -1,6 +1,6 @@
 ## Change Log
 
-#### v0.3.0-beta.5
+#### v0.3.0:build.1565811585 ~ 2019.08.14
 - Progress bar drop shadow
 - Switched to YAML for build config
 - Extract build version from build YAML file in build script
