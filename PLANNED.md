@@ -1,0 +1,1 @@
+- Customizable status colors for each board
