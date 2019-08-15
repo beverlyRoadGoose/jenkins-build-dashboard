@@ -36,7 +36,7 @@
         <a
           :href="'job/' + jobData.displayName"
           :class="{'monitored-job-name': true, 'npbm': true, 'disabled-job-name': !this.isBuildable()}">
-            {{jobData.displayName}} <img :src="jobData.healthReport.iconUrl" :title="jobData.healthReport.description" class="health-icon"/>
+            <img :src="jobData.healthReport.iconUrl" :title="jobData.healthReport.description" class="health-icon"/> {{jobData.displayName}}
         </a>
         <div v-if="this.jobHasBeenRun()" class="monitored-job-description">{{this.jobData.latestRun.description}}</div>
       </div>
@@ -446,6 +446,6 @@
   }
 
   .health-icon {
-      vertical-align: text-bottom;
+      vertical-align: middle;
   }
 </style>
