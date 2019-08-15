@@ -1,6 +1,7 @@
 ## Change Log
 
 #### Next release
+- Job health status indication
 - Handle disabled jobs appropriately
 - Fixed run description rendering bug that stopped jobs with no run from being displayed
 

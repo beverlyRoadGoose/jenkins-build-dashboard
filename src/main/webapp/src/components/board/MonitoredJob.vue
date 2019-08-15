@@ -36,7 +36,7 @@
         <a
           :href="'job/' + jobData.displayName"
           :class="{'monitored-job-name': true, 'npbm': true, 'disabled-job-name': !this.isBuildable()}">
-            {{jobData.displayName}}
+            {{jobData.displayName}} <img :src="jobData.healthReport.iconUrl" :title="jobData.healthReport.description" class="health-icon"/>
         </a>
         <div v-if="this.jobHasBeenRun()" class="monitored-job-description">{{this.jobData.latestRun.description}}</div>
       </div>
@@ -443,5 +443,9 @@
 
   .repeat-button:hover {
     opacity: 1;
+  }
+
+  .health-icon {
+      vertical-align: text-bottom;
   }
 </style>

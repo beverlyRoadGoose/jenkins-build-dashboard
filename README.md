@@ -7,25 +7,25 @@
 
 This is a plugin for [Jenkins](https://jenkins.io/) that makes it possible to create customisable dashboards for monitoring the status of your jobs or builds.
 
-### Features
+## Features
 - Customisable layout for each board
 - Displays an automatically updated status of the jobs added to a board
 - Runs can be re-triggered from the board (requires the jenkins [rebuild plugin](https://github.com/jenkinsci/rebuild-plugin))
 
-### Running the plugin
+## Running the plugin
 You need to have [Gradle](https://gradle.org/) installed.
 
-#### Running locally
+### Running locally
 The quickest way to get the plugin running is by running this command from the root directory of the repo to spin 
 up a local instance of jenkins with the plugin installed which you can access on `localhost:8080`
 ```console
 foo@bar:~$ gradle server
 ```
 
-#### Running on Docker
+### Running on Docker
 A Dockerfile is available in the root of the project if you'd prefer to run Jenkins & the plugin in a [Docker](https://www.docker.com/) container.
 
-#### Installing on an existing jenkins instance
+### Installing on an existing jenkins instance
 If you want to install the plugin on an existing instance of jenkins, you need to generate the jpi file and then install
 it or your server. Generate the file by running:
 ```console
@@ -36,14 +36,14 @@ You can find the generated jpi file in the root directory of the repo.
 The plugin is developed against Jenkins version `2.164.3` and isn't tested on earlier versions, it would probably work fine,
 but there are no guarantees.
 
-### Usage
+## Usage
 To create a board, go to the `/newView` page on jenkins, enter a name for the dashboard and select `Build Dashboard` as 
 the type.
 
 On the view configuration page you can select the jobs you want to monitor on the dashboard and set a title for the board if
 you want something different from the name. After configuring the board, you can access it on `/view/{board name}`
 
-### License
+## License
 
 ```
 MIT License

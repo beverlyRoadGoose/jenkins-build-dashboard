@@ -65,6 +65,11 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
      */
     private val isBuildable: Boolean = jenkinsJob.isBuildable()
 
+    private val healthReport: HealthReport = HealthReport(
+        jenkinsJob.getBuildHealth().getIconUrl("32x32"),
+        jenkinsJob.getBuildHealth().getDescription()
+    )
+
     /**
      * loop through all the queued items on the Jenkins instance and increment a counter
      * when an item matches this job
