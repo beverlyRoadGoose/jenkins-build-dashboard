@@ -1,5 +1,8 @@
 ## Change Log
 
+- Handle disabled jobs appropriately
+- Fixed run description rendering bug that stopped jobs with no run from being displayed
+
 #### v0.3.0:build.1565811585 ~ 2019.08.14
 - Progress bar drop shadow
 - Switched to YAML for build config

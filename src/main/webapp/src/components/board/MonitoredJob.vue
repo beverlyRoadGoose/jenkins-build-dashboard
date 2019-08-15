@@ -33,8 +33,12 @@
 
     <div class="monitored-job-top-row">
       <div class="top-row-content-wrapper">
-        <a v-bind:href="'job/' + jobData.displayName" class="monitored-job-name npbm">{{jobData.displayName}}</a>
-        <div class="monitored-job-description">{{this.jobData.latestRun.description}}</div>
+        <a
+          :href="'job/' + jobData.displayName"
+          :class="{'monitored-job-name': true, 'npbm': true, 'disabled-job-name': !this.isBuildable()}">
+            {{jobData.displayName}}
+        </a>
+        <div v-if="this.jobHasBeenRun()" class="monitored-job-description">{{this.jobData.latestRun.description}}</div>
       </div>
     </div>
 
@@ -43,12 +47,12 @@
         v-if="this.jobHasBeenRun()"
         :href="'job/' + jobData.displayName + '/' + jobData.latestRun.buildNumber"
         class="monitored-job-last-build">
-        {{this.jobData.latestRun.displayName}}
+          {{this.jobData.latestRun.displayName}}
       </a>
       <a v-else :href="'job/' + jobData.displayName" class="monitored-job-last-build">No Builds</a>
 
       <img
-        v-if="this.jobHasBeenRun()"
+        v-if="this.isBuildable() && this.jobHasBeenRun()"
         :src="resourcesUrl + '/src/assets/img/repeat.png'"
         class="repeat-button transitions"
         title="Rebuild"
@@ -99,7 +103,7 @@
        * @returns string name of the class to be assigned
        */
       jobStateClass: function () {
-        if (this.jobData.lastCompleteRun === null) {
+        if (this.jobData.lastCompleteRun === null || !this.jobData.isBuildable) {
           return 'monitored-job-aborted';
         }
 
@@ -162,6 +166,10 @@
 
       jobIsRunning: function () {
         return this.jobHasBeenRun() && this.jobData.latestRun.isRunning;
+      },
+
+      isBuildable: function () {
+        return this.jobData.isBuildable;
       },
 
       getProgressPercentage: function () {
@@ -369,6 +377,10 @@
     color: #3B3D3B;
     text-shadow: 1px 1px 1px #000000;
     word-wrap: break-word;
+  }
+
+  .disabled-job-name {
+    text-decoration: line-through !important;
   }
 
   .monitored-job-description {

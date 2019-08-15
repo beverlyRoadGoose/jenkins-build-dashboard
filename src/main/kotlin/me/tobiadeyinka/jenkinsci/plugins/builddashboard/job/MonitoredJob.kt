@@ -34,8 +34,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * Defines a job monitored on the dashboard. JsonAutoDetect annotation is set to any to expose the
  * private fields in the responses to data requests from the vue webapp.
  *
- * The attributes with types from the jenkins lib are json ignored because they have lots of info that cause a stack
- * overflow during jackson serialization
+ * The attributes with types from the jenkins lib are json ignored because they have lots of info that causes a stack
+ * overflow during jackson serialization. This is also why the class doesn't just extend the Job class.
  *
  * @property[jenkinsJob] The jenkins job represented on the monitor
  */
@@ -59,6 +59,11 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
     private val lastCompleteRun: CompleteRun? = jenkinsJob.getLastCompletedBuild()?.let {
         CompleteRun(it)
     }
+
+    /**
+     * Indicates if the job is in a runnable state. (e.g not disabled/archived)
+     */
+    private val isBuildable: Boolean = jenkinsJob.isBuildable()
 
     /**
      * loop through all the queued items on the Jenkins instance and increment a counter
