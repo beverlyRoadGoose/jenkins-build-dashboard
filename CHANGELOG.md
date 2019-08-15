@@ -1,5 +1,6 @@
 ## Change Log
 
+#### Next release
 - Handle disabled jobs appropriately
 - Fixed run description rendering bug that stopped jobs with no run from being displayed
 
