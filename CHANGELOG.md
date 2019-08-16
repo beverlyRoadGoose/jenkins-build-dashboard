@@ -1,6 +1,6 @@
 ## Change Log
 
-#### Next release
+#### v0.4.0-build.1565952664 ~ 29.08.16
 - Job health status indication
 - Handle disabled jobs appropriately
 - Fixed run description rendering bug that stopped jobs with no run from being displayed
