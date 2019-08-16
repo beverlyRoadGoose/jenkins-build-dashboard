@@ -42,12 +42,13 @@
             :key="index"
             :resources-url="resourcesUrl"
             :board="board"
+            :installation="JSON.parse(installation)"
             :job-data="job">
         </monitored-job>
       </div>
     </div>
 
-    <dashboard-footer :build="installation.build"></dashboard-footer>
+    <dashboard-footer :build="JSON.parse(installation).build"></dashboard-footer>
   </div>
 </template>
 

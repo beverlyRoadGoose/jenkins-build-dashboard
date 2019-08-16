@@ -52,7 +52,7 @@
       <a v-else :href="'job/' + jobData.displayName" class="monitored-job-last-build">No Builds</a>
 
       <img
-        v-if="this.isBuildable() && this.jobHasBeenRun()"
+        v-if="this.shouldDisplayRebuildButton()"
         :src="resourcesUrl + '/src/assets/img/repeat.png'"
         class="repeat-button transitions"
         title="Rebuild"
@@ -74,7 +74,7 @@
   export default {
     name: 'MonitoredJob',
 
-    props: ['resourcesUrl', 'board', 'jobData'],
+    props: ['resourcesUrl', 'board', 'installation', 'jobData'],
 
     created() {
       this.$root.$on(Events.COLUMN_COUNT_RETRIEVED, (event, columnCount) => {
@@ -170,6 +170,10 @@
 
       isBuildable: function () {
         return this.jobData.isBuildable;
+      },
+
+      shouldDisplayRebuildButton: function () {
+        return this.installation.pluginManager.rebuildPluginIsInstalled && this.isBuildable() && this.jobHasBeenRun()
       },
 
       getProgressPercentage: function () {

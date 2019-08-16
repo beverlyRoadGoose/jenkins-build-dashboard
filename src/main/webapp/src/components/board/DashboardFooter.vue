@@ -25,7 +25,7 @@
   <div id="footer">
     <a href="https://github.com/beverlyRoadGoose/jenkins-build-dashboard" class="footer-link" target="_blank">Build Dashboard Plugin</a>
     by <a href="https://github.com/beverlyRoadGoose" class="footer-link" target="_blank">Oluwatobi Adeyinka</a>
-    <a href="https://github.com/beverlyRoadGoose/jenkins-build-dashboard/releases" id="build-version" target="_blank">v{{JSON.parse(build).version}}</a>
+    <a href="https://github.com/beverlyRoadGoose/jenkins-build-dashboard/releases" id="build-version" target="_blank">v{{build.version}}</a>
   </div>
 </template>
 

@@ -1,5 +1,8 @@
 ## Change Log
 
+#### Next release
+- Improved rebuild plugin integration
+
 #### v0.4.0-build.1565952664 ~ 29.08.16
 - Job health status indication
 - Handle disabled jobs appropriately
