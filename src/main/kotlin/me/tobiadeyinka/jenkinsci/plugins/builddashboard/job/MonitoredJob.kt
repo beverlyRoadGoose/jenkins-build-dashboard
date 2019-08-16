@@ -70,19 +70,4 @@ class MonitoredJob constructor(@JsonIgnore private val jenkinsJob: Job<*, *>) {
         jenkinsJob.getBuildHealth().getDescription()
     )
 
-    /**
-     * loop through all the queued items on the Jenkins instance and increment a counter
-     * when an item matches this job
-     *
-     * @return the number of runs in queue
-     */
-    @JsonProperty("numberOfQueuedRuns")
-    fun numberOfQueuedRuns(): Int {
-        var jobQueueCount = 0
-
-        // TODO queue count logic
-
-        return jobQueueCount
-    }
-
 }
