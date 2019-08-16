@@ -183,6 +183,12 @@ tasks.withType<KotlinCompile> {
 kapt.includeCompileClasspath = false
 
 dependencies {
+    /*
+     * supported jenkins plugins
+     */
+    optionalJenkinsPlugins("com.sonyericsson.hudson.plugins.rebuild:rebuild:1.3.1")
+    optionalJenkinsPlugins("org.jenkins-ci.plugins.workflow:workflow-aggregator:2.6")
+
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:0.9.17")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")

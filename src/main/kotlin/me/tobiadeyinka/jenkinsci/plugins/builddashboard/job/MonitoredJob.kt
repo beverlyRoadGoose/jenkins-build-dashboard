@@ -28,7 +28,6 @@ package me.tobiadeyinka.jenkinsci.plugins.builddashboard.job
 import hudson.model.Job
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * Defines a job monitored on the dashboard. JsonAutoDetect annotation is set to any to expose the

@@ -41,6 +41,7 @@ import org.kohsuke.stapler.DataBoundConstructor
 import org.kohsuke.stapler.bind.JavaScriptMethod
 
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Build
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Installation
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfoLoader
 
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
@@ -67,9 +68,9 @@ import com.fasterxml.jackson.annotation.PropertyAccessor.*
 class BuildDashboard
 @DataBoundConstructor constructor(private val name: String?, private var title: String?) : ListView(name) {
 
-    private val build: Build = BuildInfoLoader()
-        .getBuildInfo()
-        .build!!
+    private val installation: Installation = Installation()
+
+    private val build: Build = installation.build
 
     /**
      * Handles the dashboard settings form data on submit
