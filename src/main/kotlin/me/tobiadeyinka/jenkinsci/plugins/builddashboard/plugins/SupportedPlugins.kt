@@ -27,6 +27,9 @@ package me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins
 
 /**
  * List of jenkins plugins that the monitor depends on to provide some of it's functionality's
+ *
+ * @property[artifactId] ArtifactId (maven) or shortName (gradle) that the plugin is published under
+ * @property[isRequired] Indicates if the plugin is required for the dashboard to function
  */
 enum class SupportedPlugins(val artifactId: String, val isRequired: Boolean = false) {
 

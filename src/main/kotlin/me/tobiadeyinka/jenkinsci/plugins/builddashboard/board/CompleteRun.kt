@@ -23,40 +23,21 @@
  *
  */
 
-package me.tobiadeyinka.jenkinsci.plugins.builddashboard.job
+package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 import hudson.model.Run
+import hudson.model.Result
 
 /**
- * Defines general attributes of runs of a job.
+ * Defines a completed run for a job on on a dashboard
  */
-open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
+class CompleteRun constructor(@JsonIgnore private val run: Run<*, *>) : me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.Run(run){
 
     /**
-     * Build number of this run.
+     * Result of the run. Defaults to [Result.NOT_BUILT] if the job has never been built.
      */
-    protected val buildNumber: Int = run.number
-
-    /**
-     * Display name of this run
-     */
-    protected val displayName: String = run.getDisplayName()
-
-    /**
-     * Description of the run
-     */
-    protected val description: String? = run.getDescription()
-
-    /**
-     * Milliseconds representation of the time the run started
-     */
-    protected val startTime: Long? = run.getStartTimeInMillis()
-
-    /**
-     * Milliseconds representation of the time it took for the last complete run to finish
-     */
-    protected val duration: Long? = run.getDuration()
+    private val result: Result? = run.getResult() ?: Result.NOT_BUILT
 
 }

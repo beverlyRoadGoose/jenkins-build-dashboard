@@ -23,21 +23,26 @@
  *
  */
 
-package me.tobiadeyinka.jenkinsci.plugins.builddashboard.job
+package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 import hudson.model.Run
-import hudson.model.Result
 
 /**
- * Defines a completed run for a job on on a dashboard
+ * Defines the latest run of a job, the run doesn't have to be completed. This would always be the lates run
+ * of a job excluding queued runs.
  */
-class CompleteRun constructor(@JsonIgnore private val run: Run<*, *>) : me.tobiadeyinka.jenkinsci.plugins.builddashboard.job.Run(run){
+class LatestRun constructor(@JsonIgnore private val run: Run<*, *>) : me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.Run(run) {
 
     /**
-     * Result of the run. Defaults to [Result.NOT_BUILT] if the job has never been built.
+     * State of the run, running or not.
      */
-    private val result: Result? = run.getResult() ?: Result.NOT_BUILT
+    private val isRunning: Boolean = run.isBuilding()
+
+    /**
+     * The estimated amount of time this run would take in milliseconds, if it is running.
+     */
+    private val estimatedDuration: Long? = run.getEstimatedDuration()
 
 }

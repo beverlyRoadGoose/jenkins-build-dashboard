@@ -23,7 +23,7 @@
  *
  */
 
-package me.tobiadeyinka.jenkinsci.plugins.builddashboard.job
+package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
 
 import hudson.model.Job
 import com.fasterxml.jackson.annotation.JsonIgnore
