@@ -44,20 +44,19 @@
 <style scoped>
   #header {
     padding: 3px;
-    overflow: auto;
+    overflow: hidden;
   }
 
   #home-link {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 45px;
     outline: none;
-    float: left;
+    position: absolute;
+    z-index: 10;
   }
 
   #jenkins-logo {
-    width: 40px;
-    height: 40px;
+    width: 45px;
     outline: none;
   }
 
@@ -68,7 +67,10 @@
   #board-title {
     color: #3B3D3B;
     display: inline-block;
-    margin: 2px 0 0 5px;
+    margin-left: 50px;
+    margin-bottom: -6px;
+    margin-top: 10px;
+    vertical-align: bottom;
   }
 
   #board-title:hover {

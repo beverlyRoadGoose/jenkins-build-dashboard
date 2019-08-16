@@ -125,7 +125,7 @@
   #settings-icon {
     width: 30px;
     height: 30px;
-    margin: 15px 10px 10px;
+    margin: 20px 10px 10px;
   }
 
   #settings-icon:hover {
@@ -138,7 +138,7 @@
 
   #settings-box {
     position: absolute;
-    top: 50px;
+    top: 57px;
     right: 10px;
     padding: 10px 10px;
     border-radius: 5px;
