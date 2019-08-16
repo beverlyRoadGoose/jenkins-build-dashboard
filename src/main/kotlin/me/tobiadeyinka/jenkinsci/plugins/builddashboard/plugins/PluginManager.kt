@@ -25,11 +25,9 @@
 
 package me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
-import jenkins.model.Jenkins
-
 import java.util.*
+import jenkins.model.Jenkins
+import com.fasterxml.jackson.annotation.JsonProperty
 
 class PluginManager {
 

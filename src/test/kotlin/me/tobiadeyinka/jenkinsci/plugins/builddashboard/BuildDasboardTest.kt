@@ -68,7 +68,7 @@ class BuildDashboardTest {
 
         mockkObject(dashboard).run {
             every { dashboard.owner } returns owner
-            every { dashboard.ownerItemGroup } returns ownerItemGroup
+            every { dashboard.owner.itemGroup } returns ownerItemGroup
         }
 
         assertThat(dashboard.isEmpty())
@@ -81,7 +81,7 @@ class BuildDashboardTest {
 
         mockkObject(dashboard).run {
             every { dashboard.owner } returns owner
-            every { dashboard.ownerItemGroup } returns ownerItemGroup
+            every { dashboard.owner.itemGroup } returns ownerItemGroup
         }
 
         dashboard.add(job)
@@ -95,7 +95,7 @@ class BuildDashboardTest {
 
         mockkObject(dashboard).run {
             every { dashboard.owner } returns owner
-            every { dashboard.ownerItemGroup } returns ownerItemGroup
+            every { dashboard.owner.itemGroup } returns ownerItemGroup
         }
 
         dashboard.add(job)

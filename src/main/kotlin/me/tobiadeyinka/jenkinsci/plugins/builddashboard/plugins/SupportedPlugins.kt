@@ -32,4 +32,5 @@ enum class SupportedPlugins(val artifactId: String, val isRequired: Boolean = fa
 
     REBUILD("rebuild"),
     PIPELINE("workflow-aggregator")
+
 }
