@@ -46,7 +46,7 @@
             board="${it.getViewName()}"
             board-title="${it.title}"
             jobs="${it.getMonitoredJobsAsJSON()}"
-            build="${it.getBuildInfoAsJSON()}"
+            installation="${it.getInstallationAsJSON()}"
         ></build-dashboard>
       </div>
     </body>

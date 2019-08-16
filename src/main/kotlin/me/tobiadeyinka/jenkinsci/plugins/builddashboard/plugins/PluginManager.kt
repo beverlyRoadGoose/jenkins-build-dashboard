@@ -25,14 +25,18 @@
 
 package me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 import jenkins.model.Jenkins
 
 import java.util.*
 
 class PluginManager {
 
+    @JsonProperty("rebuildPluginIsInstalled")
     fun rebuildPluginIsInstalled(): Boolean = pluginIsInstalled(SupportedPlugins.REBUILD.artifactId)
 
+    @JsonProperty("pipelinePluginIsInstalled")
     fun pipelinePluginIsInstalled(): Boolean = pluginIsInstalled(SupportedPlugins.PIPELINE.artifactId)
 
     /**
@@ -43,8 +47,7 @@ class PluginManager {
      * @return true if the plugin is installed, false otherwise
      */
     private fun pluginIsInstalled(artifactId: String): Boolean = !Objects.isNull(
-        Jenkins.getInstance()
-        ?.getPlugin(artifactId)
+        Jenkins.getInstance()?.getPlugin(artifactId)
     )
 
 }

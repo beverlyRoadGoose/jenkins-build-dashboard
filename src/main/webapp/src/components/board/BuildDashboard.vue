@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <dashboard-footer :build="build"></dashboard-footer>
+    <dashboard-footer :build="installation.build"></dashboard-footer>
   </div>
 </template>
 
@@ -61,7 +61,7 @@
   export default {
     name: 'BuildDashboard',
 
-    props: ['resourcesUrl', 'board', 'boardTitle', 'jobs', 'build'],
+    props: ['resourcesUrl', 'board', 'boardTitle', 'jobs', 'installation'],
 
     data() {
       return {

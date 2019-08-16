@@ -186,8 +186,8 @@ dependencies {
     /*
      * supported jenkins plugins
      */
-    optionalJenkinsPlugins("com.sonyericsson.hudson.plugins.rebuild:rebuild:1.3.1")
-    optionalJenkinsPlugins("org.jenkins-ci.plugins.workflow:workflow-aggregator:2.6")
+    optionalJenkinsPlugins("com.sonyericsson.hudson.plugins.rebuild:rebuild:1.31")
+    optionalJenkinsPlugins("org.jenkins-ci.plugins.workflow:workflow-aggregator:2.4")
 
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:0.9.17")

@@ -116,7 +116,7 @@ class BuildDashboard
     fun getMonitoredJobsAsJSON(): JSONArray = toJSON(getObjectMapper().writeValueAsString(getMonitoredJobs())) as JSONArray
 
     @JavaScriptMethod
-    fun getBuildInfoAsJSON(): JSONObject = toJSON(getObjectMapper().writeValueAsString(build)) as JSONObject
+    fun getInstallationAsJSON(): JSONObject = toJSON(getObjectMapper().writeValueAsString(installation)) as JSONObject
 
     /**
      * Creates [MonitoredJob] instances of all the jobs on the
