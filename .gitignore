@@ -24,6 +24,8 @@
 .idea/*.iml
 .idea/modules
 .idea/artifacts
+.idea/$CACHE_FILE$
+.idea/$PRODUCT_WORKSPACE_FILE$
 
 *.iws
 
@@ -37,3 +39,4 @@ build
 work
 
 !src/main/kotlin/me/tobiadeyinka/jenkinsci/plugins/builddashboard/build
+jenkins-build-dashboard.iml
