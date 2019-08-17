@@ -72,7 +72,6 @@ class MonitoredJob constructor(@JsonIgnore private val job: Job<*, *>) {
     /**
      * Indicates if the job is in a runnable state. (e.g not disabled/archived)
      */
-    @JsonProperty("isBuildable")
     val isBuildable: Boolean = job.isBuildable()
 
     /**
@@ -86,7 +85,6 @@ class MonitoredJob constructor(@JsonIgnore private val job: Job<*, *>) {
     /**
      * Indicates if the job is a pipeline. Requires the pipeline plugin to be installed on the jenkins server.
      */
-    @JsonProperty("isPipeline")
     val isPipeline: Boolean = PluginManager().pipelinePluginIsInstalled() && job is WorkflowJob
 
     /**
