@@ -29,7 +29,6 @@ import hudson.model.Job
 
 import com.fasterxml.jackson.annotation.JsonFilter
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonProperty
 
 import org.jenkinsci.plugins.workflow.job.WorkflowJob
 
