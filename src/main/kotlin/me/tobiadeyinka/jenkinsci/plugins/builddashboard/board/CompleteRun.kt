@@ -38,6 +38,6 @@ class CompleteRun constructor(@JsonIgnore private val run: Run<*, *>) : me.tobia
     /**
      * Result of the run. Defaults to [Result.NOT_BUILT] if the job has never been built.
      */
-    private val result: Result? = run.getResult() ?: Result.NOT_BUILT
+    val result: Result? = run.getResult() ?: Result.NOT_BUILT
 
 }

@@ -68,7 +68,7 @@
     color: #3B3D3B;
     display: inline-block;
     margin-left: 50px;
-    margin-bottom: -6px;
+    margin-bottom: -4px;
     margin-top: 10px;
     vertical-align: bottom;
   }

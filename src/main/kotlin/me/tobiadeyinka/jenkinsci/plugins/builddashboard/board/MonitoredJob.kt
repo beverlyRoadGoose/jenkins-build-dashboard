@@ -26,9 +26,17 @@
 package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
 
 import hudson.model.Job
+
+import com.fasterxml.jackson.annotation.JsonFilter
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
+
 import org.jenkinsci.plugins.workflow.job.WorkflowJob
+
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.PluginManager
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines.PipelineStage
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines.PipelineUtils
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization.MonitoredJobPropertyFilter
 
 /**
  * Defines a job monitored on the dashboard. JsonAutoDetect annotation is set to any to expose the
@@ -39,36 +47,37 @@ import me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.PluginManager
  *
  * @property[job] The jenkins job represented on the monitor
  */
+@JsonFilter(MonitoredJobPropertyFilter.NAME)
 class MonitoredJob constructor(@JsonIgnore private val job: Job<*, *>) {
 
     /**
      * Display name of the job on the dashboard
      */
-    private val displayName: String = job.getDisplayName()
+    val displayName: String = job.getDisplayName()
 
     /**
      * Last/current run of the job
      */
-    private val latestRun: LatestRun? = job.getLastBuild()?.let {
+    val latestRun: LatestRun? = job.getLastBuild()?.let {
         LatestRun(it)
     }
 
     /**
      * Last complete run of the job
      */
-    private val lastCompleteRun: CompleteRun? = job.getLastCompletedBuild()?.let {
+    val lastCompleteRun: CompleteRun? = job.getLastCompletedBuild()?.let {
         CompleteRun(it)
     }
 
     /**
      * Indicates if the job is in a runnable state. (e.g not disabled/archived)
      */
-    private val isBuildable: Boolean = job.isBuildable()
+    val isBuildable: Boolean = job.isBuildable()
 
     /**
      * Health status of the job based on the results of the last 5 runs
      */
-    private val healthReport: HealthReport = HealthReport(
+    val healthReport: HealthReport = HealthReport(
         job.getBuildHealth().getIconUrl("32x32"),
         job.getBuildHealth().getDescription()
     )
@@ -76,6 +85,11 @@ class MonitoredJob constructor(@JsonIgnore private val job: Job<*, *>) {
     /**
      * Indicates if the job is a pipeline. Requires the pipeline plugin to be installed on the jenkins server.
      */
-    private val isPipeline: Boolean = PluginManager().pipelinePluginIsInstalled() && job is WorkflowJob
+    val isPipeline: Boolean = PluginManager().pipelinePluginIsInstalled() && job is WorkflowJob
+
+    /**
+     * List of stages in the job if it is a pipeline, returns an empty list if it isn't
+     */
+    val pipelineStages: List<PipelineStage> = PipelineUtils().getPipelineStages(this)
 
 }

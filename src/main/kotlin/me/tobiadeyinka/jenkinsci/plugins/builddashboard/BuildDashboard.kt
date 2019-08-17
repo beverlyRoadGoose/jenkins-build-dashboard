@@ -43,21 +43,13 @@ import org.kohsuke.stapler.bind.JavaScriptMethod
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Build
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Installation
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfoLoader
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization.SerializationUtils
 
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.MonitoredJob
 
 import net.sf.json.JSONArray
 import net.sf.json.JSONObject
 import net.sf.json.JSONSerializer.toJSON
-
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
-
-import com.fasterxml.jackson.module.kotlin.KotlinModule
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect
-import com.fasterxml.jackson.annotation.PropertyAccessor.*
-
 
 /**
  * Main entity definition of the plugin.
@@ -113,10 +105,14 @@ class BuildDashboard
      * @return A JSON object representation of all the jobs on the board along with their status data
      */
     @JavaScriptMethod
-    fun getMonitoredJobsAsJSON(): JSONArray = toJSON(getObjectMapper().writeValueAsString(getMonitoredJobs())) as JSONArray
+    fun getMonitoredJobsAsJSON(): JSONArray = toJSON(
+        SerializationUtils.getObjectWriter().writeValueAsString(getMonitoredJobs())
+    ) as JSONArray
 
     @JavaScriptMethod
-    fun getInstallationAsJSON(): JSONObject = toJSON(getObjectMapper().writeValueAsString(installation)) as JSONObject
+    fun getInstallationAsJSON(): JSONObject = toJSON(
+        SerializationUtils.getObjectWriter().writeValueAsString(installation)
+    ) as JSONObject
 
     /**
      * Creates [MonitoredJob] instances of all the jobs on the
@@ -128,13 +124,6 @@ class BuildDashboard
             monitoredJobs.add(MonitoredJob(it))
         }
         return monitoredJobs
-    }
-
-    private fun getObjectMapper(): ObjectMapper {
-        return ObjectMapper()
-            .registerModule(KotlinModule())
-            .setVisibility(FIELD, JsonAutoDetect.Visibility.ANY) // enable jackson to see private fields as there are no public getters
-            .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
     }
 
     /**

@@ -37,26 +37,26 @@ open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
     /**
      * Build number of this run.
      */
-    protected val buildNumber: Int = run.number
+    val buildNumber: Int = run.number
 
     /**
      * Display name of this run
      */
-    protected val displayName: String = run.getDisplayName()
+    val displayName: String = run.getDisplayName()
 
     /**
      * Description of the run
      */
-    protected val description: String? = run.getDescription()
+    val description: String? = run.getDescription()
 
     /**
      * Milliseconds representation of the time the run started
      */
-    protected val startTime: Long? = run.getStartTimeInMillis()
+    val startTime: Long? = run.getStartTimeInMillis()
 
     /**
      * Milliseconds representation of the time it took for the last complete run to finish
      */
-    protected val duration: Long? = run.getDuration()
+    val duration: Long? = run.getDuration()
 
 }

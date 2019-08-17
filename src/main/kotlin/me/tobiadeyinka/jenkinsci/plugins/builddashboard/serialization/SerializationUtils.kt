@@ -21,28 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
+ *
  */
 
-package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
+package me.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonAutoDetect
+import com.fasterxml.jackson.annotation.PropertyAccessor.*
 
-import hudson.model.Run
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.ObjectWriter
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider
 
-/**
- * Defines the latest run of a job, the run doesn't have to be completed. This would always be the lates run
- * of a job excluding queued runs.
- */
-class LatestRun constructor(@JsonIgnore private val run: Run<*, *>) : me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.Run(run) {
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 
-    /**
-     * State of the run, running or not.
-     */
-    val isRunning: Boolean = run.isBuilding()
+class SerializationUtils {
 
-    /**
-     * The estimated amount of time this run would take in milliseconds, if it is running.
-     */
-    val estimatedDuration: Long? = run.getEstimatedDuration()
+    companion object {
+
+        fun getObjectMapper(): ObjectMapper {
+            return ObjectMapper()
+                .registerModule(KotlinModule())
+                .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+                .setVisibility(FIELD, JsonAutoDetect.Visibility.ANY)
+        }
+
+        fun getObjectWriter(): ObjectWriter {
+            val filterProvider = SimpleFilterProvider()
+                .setFailOnUnknownId(false)
+                .addFilter(MonitoredJobPropertyFilter.NAME, MonitoredJobPropertyFilter())
+
+            return getObjectMapper().writer(filterProvider)
+        }
+
+    }
 
 }

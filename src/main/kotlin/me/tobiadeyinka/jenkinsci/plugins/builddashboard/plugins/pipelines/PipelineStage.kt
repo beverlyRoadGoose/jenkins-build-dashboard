@@ -23,26 +23,6 @@
  *
  */
 
-package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
+package me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-
-import hudson.model.Run
-
-/**
- * Defines the latest run of a job, the run doesn't have to be completed. This would always be the lates run
- * of a job excluding queued runs.
- */
-class LatestRun constructor(@JsonIgnore private val run: Run<*, *>) : me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.Run(run) {
-
-    /**
-     * State of the run, running or not.
-     */
-    val isRunning: Boolean = run.isBuilding()
-
-    /**
-     * The estimated amount of time this run would take in milliseconds, if it is running.
-     */
-    val estimatedDuration: Long? = run.getEstimatedDuration()
-
-}
+class PipelineStage(val name: String)
