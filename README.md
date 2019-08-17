@@ -14,7 +14,6 @@ This is a plugin for [Jenkins](https://jenkins.io/) that makes it possible to cr
 - Runs can be re-triggered from the board (requires the [rebuild plugin](https://github.com/jenkinsci/rebuild-plugin))
 
 ## Running the plugin
-You need to have [Gradle](https://gradle.org/) installed.
 
 ### Running locally
 The quickest way to get the plugin running is by running this command from the root directory of the repo to spin 
