@@ -4,6 +4,7 @@
 - Changed Jenkins logo on monitor
 - Improved rebuild plugin integration
 - Analytics tracking & opt in model
+- Added animation to progress bar motion
 
 #### v0.4.0-build.1565952664 ~ 29.08.16
 - Job health status indication

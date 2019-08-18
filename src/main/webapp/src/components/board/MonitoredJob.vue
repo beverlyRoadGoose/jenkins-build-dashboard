@@ -24,7 +24,7 @@
 <template>
   <div :class="'transitions monitored-job ' + jobStateClass" :style="styleObject">
     <div
-      class="progress-bar"
+      class="progress-bar transitions"
       v-if="this.jobIsRunning()"
       :class="this.getProgressBarBlinkClass()"
       :style="{width: this.getProgressPercentage() + '%', 'min-width': '5%', 'background-color': this.getProgressBarColor()}">
