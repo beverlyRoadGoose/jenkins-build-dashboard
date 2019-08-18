@@ -150,7 +150,6 @@ val distTask by tasks.register<Exec>(dist) {
     group = "Build"
     description = "Generates a jpi file of the plugin that can be installed on a Jenkins instance"
     dependsOn(jpiTask)
-    dependsOn(generateDocumentationTask)
     mustRunAfter(jpiTask)
     commandLine = listOf("cp", "build/libs/build-dashboard-plugin.jpi", ".")
 }
