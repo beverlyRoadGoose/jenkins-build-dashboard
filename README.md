@@ -5,7 +5,7 @@
 ## Jenkins Build Dashboard
 ![Demo](https://i.imgur.com/1ov75us.gif)
 
-This is a plugin for [Jenkins](https://jenkins.io/) that makes it possible to create customisable dashboards for monitoring the status of your jobs or builds.
+This is a [Jenkins](https://jenkins.io/) plugin for monitoring multiple jobs on customisable dashboards.
 
 ## Features
 - Customisable layout for each board
