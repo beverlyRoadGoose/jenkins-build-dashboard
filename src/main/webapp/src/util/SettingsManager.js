@@ -23,26 +23,36 @@
  *
  */
 
-import Vue from 'vue';
-import VueHead from 'vue-head';
-import VueResource from 'vue-resource';
-import VueAnalytics from 'vue-analytics'
-import BuildDashboard from './components/board/BuildDashboard'
+/* settings manager */
 
-Vue.use(VueHead);
-Vue.use(VueResource);
-Vue.use(VueAnalytics, {
-  id: 'UA-132840884-2'
-});
+import CookieManager from './CookieManager';
 
-require('./styles/base.css');
+const ANALYTICS_SUFFIX = '_analytics';
+const COLUMN_COUNT_COOKIE_SUFFIX = '_columnCount';
 
-window.onload = () => {
-  new Vue({
-    el: '#webapp',
+export default {
 
-    components: {
-      BuildDashboard
-    }
-  });
-};
+  allowsAnalyticsTracking: function (boardName) {
+    let cookieName = boardName.split(' ').join('_') + ANALYTICS_SUFFIX;
+    return CookieManager.readCookie(cookieName) === 'true';
+  },
+
+  setAnalyticsTracking: function (boardName, value) {
+    let cookieName = boardName.split(' ').join('_') + ANALYTICS_SUFFIX;
+    CookieManager.deleteCookie(cookieName);
+    CookieManager.createCookie(cookieName, value, 365);
+  },
+
+  getColumnCount: function (boardName) {
+    let cookieName = boardName.split(' ').join('_') + COLUMN_COUNT_COOKIE_SUFFIX;
+    let count = CookieManager.readCookie(cookieName);
+    return count === null ? 1 : count;
+  },
+
+  saveColumnCount: function (boardName, count) {
+    let cookieName = boardName.split(' ').join('_') + COLUMN_COUNT_COOKIE_SUFFIX;
+    CookieManager.deleteCookie(cookieName);
+    CookieManager.createCookie(cookieName, count, 365);
+  }
+
+}

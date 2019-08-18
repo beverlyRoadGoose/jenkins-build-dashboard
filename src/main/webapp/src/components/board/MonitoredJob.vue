@@ -69,7 +69,7 @@
   import {StatusColors} from '../../StatusColors';
 
   import PrettyMilliseconds from 'pretty-ms'
-  import CookieManager from '../../util/CookieManager';
+  import SettingsManager from '../../util/SettingsManager';
 
   export default {
     name: 'MonitoredJob',
@@ -83,7 +83,7 @@
     },
 
     data() {
-      let columnCount = CookieManager.cookieExists(this.board.split(' ').join('_') + '_columnCount') ? this.getColumnCountFromCookie() : 1;
+      let columnCount = SettingsManager.getColumnCount(this.board);
       let width = (100 / ++columnCount) + '%';
 
       return {
@@ -121,10 +121,6 @@
     },
 
     methods: {
-      getColumnCountFromCookie: function () {
-        return CookieManager.readCookie(this.board.split(' ').join('_') + '_columnCount');
-      },
-
       columnCountRetrievedHandler: function (event, columnCount) {
         let width = (100 / ++columnCount) + '%';
         this.styleObject = {
@@ -135,6 +131,15 @@
       },
 
       rebuild: function (buildNumber) {
+        if (SettingsManager.allowsAnalyticsTracking(this.board)) {
+          this.$ga.event({
+            eventCategory: 'rebuild',
+            eventAction: 'rebuildButtonClicked',
+            eventLabel: 'rebuildButtonClicked',
+            eventValue: true
+          });
+        }
+
         let request = new XMLHttpRequest();
         let rebuildUrl = 'job/' + this.jobData.displayName + '/' + buildNumber + '/rebuild';
         let triggerMessage = 'Triggering rebuild for ' + this.jobData.displayName + ' #' + buildNumber;

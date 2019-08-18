@@ -45,7 +45,18 @@
             id="column-slider"
         >
       </div>
+
+      <input
+        type="checkbox"
+        name="analytics"
+        :value="allowsAnalyticsTracking"
+        v-model="allowsAnalyticsTracking"
+        @click="toggleAnalyticsTrackingOption($event)">
+          Allow analytics tracking
+      <br>
+
       <a href="configure" id="settings-configure-link" :title="'Configure ' + board">Board configuration</a>
+
       <button id="settings-close-button" v-on:click="toggleSettingsBoxVisibility">Close</button>
     </div>
   </div>
@@ -53,7 +64,7 @@
 
 <script>
   import {Events} from "../../Events";
-  import CookieManager from '../../util/CookieManager';
+  import SettingsManager from '../../util/SettingsManager';
 
   export default {
     name: 'SettingsWidget',
@@ -70,14 +81,10 @@
           opacity: .5
         },
 
-        columnCountCookieName: this.board.split(' ').join('_') + '_columnCount',
+        columnCount: SettingsManager.getColumnCount(this.board),
 
-        columnCount: 1
+        allowsAnalyticsTracking: SettingsManager.allowsAnalyticsTracking(this.board)
       };
-    },
-
-    mounted() {
-      this.columnCount = this.getColumnCountFromCookie();
     },
 
     methods: {
@@ -100,15 +107,14 @@
         }
       },
 
-      getColumnCountFromCookie: function () {
-        let count = CookieManager.readCookie(this.columnCountCookieName);
-        return count === null ? 1 : count;
+      toggleAnalyticsTrackingOption: function(event) {
+        this.allowsAnalyticsTracking = event.target.checked;
+        SettingsManager.setAnalyticsTracking(this.board, event.target.checked);
       },
 
       updateBoardLayout: function (value) {
         this.$root.$emit(Events.COLUMN_COUNT_RETRIEVED, this.$event, value);
-        CookieManager.deleteCookie(this.columnCountCookieName);
-        CookieManager.createCookie(this.columnCountCookieName, value, 365);
+        SettingsManager.saveColumnCount(this.board, value);
       }
     }
   }
@@ -152,6 +158,7 @@
 
   #column-slider {
     width: 100%;
+    margin-bottom: 15px;
   }
 
   #column-slider:hover {
@@ -163,7 +170,7 @@
     text-align: center;
     display: block;
     color: #3B3D3B;
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 5px;
     border-radius: 3px;
     border: 1px solid #cacaca;

@@ -53,11 +53,14 @@
 </template>
 
 <script>
+  import {page} from 'vue-analytics'
   import {Events} from '../../Events';
+
   import MonitoredJob from './MonitoredJob';
   import DashboardHeader from './DashboardHeader';
   import DashboardFooter from './DashboardFooter';
   import SettingsWidget from "./SettingsWidget";
+  import SettingsManager from '../../util/SettingsManager';
 
   export default {
     name: 'BuildDashboard',
@@ -93,6 +96,10 @@
     },
 
     mounted() {
+      if (SettingsManager.allowsAnalyticsTracking(this.board)) {
+        this.track();
+      }
+
       if (this.jobsData.length > 0) {
         this.startTimelyRequestsForLatestData();
       }
@@ -105,6 +112,10 @@
     },
 
     methods: {
+      track: function () {
+        page('/')
+      },
+
       startTimelyRequestsForLatestData: function () {
         let self = this;
         setInterval(() => {
