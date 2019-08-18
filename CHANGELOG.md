@@ -1,12 +1,14 @@
 ## Change Log
 
 #### Next release
+
+#### v0.5.0-build.1566142512 ~ 2019.08.18
 - Changed Jenkins logo on monitor
 - Improved rebuild plugin integration
 - Analytics tracking & opt in model
 - Added animation to progress bar motion
 
-#### v0.4.0-build.1565952664 ~ 29.08.16
+#### v0.4.0-build.1565952664 ~ 2019.08.16
 - Job health status indication
 - Handle disabled jobs appropriately
 - Fixed run description rendering bug that stopped jobs with no run from being displayed
