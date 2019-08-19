@@ -26,6 +26,7 @@
 package me.tobiadeyinka.jenkinsci.plugins.builddashboard.run
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 
 import hudson.model.Run
 
@@ -45,11 +46,6 @@ open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
     val displayName: String = run.getDisplayName()
 
     /**
-     * Description of the run
-     */
-    val description: String? = run.getDescription()
-
-    /**
      * Milliseconds representation of the time the run started
      */
     val startTime: Long? = run.getStartTimeInMillis()
@@ -58,5 +54,27 @@ open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
      * Milliseconds representation of the time it took for the last complete run to finish
      */
     val duration: Long? = run.getDuration()
+
+    /**
+     * A summary of the run, usually the description or build cause.
+     * Decides on what to return in this order:
+     * If there is description set for this run --> return the description.
+     * If there is no description, fall back to the build cause.
+     * If none of the 2 are available, return an empty string.
+     */
+    @JsonProperty("summary")
+    fun summary(): String {
+        if (isNotEmpty(run.getDescription())) {
+            return run.getDescription()
+        }
+
+        if (!run.getCauses().isEmpty()) {
+            return run.getCauses()[0].shortDescription
+        }
+
+        return ""
+    }
+
+    private fun isNotEmpty(string: String?): Boolean = string != null && string.isNotEmpty()
 
 }

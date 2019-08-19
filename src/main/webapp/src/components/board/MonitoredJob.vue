@@ -38,7 +38,7 @@
           :class="{'monitored-job-name': true, 'npbm': true, 'disabled-job-name': !this.isBuildable()}">
             <img :src="jobData.healthReport.iconUrl" :title="jobData.healthReport.description" class="health-icon"/> {{jobData.displayName}}
         </a>
-        <div v-if="this.jobHasBeenRun()" class="monitored-job-description">{{this.jobData.latestRun.description}}</div>
+        <div v-if="this.jobHasBeenRun()" class="monitored-job-summary">{{this.jobData.latestRun.summary}}</div>
       </div>
     </div>
 
@@ -392,7 +392,7 @@
     text-decoration: line-through !important;
   }
 
-  .monitored-job-description {
+  .monitored-job-summary {
     width: fit-content;
     margin: auto;
     font-weight: 700;
