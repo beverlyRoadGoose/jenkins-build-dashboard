@@ -133,11 +133,13 @@
       },
 
       toggleJobHealthDisplay: function(event) {
+        this.$root.$emit(Events.TOGGLED_HEALTH_DISPLAY, this.$event, event.target.checked);
         this.displayJobHealth = event.target.checked;
         SettingsManager.setJobHealthDisplaySetting(this.board, event.target.checked);
       },
 
       toggleRunSummaryDisplay: function(event) {
+        this.$root.$emit(Events.TOGGLED_SUMMARY_DISPLAY, this.$event, event.target.checked);
         this.displayRunSummary = event.target.checked;
         SettingsManager.setRunSummaryDisplaySetting(this.board, event.target.checked);
       },

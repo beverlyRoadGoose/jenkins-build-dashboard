@@ -33,12 +33,10 @@
 
     <div class="monitored-job-top-row">
       <div class="top-row-content-wrapper">
-        <a
-          :href="'job/' + jobData.displayName"
-          :class="{'monitored-job-name': true, 'npbm': true, 'disabled-job-name': !this.isBuildable()}">
-            <img :src="jobData.healthReport.iconUrl" :title="jobData.healthReport.description" class="health-icon"/> {{jobData.displayName}}
+        <a :href="'job/' + jobData.displayName" :class="{'monitored-job-name': true, 'npbm': true, 'disabled-job-name': !this.isBuildable()}">
+            <img :src="jobData.healthReport.iconUrl" :title="jobData.healthReport.description" class="health-icon" :style="healthIconStyleObject"/> {{jobData.displayName}}
         </a>
-        <div v-if="this.jobHasBeenRun()" class="monitored-job-summary">{{this.jobData.latestRun.summary}}</div>
+        <div v-if="this.jobHasBeenRun()" class="monitored-job-summary" :style="summaryStyleObject">{{this.jobData.latestRun.summary}}</div>
       </div>
     </div>
 
@@ -73,12 +71,19 @@
 
   export default {
     name: 'MonitoredJob',
-
     props: ['resourcesUrl', 'board', 'installation', 'jobData'],
 
     created() {
       this.$root.$on(Events.COLUMN_COUNT_RETRIEVED, (event, columnCount) => {
         this.columnCountRetrievedHandler(event, columnCount)
+      });
+
+      this.$root.$on(Events.TOGGLED_HEALTH_DISPLAY, (event, setting) => {
+        this.toggleHealthDisplay(event, setting);
+      });
+
+      this.$root.$on(Events.TOGGLED_SUMMARY_DISPLAY, (event, setting) => {
+        this.toggleSummaryDisplay(event, setting);
       });
     },
 
@@ -91,6 +96,14 @@
           'flex-grow': 1,
           width: width,
           'min-width': width
+        },
+
+        healthIconStyleObject: {
+          display: SettingsManager.shouldDisplayJobHealth(this.board) ? 'inline-block' : 'none'
+        },
+
+        summaryStyleObject: {
+          display: SettingsManager.shouldDisplayRunSummary(this.board) ? 'block' : 'none'
         }
       };
     },
@@ -220,6 +233,14 @@
           case 'NOT_BUILT':
           case 'ABORTED': return 'blink-grey';
         }
+      },
+
+      toggleHealthDisplay: function (event, setting) {
+        this.healthIconStyleObject.display = setting ? 'inline-block' : 'none';
+      },
+
+      toggleSummaryDisplay: function (event, setting) {
+        this.summaryStyleObject.display = setting ? 'block' : 'none';
       }
     }
   }
