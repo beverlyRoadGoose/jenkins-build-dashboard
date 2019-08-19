@@ -46,14 +46,38 @@
         >
       </div>
 
-      <input
-        type="checkbox"
-        name="analytics"
-        :value="allowsAnalyticsTracking"
-        v-model="allowsAnalyticsTracking"
-        @click="toggleAnalyticsTrackingOption($event)">
-          Allow analytics tracking
-      <br>
+      <div class="option-wrapper">
+        <input
+          type="checkbox"
+          name="health"
+          :value="displayJobHealth"
+          v-model="displayJobHealth"
+          @click="toggleJobHealthDisplay($event)">
+            Show build stability icons
+        <br>
+      </div>
+
+      <div class="option-wrapper">
+       <input
+          type="checkbox"
+          name="summary"
+          :value="displayRunSummary"
+          v-model="displayRunSummary"
+          @click="toggleRunSummaryDisplay($event)">
+            Show run description
+        <br>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          name="analytics"
+          :value="allowsAnalyticsTracking"
+          v-model="allowsAnalyticsTracking"
+          @click="toggleAnalyticsTracking($event)">
+            Allow analytics tracking
+        <br>
+      </div>
 
       <a href="configure" id="settings-configure-link" :title="'Configure ' + board">Board configuration</a>
 
@@ -82,7 +106,8 @@
         },
 
         columnCount: SettingsManager.getColumnCount(this.board),
-
+        displayJobHealth: SettingsManager.shouldDisplayJobHealth(this.board),
+        displayRunSummary: SettingsManager.shouldDisplayRunSummary(this.board),
         allowsAnalyticsTracking: SettingsManager.allowsAnalyticsTracking(this.board)
       };
     },
@@ -107,7 +132,17 @@
         }
       },
 
-      toggleAnalyticsTrackingOption: function(event) {
+      toggleJobHealthDisplay: function(event) {
+        this.displayJobHealth = event.target.checked;
+        SettingsManager.setJobHealthDisplaySetting(this.board, event.target.checked);
+      },
+
+      toggleRunSummaryDisplay: function(event) {
+        this.displayRunSummary = event.target.checked;
+        SettingsManager.setRunSummaryDisplaySetting(this.board, event.target.checked);
+      },
+
+      toggleAnalyticsTracking: function(event) {
         this.allowsAnalyticsTracking = event.target.checked;
         SettingsManager.setAnalyticsTracking(this.board, event.target.checked);
       },
@@ -154,6 +189,10 @@
     width: 200px;
     font-size: .8em;
     z-index: 10;
+  }
+
+  .option-wrapper {
+    margin-bottom: 10px;
   }
 
   #column-slider {
