@@ -23,7 +23,7 @@
  *
  */
 
-package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
+package me.tobiadeyinka.jenkinsci.plugins.builddashboard.job
 
 import hudson.model.Job
 
@@ -32,6 +32,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 import org.jenkinsci.plugins.workflow.job.WorkflowJob
 
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.run.LatestRun
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.run.CompleteRun
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.PluginManager
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines.PipelineStage
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines.PipelineUtils

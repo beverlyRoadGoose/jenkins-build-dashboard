@@ -41,11 +41,11 @@ import org.kohsuke.stapler.DataBoundConstructor
 import org.kohsuke.stapler.bind.JavaScriptMethod
 
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Build
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Installation
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfoLoader
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization.SerializationUtils
 
-import me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.MonitoredJob
 
 import net.sf.json.JSONArray
 import net.sf.json.JSONObject

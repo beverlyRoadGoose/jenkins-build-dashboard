@@ -25,7 +25,7 @@
 
 package me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines
 
-import me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.MonitoredJob
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.PluginManager
 
 class PipelineUtils {

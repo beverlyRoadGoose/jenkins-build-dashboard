@@ -23,26 +23,40 @@
  *
  */
 
-package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
+package me.tobiadeyinka.jenkinsci.plugins.builddashboard.run
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 import hudson.model.Run
 
 /**
- * Defines the latest run of a job, the run doesn't have to be completed. This would always be the lates run
- * of a job excluding queued runs.
+ * Defines general attributes of runs of a job.
  */
-class LatestRun constructor(@JsonIgnore private val run: Run<*, *>) : me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.Run(run) {
+open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
 
     /**
-     * State of the run, running or not.
+     * Build number of this run.
      */
-    val isRunning: Boolean = run.isBuilding()
+    val buildNumber: Int = run.number
 
     /**
-     * The estimated amount of time this run would take in milliseconds, if it is running.
+     * Display name of this run
      */
-    val estimatedDuration: Long? = run.getEstimatedDuration()
+    val displayName: String = run.getDisplayName()
+
+    /**
+     * Description of the run
+     */
+    val description: String? = run.getDescription()
+
+    /**
+     * Milliseconds representation of the time the run started
+     */
+    val startTime: Long? = run.getStartTimeInMillis()
+
+    /**
+     * Milliseconds representation of the time it took for the last complete run to finish
+     */
+    val duration: Long? = run.getDuration()
 
 }

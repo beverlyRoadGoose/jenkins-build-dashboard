@@ -1,6 +1,7 @@
 me.tobiadeyinka.jenkinsci.plugins.builddashboard
-me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
 me.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+me.tobiadeyinka.jenkinsci.plugins.builddashboard.job
 me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins
 me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines
+me.tobiadeyinka.jenkinsci.plugins.builddashboard.run
 me.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization

@@ -1,4 +1,4 @@
-package me.tobiadeyinka.jenkinsci.plugins.builddashboard.board
+package me.tobiadeyinka.jenkinsci.plugins.builddashboard.job
 
 /**
  * Health status entity for monitored jobs

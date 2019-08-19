@@ -31,10 +31,10 @@ import com.fasterxml.jackson.databind.ser.PropertyWriter
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter
 
-import me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.MonitoredJob
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
 
 /**
- * Jackson serialization filter for [me.tobiadeyinka.jenkinsci.plugins.builddashboard.board.MonitoredJob] to filter out
+ * Jackson serialization filter for [me.tobiadeyinka.jenkinsci.plugins.builddashboard.run.MonitoredJob] to filter out
  * the pipelineStages attribute if the job is not a pipeline.
  */
 class MonitoredJobPropertyFilter() : SimpleBeanPropertyFilter() {
