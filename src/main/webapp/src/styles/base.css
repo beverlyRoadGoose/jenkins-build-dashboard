@@ -40,16 +40,12 @@ html {
 }
 
 body {
-  background-image: url("/plugin/build-dashboard-plugin/src/assets/img/back.png");
+  background-image: url("/plugin/build-dashboard-plugin/src/assets/img/carbon.png");
   font-family: 'Lato', sans-serif;
   padding: 0;
   margin: 0;
   border: 0;
   height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   overflow: hidden;
   box-sizing: border-box;
 }
