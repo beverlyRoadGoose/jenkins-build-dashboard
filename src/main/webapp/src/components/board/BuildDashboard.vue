@@ -73,7 +73,6 @@
 
         infoBoxStyleObject: {
           opacity: 0,
-          'background-color': '#d2d2d2'
         },
 
         informationMessage: ''
@@ -129,7 +128,6 @@
         this.informationMessage = message;
         this.infoBoxStyleObject = {
           opacity: 1,
-          "background-color": statusColor
         };
 
         setTimeout(() => {
@@ -200,7 +198,7 @@
 
   #info-box {
     position: absolute;
-    top: 15px;
+    top: 20px;
     left: 50%;
     -moz-transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
@@ -208,13 +206,10 @@
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
     width: max-content;
-    background-color: #d2d2d2;
-    color: #3B3D3B;
+    color: #ffffff;
     font-size: 1em;
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid #999999;
-    box-shadow: 1px 1px 1px #cccccc;
     font-weight: 700;
   }
 </style>

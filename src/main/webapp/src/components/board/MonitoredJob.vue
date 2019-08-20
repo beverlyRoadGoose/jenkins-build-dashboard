@@ -44,7 +44,7 @@
       <a
         v-if="this.jobHasBeenRun()"
         :href="'job/' + jobData.displayName + '/' + jobData.latestRun.buildNumber"
-        class="monitored-job-last-build">
+        class="monitored-job-last-build transitions">
           {{this.jobData.latestRun.displayName}}
       </a>
       <a v-else :href="'job/' + jobData.displayName" class="monitored-job-last-build">No Builds</a>
@@ -215,10 +215,10 @@
         }
 
         switch (this.jobData.lastCompleteRun.result.name) {
-          case 'SUCCESS': return '#98d398';
-          case 'FAILURE': return '#ff7d77';
+          case 'SUCCESS': return '#068226';
+          case 'FAILURE': return '#A40302';
           case 'NOT_BUILT':
-          case 'ABORTED': return '#ababab';
+          case 'ABORTED': return '#3B3B3B';
         }
       },
 
@@ -248,87 +248,85 @@
 
 <style scoped>
   @-moz-keyframes green-blink {
-    0% {background-color: rgba(152, 211, 152, 1)}
-    50% {background-color: rgba(152, 211, 152, 0.5)}
-    100% {background-color: rgba(152, 211, 152, 1)}
+    0% {background-color: rgba(9, 186, 54, 1)}
+    50% {background-color: rgba(9, 186, 54, 0.5)}
+    100% {background-color: rgba(9, 186, 54, 1)}
   }
 
   @-webkit-keyframes green-blink {
-    0% {background-color: rgba(152, 211, 152, 1)}
-    50% {background-color: rgba(152, 211, 152, 0.5)}
-    100% {background-color: rgba(152, 211, 152, 1)}
+    0% {background-color: rgba(9, 186, 54, 1)}
+    50% {background-color: rgba(9, 186, 54, 0.5)}
+    100% {background-color: rgba(9, 186, 54, 1)}
   }
 
   @-ms-keyframes green-blink {
-    0% {background-color: rgba(152, 211, 152, 1)}
-    50% {background-color: rgba(152, 211, 152, 0.5)}
-    100% {background-color: rgba(152, 211, 152, 1)}
+    0% {background-color: rgba(9, 186, 54, 1)}
+    50% {background-color: rgba(9, 186, 54, 0.5)}
+    100% {background-color: rgba(9, 186, 54, 1)}
   }
 
   @keyframes green-blink {
-    0% {background-color: rgba(152, 211, 152, 1)}
-    50% {background-color: rgba(152, 211, 152, 0.5)}
-    100% {background-color: rgba(152, 211, 152, 1)}
+    0% {background-color: rgba(9, 186, 54, 1)}
+    50% {background-color: rgba(9, 186, 54, 0.5)}
+    100% {background-color: rgba(9, 186, 54, 1)}
   }
 
   @-moz-keyframes red-blink {
-    0% {background-color: rgba(255 , 125, 119, 1)}
-    50% {background-color: rgba(255 , 125, 119, 0.5)}
-    100% {background-color: rgba(255 , 125, 119, 1)}
+    0% {background-color: rgba(240, 4, 3, 1)}
+    50% {background-color: rgba(240, 4, 3, 0.5)}
+    100% {background-color: rgba(240, 4, 3, 1)}
   }
 
   @-webkit-keyframes red-blink {
-    0% {background-color: rgba(255 , 125, 119, 1)}
-    50% {background-color: rgba(255 , 125, 119, 0.5)}
-    100% {background-color: rgba(255 , 125, 119, 1)}
+    0% {background-color: rgba(240, 4, 3, 1)}
+    50% {background-color: rgba(240, 4, 3, 0.5)}
+    100% {background-color: rgba(240, 4, 3, 1)}
   }
 
   @-ms-keyframes red-blink {
-    0% {background-color: rgba(255 , 125, 119, 1)}
-    50% {background-color: rgba(255 , 125, 119, 0.5)}
-    100% {background-color: rgba(255 , 125, 119, 1)}
+    0% {background-color: rgba(240, 4, 3, 1)}
+    50% {background-color: rgba(240, 4, 3, 0.5)}
+    100% {background-color: rgba(240, 4, 3, 1)}
   }
 
   @keyframes red-blink {
-    0% {background-color: rgba(255 , 125, 119, 1)}
-    50% {background-color: rgba(255 , 125, 119, 0.5)}
-    100% {background-color: rgba(255 , 125, 119, 1)}
+    0% {background-color: rgba(240, 4, 3, 1)}
+    50% {background-color: rgba(240, 4, 3, 0.5)}
+    100% {background-color: rgba(240, 4, 3, 1)}
   }
 
   @-moz-keyframes grey-blink {
-    0% {background-color: rgba(171 , 171, 171, 1)}
-    50% {background-color: rgba(171 , 171, 171, 0.5)}
-    100% {background-color: rgba(171 , 171, 171, 1)}
+    0% {background-color: rgba(88, 88, 88, 1)}
+    50% {background-color: rgba(88, 88, 88, 0.5)}
+    100% {background-color: rgba(88, 88, 88, 1)}
   }
 
   @-webkit-keyframes grey-blink {
-    0% {background-color: rgba(171 , 171, 171, 1)}
-    50% {background-color: rgba(171 , 171, 171, 0.5)}
-    100% {background-color: rgba(171 , 171, 171, 1)}
+    0% {background-color: rgba(88, 88, 88, 1)}
+    50% {background-color: rgba(88, 88, 88, 0.5)}
+    100% {background-color: rgba(88, 88, 88, 1)}
   }
 
   @-ms-keyframes grey-blink {
-    0% {background-color: rgba(171 , 171, 171, 1)}
-    50% {background-color: rgba(171 , 171, 171, 0.5)}
-    100% {background-color: rgba(171 , 171, 171, 1)}
+    0% {background-color: rgba(88, 88, 88, 1)}
+    50% {background-color: rgba(88, 88, 88, 0.5)}
+    100% {background-color: rgba(88, 88, 88, 1)}
   }
 
   @keyframes grey-blink {
-    0% {background-color: rgba(171 , 171, 171, 1)}
-    50% {background-color: rgba(171 , 171, 171, 0.5)}
-    100% {background-color: rgba(171 , 171, 171, 1)}
+    0% {background-color: rgba(88, 88, 88, 1)}
+    50% {background-color: rgba(88, 88, 88, 0.5)}
+    100% {background-color: rgba(88, 88, 88, 1)}
   }
 
   .monitored-job {
-    color: #3B3D3B;
+    color: #ffffff;
     padding: 0;
     margin: 3px;
     border-radius: 7px;
     box-sizing: border-box;
-    box-shadow: 1px 1px 1px #cccccc;
     position: relative;
     display: inline-block;
-    border: 1px solid #999999;
     overflow: hidden;
   }
 
@@ -363,10 +361,9 @@
   .progress-percentage {
     padding: 10px;
     float: right;
-    color: #3B3D3B;
+    color: #ffffff;
     font-size: .9em;
     font-weight: 900;
-    opacity: .6;
   }
 
   .monitored-job a {
@@ -382,19 +379,19 @@
   }
 
   .monitored-job a:visited {
-    color: #3B3D3B;
+    color: #ffffff;
   }
 
   .monitored-job-successful {
-    background-color: #BBE2BB;
+    background-color: #068226;
   }
 
   .monitored-job-failed {
-    background-color: #FFA39E;
+    background-color: #A40302;
   }
 
   .monitored-job-aborted {
-    background-color: #C4C4C4;
+    background-color: #3b3b3b;
   }
 
   .monitored-job-name {
@@ -404,8 +401,8 @@
     text-align: center;
     display: block;
     margin: auto auto 10px;
-    color: #3B3D3B;
-    text-shadow: 1px 1px 1px #000000;
+    color: #ffffff;
+    text-shadow: .5px .5px .5px #222222;
     word-wrap: break-word;
   }
 
@@ -417,6 +414,7 @@
     width: fit-content;
     margin: auto;
     font-weight: 700;
+    text-shadow: .5px .5px .5px #222222;
   }
 
   .monitored-job-top-row {
@@ -445,20 +443,24 @@
   }
 
   .monitored-job-last-build {
-    color: #3B3D3B;
+    color: #ffffff;
     font-size: 1em;
     display: inline-block;
     font-weight: 900;
-    opacity: .7;
+    opacity: .5;
+  }
+
+  .monitored-job-last-build:hover {
+    opacity: 1;
   }
 
   .start-time {
     display: inline-block;
-    color: #3B3D3B;
+    color: #ffffff;
     font-size: 1em;
     font-weight: 900;
     float: right;
-    opacity: .6;
+    opacity: .5;
   }
 
   .repeat-button {

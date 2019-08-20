@@ -185,7 +185,7 @@
     right: 10px;
     padding: 10px 10px;
     border-radius: 5px;
-    background-color: rgba(50, 50, 50, .7);
+    background-color: rgba(50, 50, 50, .8);
     border: 1px solid rgba(50, 50, 50, 1);
     color: #ffffff;
     width: 200px;
