@@ -65,7 +65,7 @@
   }
 
   #board-title {
-    color: #3B3D3B;
+    color: #ffffff;
     display: inline-block;
     margin-left: 50px;
     margin-bottom: -4px;

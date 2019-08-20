@@ -24,7 +24,7 @@
 <template>
   <div id="settings-widget">
     <img
-        :src="resourcesUrl + '/src/assets/img/settings-dark.png'"
+        :src="resourcesUrl + '/src/assets/img/settings.png'"
         id="settings-icon"
         class="transitions"
         title="Settings"
@@ -246,28 +246,28 @@
     width: 100%;
     padding: 7px;
     border-radius: 3px;
-    border:1px solid #616261;
-    background-color: #7d7e7d;
+    border:1px solid #181818;
+    background-color: #181818;
     font-size: .9em;
-    background-image: -o-linear-gradient(top, #7d7e7d, #0e0e0e);
-    background-image: -ms-linear-gradient(top, #7d7e7d, #0e0e0e);
-    background-image: -moz-linear-gradient(top, #7d7e7d, #0e0e0e);
-    background-image: -webkit-linear-gradient(top, #7d7e7d, #0e0e0e);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#7d7e7d), to(#0e0e0e));
-    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#7d7e7d, endColorstr=#0e0e0e);
-    background-image: linear-gradient(to bottom, #7d7e7d, #0e0e0e);
+    background-image: -o-linear-gradient(top, #181818, #0e0e0e);
+    background-image: -ms-linear-gradient(top, #181818, #0e0e0e);
+    background-image: -moz-linear-gradient(top, #181818, #0e0e0e);
+    background-image: -webkit-linear-gradient(top, #181818, #0e0e0e);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#0e0e0e));
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#181818, endColorstr=#0e0e0e);
+    background-image: linear-gradient(to bottom, #181818, #0e0e0e);
   }
 
   #settings-close-button:hover {
-    border:1px solid #4a4b4a;
-    background-color: #646464;
-    background-image: -o-linear-gradient(top, #646464, #282828);
-    background-image: -ms-linear-gradient(top, #646464, #282828);
-    background-image: -moz-linear-gradient(top, #646464, #282828);
-    background-image: -webkit-linear-gradient(top, #646464, #282828);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#646464), to(#282828));
-    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#646464, endColorstr=#282828);
-    background-image: linear-gradient(to bottom, #646464, #282828);
+    border:1px solid #222222;
+    background-color: #222222;
+    background-image: -o-linear-gradient(top, #222222, #181818);
+    background-image: -ms-linear-gradient(top, #222222, #181818);
+    background-image: -moz-linear-gradient(top, #222222, #181818);
+    background-image: -webkit-linear-gradient(top, #222222, #181818);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#181818));
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#222222, endColorstr=#181818);
+    background-image: linear-gradient(to bottom, #222222, #181818);
     cursor: pointer;
   }
 

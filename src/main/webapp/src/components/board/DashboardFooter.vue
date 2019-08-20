@@ -40,7 +40,7 @@
 <style scoped>
   #footer {
     padding: 0 10px 5px;
-    color: #3B3D3B;
+    color: #ffffff;
     font-size: .8em;
   }
 

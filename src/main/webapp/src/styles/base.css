@@ -40,7 +40,7 @@ html {
 }
 
 body {
-  background-color: #F7F7F7;
+  background-image: url("/plugin/build-dashboard-plugin/src/assets/img/back.png");
   font-family: 'Lato', sans-serif;
   padding: 0;
   margin: 0;
