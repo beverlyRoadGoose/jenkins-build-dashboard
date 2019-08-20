@@ -53,7 +53,7 @@
           :value="displayJobHealth"
           v-model="displayJobHealth"
           @click="toggleJobHealthDisplay($event)">
-            Show build stability icons
+            Show build stability
         <br>
       </div>
 
