@@ -102,9 +102,9 @@ val dokka by tasks.getting(DokkaTask::class) {
 }
 
 val npmInstallTask by tasks.register<Exec>(npmInstall) {
-    commandLine = listOf("npm", "install", "--prefix", webAppDir)
     group = webAppTasksGroup
     description = "Install webapp npm dependencies"
+    commandLine = listOf("npm", "install", "--prefix", webAppDir)
 }
 
 val webAppDevTask by tasks.register<Exec>(webAppDev) {
