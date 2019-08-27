@@ -1,9 +1,9 @@
 ## Change Log
 
-#### Next release
-- Modified run description logic
-- Made job health & run description display optional
+#### v0.6.0-build.1566913107 ~ 2019.08.27
 - Switched to the dark side
+- Modified run description logic
+- Made build stability & run description display optional
 
 #### v0.5.0-build.1566142512 ~ 2019.08.18
 - Changed Jenkins logo on monitor
