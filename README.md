@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Jenkins Build Dashboard
-![Demo](https://i.imgur.com/1ov75us.gif)
+![Demo](https://i.imgur.com/gyGRizU.gif)
 
 This is a [Jenkins](https://jenkins.io/) plugin for monitoring multiple jobs on customisable dashboards.
 
