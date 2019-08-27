@@ -36,7 +36,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
       </j:if>
       <title>Jenkins | ${it.title}</title>
-      <script type="module" src="${resourcesURL}/webapp/webapp.js"></script>
+      <script type="module" src="${resourcesURL}/webapp/BuildDashboard.js"></script>
     </head>
     <body>
       <st:bind var="window.pluginInstance" value="${it}"/>

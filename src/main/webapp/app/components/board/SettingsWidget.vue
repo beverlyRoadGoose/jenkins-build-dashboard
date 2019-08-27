@@ -24,7 +24,7 @@
 <template>
   <div id="settings-widget">
     <img
-        :src="resourcesUrl + '/src/assets/img/settings.png'"
+        :src="resourcesUrl + '/app/assets/img/settings.png'"
         id="settings-icon"
         class="transitions"
         title="Settings"

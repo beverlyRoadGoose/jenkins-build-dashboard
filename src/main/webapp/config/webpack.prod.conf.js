@@ -34,11 +34,11 @@ module.exports = {
 
   entry: {
     vue: 'vue',
-    index: resolve('src/Webapp.js'),
+    index: resolve('app/BuildDashboard.js'),
   },
 
   output: {
-    filename: 'webapp.js',
+    filename: 'BuildDashboard.js',
     path: resolve('webapp'),
     publicPath: '../webapp/',
   },

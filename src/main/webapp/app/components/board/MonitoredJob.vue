@@ -51,7 +51,7 @@
 
       <img
         v-if="this.shouldDisplayRebuildButton()"
-        :src="resourcesUrl + '/src/assets/img/repeat.png'"
+        :src="resourcesUrl + '/app/assets/img/repeat.png'"
         class="repeat-button transitions"
         title="Rebuild"
         @click="rebuild(jobData.latestRun.buildNumber)"

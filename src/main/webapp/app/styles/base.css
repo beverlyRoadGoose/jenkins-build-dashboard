@@ -40,7 +40,7 @@ html {
 }
 
 body {
-  background-image: url("/plugin/build-dashboard-plugin/src/assets/img/carbon.png");
+  background-image: url("/plugin/build-dashboard-plugin/app/assets/img/carbon.png");
   font-family: 'Lato', sans-serif;
   padding: 0;
   margin: 0;

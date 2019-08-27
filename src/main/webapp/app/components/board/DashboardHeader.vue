@@ -24,7 +24,7 @@
 <template>
   <div id="header">
     <a href="/" title="Jenkins Home" id="home-link">
-      <img :src="resourcesUrl + '/src/assets/img/jenkins.png'" id="jenkins-logo"/>
+      <img :src="resourcesUrl + '/app/assets/img/jenkins.png'" id="jenkins-logo"/>
     </a>
 
     <a :href="'/view/' + board + '/configure'" :title="'Configure ' + board" id="configure-link">
