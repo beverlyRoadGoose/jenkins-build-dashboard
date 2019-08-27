@@ -10,7 +10,7 @@ This is a [Jenkins](https://jenkins.io/) plugin for monitoring multiple jobs on 
 ## Features
 - Customisable layout for each board
 - Displays an automatically updated status of the jobs added to a board
-- Optional job health indicator
+- Optional build stabiltiy indicator
 - Runs can be re-triggered from the board (requires the [rebuild plugin](https://github.com/jenkinsci/rebuild-plugin))
 
 ## Running the plugin
