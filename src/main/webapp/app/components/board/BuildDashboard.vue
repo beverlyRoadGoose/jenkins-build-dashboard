@@ -65,7 +65,14 @@
   export default {
     name: 'BuildDashboard',
 
-    props: ['resourcesUrl', 'board', 'boardTitle', 'jobs', 'installation'],
+    props: [
+      'resourcesUrl',
+      'board',
+      'boardTitle',
+      'jobs',
+      'installation',
+      'remoteRequestCrumb'
+    ],
 
     data() {
       return {
@@ -87,6 +94,7 @@
     },
 
     created: function () {
+      this.appendCrumbHeaderToAllRequests();
       this.$root.$on(Events.NEW_INFORMATION, (event, message, statusColor) => this.displayInformation(
         event,
         message,
@@ -134,6 +142,17 @@
           this.infoBoxStyleObject.opacity = 0;
           this.informationMessage = '';
         }, 10000);
+      },
+
+      appendCrumbHeaderToAllRequests: function () {
+        let crumb = JSON.parse(this.remoteRequestCrumb);
+        let open = XMLHttpRequest.prototype.open;
+
+        XMLHttpRequest.prototype.open = function() {
+          let mutatedPrototype = open.apply(this, arguments);
+          this.setRequestHeader(crumb.fieldName, crumb.crumbValue);
+          return mutatedPrototype;
+        }
       }
     }
   }

@@ -33,7 +33,9 @@
   export default {
     name: 'DashboardFooter',
 
-    props: ['build']
+    props: [
+      'build'
+    ]
   }
 </script>
 

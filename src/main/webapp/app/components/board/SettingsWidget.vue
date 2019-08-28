@@ -93,7 +93,10 @@
   export default {
     name: 'SettingsWidget',
 
-    props: ['resourcesUrl', 'board'],
+    props: [
+      'resourcesUrl',
+      'board'
+    ],
 
     data() {
       return {

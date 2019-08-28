@@ -71,7 +71,13 @@
 
   export default {
     name: 'MonitoredJob',
-    props: ['resourcesUrl', 'board', 'installation', 'jobData'],
+
+    props: [
+      'resourcesUrl',
+      'board',
+      'installation',
+      'jobData'
+    ],
 
     created() {
       this.$root.$on(Events.COLUMN_COUNT_RETRIEVED, (event, columnCount) => {

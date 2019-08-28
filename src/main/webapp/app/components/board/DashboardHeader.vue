@@ -37,7 +37,11 @@
   export default {
     name: 'DashboardHeader',
 
-    props: ['resourcesUrl', 'board', 'boardTitle']
+    props: [
+      'resourcesUrl',
+      'board',
+      'boardTitle'
+    ]
   }
 </script>
 

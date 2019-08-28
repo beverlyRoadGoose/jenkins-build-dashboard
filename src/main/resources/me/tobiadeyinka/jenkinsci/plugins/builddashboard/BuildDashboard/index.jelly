@@ -47,6 +47,7 @@
             board-title="${it.title}"
             jobs="${it.getMonitoredJobsAsJSON()}"
             installation="${it.getInstallationAsJSON()}"
+            remote-request-crumb="${it.getRemoteRequestCrumb()}"
         ></build-dashboard>
       </div>
     </body>

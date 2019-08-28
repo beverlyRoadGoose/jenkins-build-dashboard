@@ -44,8 +44,8 @@ import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Build
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Installation
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfoLoader
+import me.tobiadeyinka.jenkinsci.plugins.builddashboard.security.csrf.RemoteRequestCrumb
 import me.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization.SerializationUtils
-
 
 import net.sf.json.JSONArray
 import net.sf.json.JSONObject
@@ -112,6 +112,10 @@ class BuildDashboard
     @JavaScriptMethod
     fun getInstallationAsJSON(): JSONObject = toJSON(
         SerializationUtils.getObjectWriter().writeValueAsString(installation)
+    ) as JSONObject
+
+    fun getRemoteRequestCrumb(): JSONObject = toJSON(
+        SerializationUtils.getObjectWriter().writeValueAsString(RemoteRequestCrumb())
     ) as JSONObject
 
     /**
