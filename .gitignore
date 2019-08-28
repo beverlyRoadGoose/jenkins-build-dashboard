@@ -35,8 +35,8 @@ out
 *.hpi
 *.jpi
 
-build
 work
 
 !src/main/kotlin/me/tobiadeyinka/jenkinsci/plugins/builddashboard/build
 jenkins-build-dashboard.iml
+/build/

@@ -1,7 +1,8 @@
-me.tobiadeyinka.jenkinsci.plugins.builddashboard
-me.tobiadeyinka.jenkinsci.plugins.builddashboard.build
-me.tobiadeyinka.jenkinsci.plugins.builddashboard.job
-me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins
-me.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines
-me.tobiadeyinka.jenkinsci.plugins.builddashboard.run
-me.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization
+com.tobiadeyinka.jenkinsci.plugins.builddashboard
+com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+com.tobiadeyinka.jenkinsci.plugins.builddashboard.job
+com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins
+com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines
+com.tobiadeyinka.jenkinsci.plugins.builddashboard.run
+com.tobiadeyinka.jenkinsci.plugins.builddashboard.security.csrf
+com.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization
