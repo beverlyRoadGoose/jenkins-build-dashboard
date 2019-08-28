@@ -1,5 +1,6 @@
 com.tobiadeyinka.jenkinsci.plugins.builddashboard
 com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.entities
 com.tobiadeyinka.jenkinsci.plugins.builddashboard.job
 com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins
 com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines
