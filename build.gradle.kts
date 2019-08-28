@@ -60,7 +60,9 @@ plugins {
     id("org.jetbrains.dokka") version "0.9.17"
 }
 
-val buildInfo: MutableMap<String, JvmType.Object> = (Yaml().load(File("src/main/resources/build.yml").inputStream()) as MutableMap<String, JvmType.Object>)
+val buildInfo: MutableMap<String, JvmType.Object> = (Yaml().load(
+    File("src/main/resources/build.yml").inputStream()
+) as MutableMap<String, JvmType.Object>)
 val build: MutableMap<String, JvmType.Object> = buildInfo["build"] as MutableMap<String, JvmType.Object>
 
 group = "me.tobiadeyinka.jenkinsci.plugins"
