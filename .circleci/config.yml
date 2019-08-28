@@ -13,6 +13,15 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Download Selenium
+          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+
+      - run:
+          name: Start Selenium
+          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+          background: true
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "build.gradle.kts" }}
