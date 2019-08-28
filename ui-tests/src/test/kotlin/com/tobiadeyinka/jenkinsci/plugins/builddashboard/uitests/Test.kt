@@ -23,22 +23,18 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests
 
-import org.yaml.snakeyaml.Yaml
-import org.yaml.snakeyaml.constructor.Constructor
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.util.WebDriverManager
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
 
-/**
- * creates a [BuildInfo] object after parsing the values from the build.yml resource file
- */
-class BuildInfoLoader {
+import org.junit.Test
 
-    val buildInfo: BuildInfo
+class Test {
 
-    init {
-        val yaml = Yaml(Constructor(BuildInfo::class.java))
-        buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
+    @Test
+    fun dummyTest() {
+        LoginPage(WebDriverManager().getWebDriver())
     }
-
 
 }

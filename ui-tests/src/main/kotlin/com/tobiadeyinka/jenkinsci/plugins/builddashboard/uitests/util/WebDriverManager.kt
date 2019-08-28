@@ -23,22 +23,23 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.util
 
-import org.yaml.snakeyaml.Yaml
-import org.yaml.snakeyaml.constructor.Constructor
+import io.github.bonigarcia.wdm.DriverManagerType
+import io.github.bonigarcia.wdm.ChromeDriverManager
 
-/**
- * creates a [BuildInfo] object after parsing the values from the build.yml resource file
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
+
+/*
+ * TODO support dynamic browsers
  */
-class BuildInfoLoader {
+class WebDriverManager {
 
-    val buildInfo: BuildInfo
-
-    init {
-        val yaml = Yaml(Constructor(BuildInfo::class.java))
-        buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
+    fun getWebDriver(): WebDriver {
+        ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup()
+        return ChromeDriver(ChromeOptions())
     }
-
 
 }

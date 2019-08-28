@@ -23,22 +23,12 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
-
-import org.yaml.snakeyaml.Yaml
-import org.yaml.snakeyaml.constructor.Constructor
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.entities
 
 /**
- * creates a [BuildInfo] object after parsing the values from the build.yml resource file
+ * Manages build information for installation instances
+ *
+ * @property[pluginName] The name of the plugin
+ * @property[version] The installed version of the plugin
  */
-class BuildInfoLoader {
-
-    val buildInfo: BuildInfo
-
-    init {
-        val yaml = Yaml(Constructor(BuildInfo::class.java))
-        buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
-    }
-
-
-}
+data class Build(var pluginName: String = "", var version: String = "")

@@ -52,13 +52,18 @@ group = "me.tobiadeyinka.jenkinsci.plugins"
 version = build["version"].toString()
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.yaml:snakeyaml:1.24")
+    implementation("io.github.bonigarcia:webdrivermanager:3.6.2")
+    implementation("org.seleniumhq.selenium:selenium-java:3.141.59")
 
-    testCompile("junit", "junit", "4.12")
+    testImplementation("junit", "junit", "4.12")
+    testImplementation("org.assertj:assertj-core:3.11.1")
 }
 
 configure<JavaPluginConvention> {

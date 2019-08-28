@@ -23,22 +23,8 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config
 
-import org.yaml.snakeyaml.Yaml
-import org.yaml.snakeyaml.constructor.Constructor
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities.Config
 
-/**
- * creates a [BuildInfo] object after parsing the values from the build.yml resource file
- */
-class BuildInfoLoader {
-
-    val buildInfo: BuildInfo
-
-    init {
-        val yaml = Yaml(Constructor(BuildInfo::class.java))
-        buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
-    }
-
-
-}
+class TestConfig(var config: Config? = null)

@@ -23,22 +23,14 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins
 
-import org.yaml.snakeyaml.Yaml
-import org.yaml.snakeyaml.constructor.Constructor
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.Page
 
-/**
- * creates a [BuildInfo] object after parsing the values from the build.yml resource file
- */
-class BuildInfoLoader {
+import org.openqa.selenium.WebDriver
 
-    val buildInfo: BuildInfo
+class LoginPage(webDriver: WebDriver) : Page(webDriver) {
 
-    init {
-        val yaml = Yaml(Constructor(BuildInfo::class.java))
-        buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
-    }
-
+    override fun url(): String = testConfig.config!!.server!!.address + "/login"
 
 }

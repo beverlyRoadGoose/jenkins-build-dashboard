@@ -25,4 +25,6 @@
 
 package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
 
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.entities.Build
+
 data class BuildInfo(var build: Build? = null)

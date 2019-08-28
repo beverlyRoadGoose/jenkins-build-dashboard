@@ -25,6 +25,7 @@
 
 package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
 
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.entities.Build
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.PluginManager
 
 /**
@@ -32,9 +33,7 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.PluginManager
  */
 class Installation {
 
-    val build: Build = BuildInfoLoader()
-        .getBuildInfo()
-        .build!!
+    val build: Build = BuildInfoLoader().buildInfo.build!!
 
     val pluginManager: PluginManager =
         PluginManager()

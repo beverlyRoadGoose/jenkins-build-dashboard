@@ -23,22 +23,23 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages
 
-import org.yaml.snakeyaml.Yaml
-import org.yaml.snakeyaml.constructor.Constructor
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfig
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfigLoader
 
-/**
- * creates a [BuildInfo] object after parsing the values from the build.yml resource file
- */
-class BuildInfoLoader {
+import org.openqa.selenium.WebDriver
 
-    val buildInfo: BuildInfo
+abstract class Page(val webDriver: WebDriver) {
+
+    val testConfig: TestConfig = TestConfigLoader().testConfig
 
     init {
-        val yaml = Yaml(Constructor(BuildInfo::class.java))
-        buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
+        load()
     }
 
+    private fun load() = webDriver.get(url())
+
+    abstract fun url(): String
 
 }

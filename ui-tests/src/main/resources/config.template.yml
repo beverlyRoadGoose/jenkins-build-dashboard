@@ -1,0 +1,7 @@
+config:
+  server:
+    address: ""
+
+  user:
+    username: ""
+    password: ""

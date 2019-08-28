@@ -40,7 +40,7 @@ import org.kohsuke.stapler.StaplerRequest
 import org.kohsuke.stapler.DataBoundConstructor
 import org.kohsuke.stapler.bind.JavaScriptMethod
 
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Build
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.entities.Build
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Installation
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfoLoader
@@ -143,7 +143,7 @@ class BuildDashboard
          *  Sets the display name that jenkins identifies the plugin with
          */
         override fun getDisplayName(): String = BuildInfoLoader()
-            .getBuildInfo()
+            .buildInfo
             .build!!
             .pluginName
 

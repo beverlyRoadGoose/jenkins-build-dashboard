@@ -23,12 +23,6 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.build
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities
 
-/**
- * Manages build information for installation instances
- *
- * @property[pluginName] The name of the plugin
- * @property[version] The installed version of the plugin
- */
-data class Build(var pluginName: String = "", var version: String = "")
+class Server(var address: String = "")
