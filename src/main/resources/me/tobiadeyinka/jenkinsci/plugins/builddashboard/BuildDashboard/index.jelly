@@ -42,12 +42,12 @@
       <st:bind var="window.pluginInstance" value="${it}"/>
       <div id="webapp">
         <build-dashboard
-            resources-url="${resourcesURL}"
-            board="${it.getViewName()}"
-            board-title="${it.title}"
-            jobs="${it.getMonitoredJobsAsJSON()}"
-            installation="${it.getInstallationAsJSON()}"
-            remote-request-crumb="${it.getRemoteRequestCrumb()}"
+          resources-url="${resourcesURL}"
+          board="${it.getViewName()}"
+          board-title="${it.title}"
+          jobs="${it.getMonitoredJobsAsJSON()}"
+          installation="${it.getInstallationAsJSON()}"
+          remote-request-crumb="${it.getRemoteRequestCrumb()}"
         ></build-dashboard>
       </div>
     </body>
