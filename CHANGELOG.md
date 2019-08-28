@@ -1,7 +1,8 @@
 ## Change Log
 
-#### next release
+#### v1.0.0-build.1567034395 ~ 2019.08.29
 - CSRF support
+- Internal updates
 
 #### v0.6.0-build.1566913107 ~ 2019.08.27
 - Switched to the dark side
