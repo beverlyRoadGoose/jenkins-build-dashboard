@@ -25,4 +25,4 @@
 
 package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities
 
-class User(var userName: String = "", var password: String = "")
+class User(var username: String = "", var password: String = "")
