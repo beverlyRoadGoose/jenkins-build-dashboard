@@ -1,5 +1,8 @@
 ## Change Log
 
+#### next release
+- Fixed wrong logo & board title order
+
 #### v1.0.0-build.1567034395 ~ 2019.08.29
 - CSRF support
 - Internal updates
