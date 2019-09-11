@@ -64,10 +64,6 @@
     outline: none;
   }
 
-  #configure-link {
-    float: left;
-  }
-
   #board-title {
     color: #ffffff;
     display: inline-block;
