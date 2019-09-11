@@ -40,9 +40,9 @@ import org.kohsuke.stapler.StaplerRequest
 import org.kohsuke.stapler.DataBoundConstructor
 import org.kohsuke.stapler.bind.JavaScriptMethod
 
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.entities.Build
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.Installation
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.entities.Build
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.build.BuildInfoLoader
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.security.csrf.RemoteRequestCrumb
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization.SerializationUtils
