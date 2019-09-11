@@ -40,6 +40,7 @@ val webAppTasksGroup: String = "Webapp"
 val generateDocumentation: String = "generateDocumentation"
 val deleteDocumentation: String = "deleteDocumentation"
 val deleteWorkDir: String = "deleteWorkDir"
+val deleteBuiltPackage: String = "deleteBuiltPackage"
 
 buildscript {
     repositories {
@@ -135,6 +136,12 @@ val deleteDocumentationTask by tasks.register<Exec>(deleteDocumentation) {
     commandLine = listOf("rm", "-rf", "docs")
 }
 
+val deleteBuiltPackageTask by tasks.register<Exec>(deleteBuiltPackage) {
+    group = "Build"
+    description = "Deletes the  build-dashboard-plugin.jpi file"
+    commandLine = listOf("rm", "-f", "build-dashboard-plugin.jpi")
+}
+
 val generateDocumentationTask by tasks.register<Exec>(generateDocumentation) {
     group = "Documentation"
     description = "Generates new dokka documentation in the docs dir"
@@ -175,6 +182,7 @@ tasks.named<Task>("server") {
 tasks.named<Task>("clean") {
     dependsOn(webAppCleanTask)
     dependsOn(deleteWorkDirTask)
+    dependsOn(deleteBuiltPackage)
 }
 
 tasks.withType<KotlinCompile> {
