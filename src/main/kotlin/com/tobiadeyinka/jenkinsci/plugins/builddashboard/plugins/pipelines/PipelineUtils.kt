@@ -45,13 +45,11 @@ class PipelineUtils {
         val pipelineStages: MutableList<PipelineStage> = mutableListOf()
 
         if (pluginManager.pipelinePluginIsInstalled() && job is WorkflowJob) {
-            val workflowJob: WorkflowJob = job
-
-            workflowJob.lastBuild?.let { build ->
+            job.lastBuild?.let { build ->
                 val workflowRun: WorkflowRun = build
                 val nodes: Queue<FlowNode> = LinkedList<FlowNode>()
-                nodes.addAll(workflowRun.execution!!.currentHeads)
 
+                nodes.addAll(workflowRun.execution!!.currentHeads)
                 while (!nodes.isEmpty()) {
                     nodes.remove().let {
                         if (it is StepStartNode && it.descriptor!!.isSubTypeOf(StageStep::class.java)) {
