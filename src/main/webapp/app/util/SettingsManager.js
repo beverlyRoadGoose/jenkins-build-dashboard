@@ -31,6 +31,7 @@ const SUMMARY_SUFFIX = '_showSummary';
 const ANALYTICS_SUFFIX = '_analytics';
 const JOB_HEALTH_SUFFIX = '_showHealth';
 const COLUMN_COUNT_COOKIE_SUFFIX = '_columnCount';
+const PIPELINE_STAGES_COOKIE_SUFFIX = '_showPipelineStages';
 
 export default {
 
@@ -50,7 +51,7 @@ export default {
     return CookieManager.readCookie(cookieName) === 'true';
   },
 
-  setRunSummaryDisplaySetting: function (boardName, value) {
+  setRunSummaryDisplay: function (boardName, value) {
     let cookieName = boardName.split(' ').join('_') + SUMMARY_SUFFIX;
     CookieManager.deleteCookie(cookieName);
     CookieManager.createCookie(cookieName, value, 365);
@@ -61,7 +62,7 @@ export default {
     return CookieManager.readCookie(cookieName) === 'true';
   },
 
-  setJobHealthDisplaySetting: function (boardName, value) {
+  setJobHealthDisplay: function (boardName, value) {
     let cookieName = boardName.split(' ').join('_') + JOB_HEALTH_SUFFIX;
     CookieManager.deleteCookie(cookieName);
     CookieManager.createCookie(cookieName, value, 365);
@@ -77,6 +78,17 @@ export default {
     let cookieName = boardName.split(' ').join('_') + COLUMN_COUNT_COOKIE_SUFFIX;
     CookieManager.deleteCookie(cookieName);
     CookieManager.createCookie(cookieName, count, 365);
+  },
+
+  setPipelineStagesDisplay: function (boardName, value) {
+    let cookieName = boardName.split(' ').join('_') + PIPELINE_STAGES_COOKIE_SUFFIX;
+    CookieManager.deleteCookie(cookieName);
+    CookieManager.createCookie(cookieName, value, 365);
+  },
+
+  shouldDisplayPipelineStages: function (boardName) {
+    let cookieName = boardName.split(' ').join('_') + PIPELINE_STAGES_COOKIE_SUFFIX;
+    return CookieManager.readCookie(cookieName) === 'true';
   }
 
 }

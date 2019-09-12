@@ -27,7 +27,8 @@ let Events = Object.freeze({
   NEW_INFORMATION: 'new-information-message',
   COLUMN_COUNT_RETRIEVED: 'column-count-retrieved',
   TOGGLED_HEALTH_DISPLAY: 'toggled-health-display',
-  TOGGLED_SUMMARY_DISPLAY: 'toggled-summary-display'
+  TOGGLED_SUMMARY_DISPLAY: 'toggled-summary-display',
+  TOGGLED_PIPELINE_STAGES_DISPLAY: 'toggled-pipeline-stages-display'
 });
 
-export {Events};
+export { Events };

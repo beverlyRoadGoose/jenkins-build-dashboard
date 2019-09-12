@@ -24,9 +24,9 @@
  */
 
 let StatusColors = Object.freeze({
-  SUCCESS: '#BBE2BB',
-  ERROR: '#FFA39E',
-  NORMAL:'#C4C4C4'
+  SUCCESS: '#068226',
+  ERROR: '#A40302',
+  NORMAL:'#3b3b3b'
 });
 
-export {StatusColors};
+export { StatusColors };

@@ -27,16 +27,33 @@
       class="progress-bar transitions"
       v-if="this.jobIsRunning()"
       :class="this.getProgressBarBlinkClass()"
-      :style="{width: this.getProgressPercentage() + '%', 'min-width': '5%', 'background-color': this.getProgressBarColor()}">
+      :style="{width: this.getProgressPercentage() + '%', 'min-width': '5%', 'background-color': this.getProgressBarColor()}"
+    >
       <span class="progress-percentage">{{this.getProgressPercentage()}}%</span>
+      <span v-if="this.isPipeline()" class="pipeline-stages" :style="pipelineStagesStyleObject">
+        [{{this.getRunningPipelineStages()}}]
+      </span>
     </div>
 
     <div class="monitored-job-top-row">
       <div class="top-row-content-wrapper">
-        <a :href="'job/' + jobData.displayName" :class="{'monitored-job-name': true, 'npbm': true, 'disabled-job-name': !this.isBuildable()}">
-            <img :src="jobData.healthReport.iconUrl" :title="jobData.healthReport.description" class="health-icon" :style="healthIconStyleObject"/> {{jobData.displayName}}
+        <a
+          :href="'job/' + jobData.displayName"
+          :class="{'monitored-job-name': true, 'npbm': true, 'disabled-job-name': !this.isBuildable()}"
+        >
+          <img
+            :src="jobData.healthReport.iconUrl"
+            :title="jobData.healthReport.description" class="health-icon" :style="healthIconStyleObject"
+          /> {{jobData.displayName}}
         </a>
-        <div v-if="this.jobHasBeenRun()" class="monitored-job-summary" :style="summaryStyleObject">{{this.jobData.latestRun.summary}}</div>
+
+        <div
+          v-if="this.jobHasBeenRun()"
+          class="monitored-job-summary"
+          :style="summaryStyleObject"
+        >
+          {{this.jobData.latestRun.summary}}
+        </div>
       </div>
     </div>
 
@@ -63,8 +80,8 @@
 </template>
 
 <script>
-  import {Events} from '../../Events';
-  import {StatusColors} from '../../StatusColors';
+  import { Events } from '../../Events';
+  import { StatusColors } from '../../StatusColors';
 
   import PrettyMilliseconds from 'pretty-ms'
   import SettingsManager from '../../util/SettingsManager';
@@ -91,6 +108,10 @@
       this.$root.$on(Events.TOGGLED_SUMMARY_DISPLAY, (event, setting) => {
         this.toggleSummaryDisplay(event, setting);
       });
+
+      this.$root.$on(Events.TOGGLED_PIPELINE_STAGES_DISPLAY, (event, setting) => {
+        this.togglePipelineStagesDisplay(event, setting);
+      });
     },
 
     data() {
@@ -110,6 +131,10 @@
 
         summaryStyleObject: {
           display: SettingsManager.shouldDisplayRunSummary(this.board) ? 'block' : 'none'
+        },
+
+        pipelineStagesStyleObject: {
+          display: SettingsManager.shouldDisplayPipelineStages(this.board) ? 'inline-block' : 'none'
         }
       };
     },
@@ -196,8 +221,22 @@
         return this.jobData.isBuildable;
       },
 
+      isPipeline: function () {
+        return this.jobData.isPipeline;
+      },
+
       shouldDisplayRebuildButton: function () {
         return this.installation.pluginManager.rebuildPluginIsInstalled && this.isBuildable() && this.jobHasBeenRun()
+      },
+
+      getRunningPipelineStages: function () {
+        let runningStages = [];
+
+        this.jobData.runningStages.forEach(stage => {
+          runningStages.push(stage.name);
+        });
+
+        return runningStages.join(", ");
       },
 
       getProgressPercentage: function () {
@@ -247,6 +286,10 @@
 
       toggleSummaryDisplay: function (event, setting) {
         this.summaryStyleObject.display = setting ? 'block' : 'none';
+      },
+
+      togglePipelineStagesDisplay: function (event, setting) {
+        this.pipelineStagesStyleObject.display = setting ? 'inline-block' : 'none';
       }
     }
   }
@@ -365,7 +408,15 @@
   }
 
   .progress-percentage {
-    padding: 10px;
+    padding: 10px 10px 10px 0;
+    float: right;
+    color: #ffffff;
+    font-size: .9em;
+    font-weight: 900;
+  }
+
+  .pipeline-stages {
+    padding: 10px 10px 10px 0;
     float: right;
     color: #ffffff;
     font-size: .9em;

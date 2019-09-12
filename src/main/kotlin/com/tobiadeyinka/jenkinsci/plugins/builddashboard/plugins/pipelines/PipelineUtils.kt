@@ -49,16 +49,19 @@ class PipelineUtils {
                 val workflowRun: WorkflowRun = build
                 val nodes: Queue<FlowNode> = LinkedList<FlowNode>()
 
-                nodes.addAll(workflowRun.execution!!.currentHeads)
-                while (!nodes.isEmpty()) {
-                    nodes.remove().let {
-                        if (it is StepStartNode && it.descriptor!!.isSubTypeOf(StageStep::class.java)) {
-                            pipelineStages.add(
-                                PipelineStage(it.displayName)
-                            )
-                        }
-                        else {
-                            nodes.addAll(it.parents)
+                workflowRun.execution?.let { run ->
+                    nodes.addAll(run.currentHeads)
+
+                    while (!nodes.isEmpty()) {
+                        nodes.remove().let {
+                            if (it is StepStartNode && it.descriptor!!.isSubTypeOf(StageStep::class.java)) {
+                                pipelineStages.add(
+                                    PipelineStage(it.displayName)
+                                )
+                            }
+                            else {
+                                nodes.addAll(it.parents)
+                            }
                         }
                     }
                 }

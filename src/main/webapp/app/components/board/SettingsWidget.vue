@@ -68,6 +68,17 @@
         <br>
       </div>
 
+      <div class="option-wrapper">
+        <input
+          type="checkbox"
+          name="pipeline-stages"
+          :value="displayPipelineStages"
+          v-model="displayPipelineStages"
+          @click="togglePipelineStagesDisplay($event)">
+        Show pipeline stages
+        <br>
+      </div>
+
       <div>
         <input
           type="checkbox"
@@ -87,7 +98,7 @@
 </template>
 
 <script>
-  import {Events} from "../../Events";
+  import { Events } from "../../Events";
   import SettingsManager from '../../util/SettingsManager';
 
   export default {
@@ -111,6 +122,7 @@
         columnCount: SettingsManager.getColumnCount(this.board),
         displayJobHealth: SettingsManager.shouldDisplayJobHealth(this.board),
         displayRunSummary: SettingsManager.shouldDisplayRunSummary(this.board),
+        displayPipelineStages: SettingsManager.shouldDisplayPipelineStages(this.board),
         allowsAnalyticsTracking: SettingsManager.allowsAnalyticsTracking(this.board)
       };
     },
@@ -135,16 +147,22 @@
         }
       },
 
-      toggleJobHealthDisplay: function(event) {
+      toggleJobHealthDisplay: function (event) {
         this.$root.$emit(Events.TOGGLED_HEALTH_DISPLAY, this.$event, event.target.checked);
         this.displayJobHealth = event.target.checked;
-        SettingsManager.setJobHealthDisplaySetting(this.board, event.target.checked);
+        SettingsManager.setJobHealthDisplay(this.board, event.target.checked);
       },
 
-      toggleRunSummaryDisplay: function(event) {
+      toggleRunSummaryDisplay: function (event) {
         this.$root.$emit(Events.TOGGLED_SUMMARY_DISPLAY, this.$event, event.target.checked);
         this.displayRunSummary = event.target.checked;
-        SettingsManager.setRunSummaryDisplaySetting(this.board, event.target.checked);
+        SettingsManager.setRunSummaryDisplay(this.board, event.target.checked);
+      },
+
+      togglePipelineStagesDisplay: function (event) {
+        this.$root.$emit(Events.TOGGLED_PIPELINE_STAGES_DISPLAY, this.$event, event.target.checked);
+        this.displayPipelineStages = event.target.checked;
+        SettingsManager.setPipelineStagesDisplay(this.board, event.target.checked);
       },
 
       toggleAnalyticsTracking: function(event) {
