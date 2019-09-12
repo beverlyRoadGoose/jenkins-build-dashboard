@@ -2,6 +2,7 @@
 
 #### next release
 - Fixed wrong logo & board title order
+- Display running pipeline stages
 
 #### v1.0.0-build.1567034395 ~ 2019.08.29
 - CSRF support
