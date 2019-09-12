@@ -39,20 +39,22 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @import "../../styles/colors.less";
+
   #footer {
     padding: 0 10px 5px;
-    color: #ffffff;
+    color: @white;
     font-size: .8em;
   }
 
   #footer a {
-    color: #38B0DE;
+    color: @highlight-blue;
     text-decoration: none;
   }
 
   #footer a:hover {
-    color: #38B0DE;
+    color: @highlight-blue;
     text-decoration: underline;
   }
 

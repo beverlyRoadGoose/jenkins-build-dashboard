@@ -38,12 +38,12 @@
 
       <div v-else id="monitored-jobs-wrapper">
         <monitored-job
-            v-for="(job, index) in this.jobsData"
-            :key="index"
-            :resources-url="resourcesUrl"
-            :board="board"
-            :installation="JSON.parse(installation)"
-            :job-data="job">
+          v-for="(job, index) in this.jobsData"
+          :key="index"
+          :resources-url="resourcesUrl"
+          :board="board"
+          :installation="JSON.parse(installation)"
+          :job-data="job">
         </monitored-job>
       </div>
     </div>
@@ -127,7 +127,7 @@
         let self = this;
         setInterval(() => {
           window.pluginInstance.getMonitoredJobsAsJSON(updatedData => {
-              self.jobsData = updatedData.responseJSON;
+            self.jobsData = updatedData.responseJSON;
           });
         }, 3000);
       },
@@ -158,7 +158,9 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @import "../../styles/colors.less";
+
   #dashboard {
     height: 100%;
   }
@@ -166,12 +168,12 @@
   #monitor-wrapper {
     padding: 3px;
     width: 100%;
-    height: calc(100% - 75px);
-    height: -moz-calc(100% - 75px);
-    height: -webkit-calc(100% - 75px);
-    min-height: calc(100% - 75px);
-    min-height: -moz-calc(100% - 75px);
-    min-height: -webkit-calc(100% - 75px);
+    height: ~"calc(100% - 75px)";
+    height: ~"-moz-calc(100% - 75px)";
+    height: ~"-webkit-calc(100% - 75px)";
+    min-height: ~"calc(100% - 75px)";
+    min-height: ~"-moz-calc(100% - 75px)";
+    min-height: ~"-webkit-calc(100% - 75px)";
   }
 
   #monitored-jobs-wrapper {
@@ -193,7 +195,7 @@
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    color: #ffffff;
+    color: @white;
     text-align: center;
   }
 
@@ -202,16 +204,16 @@
   }
 
   #empty-board-notice a {
-    color: #38B0DE;
+    color: @highlight-blue;
     text-decoration: none;
   }
 
   #empty-board-notice a:visited {
-    color: #38B0DE;
+    color: @highlight-blue;
   }
 
   #empty-board-notice a:hover {
-    color: #38B0DE;
+    color: @highlight-blue;
     text-decoration: underline;
   }
 
@@ -225,7 +227,7 @@
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
     width: max-content;
-    color: #ffffff;
+    color: @white;
     font-size: 1em;
     padding: 5px;
     border-radius: 5px;

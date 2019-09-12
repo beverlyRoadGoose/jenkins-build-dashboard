@@ -35,7 +35,8 @@ Vue.use(VueAnalytics, {
   id: 'UA-132840884-2'
 });
 
-require('./styles/base.css');
+require('./styles/base.less');
+require('./styles/colors.less');
 
 window.onload = () => {
   new Vue({

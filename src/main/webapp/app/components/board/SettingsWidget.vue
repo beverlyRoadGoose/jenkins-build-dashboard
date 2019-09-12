@@ -178,7 +178,9 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @import "../../styles/colors.less";
+  
   #settings-widget {
     position: absolute;
     right: 0;
@@ -208,7 +210,7 @@
     border-radius: 5px;
     background-color: rgba(50, 50, 50, .8);
     border: 1px solid rgba(50, 50, 50, 1);
-    color: #ffffff;
+    color: @white;
     width: 200px;
     font-size: .8em;
     z-index: 10;
@@ -262,7 +264,7 @@
     text-decoration: none;
     text-align: center;
     display: block;
-    color: #ffffff;
+    color: @white;
     margin-top: 10px;
     width: 100%;
     padding: 7px;
@@ -280,15 +282,15 @@
   }
 
   #settings-close-button:hover {
-    border:1px solid #222222;
-    background-color: #222222;
-    background-image: -o-linear-gradient(top, #222222, #181818);
-    background-image: -ms-linear-gradient(top, #222222, #181818);
-    background-image: -moz-linear-gradient(top, #222222, #181818);
-    background-image: -webkit-linear-gradient(top, #222222, #181818);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#181818));
-    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#222222, endColorstr=#181818);
-    background-image: linear-gradient(to bottom, #222222, #181818);
+    border:1px solid @shadow-a;
+    background-color: @shadow-a;
+    background-image: -o-linear-gradient(top, @shadow-a, #181818);
+    background-image: -ms-linear-gradient(top, @shadow-a, #181818);
+    background-image: -moz-linear-gradient(top, @shadow-a, #181818);
+    background-image: -webkit-linear-gradient(top, @shadow-a, #181818);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(@shadow-a), to(#181818));
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=@shadow-a, endColorstr=#181818);
+    background-image: linear-gradient(to bottom, @shadow-a, #181818);
     cursor: pointer;
   }
 

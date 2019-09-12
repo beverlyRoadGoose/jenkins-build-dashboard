@@ -45,7 +45,9 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @import "../../styles/colors.less";
+
   #header {
     padding: 3px;
     overflow: hidden;
@@ -65,7 +67,7 @@
   }
 
   #board-title {
-    color: #ffffff;
+    color: @white;
     display: inline-block;
     margin-left: 50px;
     margin-bottom: -4px;

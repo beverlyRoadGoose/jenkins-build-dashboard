@@ -295,7 +295,9 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @import "../../styles/colors.less";
+
   @-moz-keyframes green-blink {
     0% {background-color: rgba(9, 186, 54, 1)}
     50% {background-color: rgba(9, 186, 54, 0.5)}
@@ -369,7 +371,7 @@
   }
 
   .monitored-job {
-    color: #ffffff;
+    color: @white;
     padding: 0;
     margin: 3px;
     border-radius: 7px;
@@ -384,9 +386,9 @@
     height: 100%;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
-    -moz-box-shadow: 0 0 7px -3px #000;
-    -webkit-box-shadow: 0 0 7px -3px #000;
-    box-shadow: 0 0 7px -3px #000;
+    -moz-box-shadow: 0 0 7px -3px @black;
+    -webkit-box-shadow: 0 0 7px -3px @black;
+    box-shadow: 0 0 7px -3px @black;
   }
 
   .blink-green {
@@ -407,20 +409,20 @@
     animation: grey-blink normal 3s infinite ease-in-out;
   }
 
-  .progress-percentage {
+  .progress-bar-info {
     padding: 10px 10px 10px 0;
     float: right;
-    color: #ffffff;
+    color: @white;
     font-size: .9em;
     font-weight: 900;
   }
 
+  .progress-percentage {
+    .progress-bar-info
+  }
+
   .pipeline-stages {
-    padding: 10px 10px 10px 0;
-    float: right;
-    color: #ffffff;
-    font-size: .9em;
-    font-weight: 900;
+    .progress-bar-info
   }
 
   .monitored-job a {
@@ -436,19 +438,19 @@
   }
 
   .monitored-job a:visited {
-    color: #ffffff;
+    color: @white;
   }
 
   .monitored-job-successful {
-    background-color: #068226;
+    background-color: @success;
   }
 
   .monitored-job-failed {
-    background-color: #A40302;
+    background-color: @failure;
   }
 
   .monitored-job-aborted {
-    background-color: #3b3b3b;
+    background-color: @no-result;
   }
 
   .monitored-job-name {
@@ -458,8 +460,8 @@
     text-align: center;
     display: block;
     margin: auto auto 10px;
-    color: #ffffff;
-    text-shadow: .5px .5px .5px #222222;
+    color: @white;
+    text-shadow: .5px .5px .5px @shadow-a;
     word-wrap: break-word;
   }
 
@@ -471,7 +473,7 @@
     width: fit-content;
     margin: auto;
     font-weight: 700;
-    text-shadow: .5px .5px .5px #222222;
+    text-shadow: .5px .5px .5px @shadow-a;
   }
 
   .monitored-job-top-row {
@@ -500,7 +502,7 @@
   }
 
   .monitored-job-last-build {
-    color: #ffffff;
+    color: @white;
     font-size: 1em;
     display: inline-block;
     font-weight: 900;
@@ -513,7 +515,7 @@
 
   .start-time {
     display: inline-block;
-    color: #ffffff;
+    color: @white;
     font-size: 1em;
     font-weight: 900;
     float: right;
