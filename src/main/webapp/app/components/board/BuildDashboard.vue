@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import {page} from 'vue-analytics'
+  import { page } from 'vue-analytics'
   import {Events} from '../../Events';
 
   import MonitoredJob from './MonitoredJob';

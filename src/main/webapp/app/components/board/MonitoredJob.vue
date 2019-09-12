@@ -82,6 +82,7 @@
 <script>
   import { Events } from '../../Events';
   import { StatusColors } from '../../StatusColors';
+  import { BuildStatus } from '../../BuildStatus';
 
   import PrettyMilliseconds from 'pretty-ms'
   import SettingsManager from '../../util/SettingsManager';
@@ -152,10 +153,11 @@
         }
 
         switch (this.jobData.lastCompleteRun.result.name) {
-          case 'SUCCESS': return 'monitored-job-successful';
-          case 'FAILURE': return 'monitored-job-failed';
-          case 'NOT_BUILT':
-          case 'ABORTED': return 'monitored-job-aborted';
+          case BuildStatus.SUCCESS: return 'monitored-job-successful';
+          case BuildStatus.FAILURE: return 'monitored-job-failed';
+          case BuildStatus.UNSTABLE: return 'monitored-job-unstable';
+          case BuildStatus.NOT_BUILT:
+          case BuildStatus.ABORTED: return 'monitored-job-aborted';
         }
       },
 
@@ -188,17 +190,16 @@
         let rebuildUrl = 'job/' + this.jobData.displayName + '/' + buildNumber + '/rebuild';
         let triggerMessage = 'Triggering rebuild for ' + this.jobData.displayName + ' #' + buildNumber;
         let successMessage = 'Triggered rebuild for ' + this.jobData.displayName + ' #' + buildNumber;
-        let failureMessage = 'Failed to trigger rebuild for ' + this.jobData.displayName + ' #' + buildNumber +
-                '. Do you have the Rebuild plugin installed?';
+        let failureMessage = 'Failed to trigger rebuild for ' + this.jobData.displayName + ' #' + buildNumber;
 
-        this.$root.$emit(Events.NEW_INFORMATION, this.$event, triggerMessage, StatusColors.NORMAL);
+        this.$root.$emit(Events.NEW_INFORMATION, this.$event, triggerMessage, StatusColors.NO_RESULT);
 
         request.open('GET', rebuildUrl, true);
         request.onload = () => {
           if (request.status >= 200 && request.status < 400) {
             this.$root.$emit(Events.NEW_INFORMATION, this.$event, successMessage, StatusColors.SUCCESS);
           } else {
-            this.$root.$emit(Events.NEW_INFORMATION, this.$event, failureMessage, StatusColors.ERROR);
+            this.$root.$emit(Events.NEW_INFORMATION, this.$event, failureMessage, StatusColors.FAILURE);
           }
         };
 
@@ -260,10 +261,11 @@
         }
 
         switch (this.jobData.lastCompleteRun.result.name) {
-          case 'SUCCESS': return '#068226';
-          case 'FAILURE': return '#A40302';
-          case 'NOT_BUILT':
-          case 'ABORTED': return '#3B3B3B';
+          case BuildStatus.SUCCESS: return StatusColors.SUCCESS;
+          case BuildStatus.FAILURE: return StatusColors.FAILURE;
+          case BuildStatus.UNSTABLE: return StatusColors.UNSTABLE;
+          case BuildStatus.NOT_BUILT:
+          case BuildStatus.ABORTED: return StatusColors.NO_RESULT;
         }
       },
 
@@ -273,10 +275,11 @@
         }
 
         switch (this.jobData.lastCompleteRun.result.name) {
-          case 'SUCCESS': return 'blink-green';
-          case 'FAILURE': return 'blink-red';
-          case 'NOT_BUILT':
-          case 'ABORTED': return 'blink-grey';
+          case BuildStatus.SUCCESS: return 'blink-green';
+          case BuildStatus.FAILURE: return 'blink-red';
+          case BuildStatus.UNSTABLE: return 'blink-yellow';
+          case BuildStatus.NOT_BUILT:
+          case BuildStatus.ABORTED: return 'blink-grey';
         }
       },
 
@@ -297,78 +300,7 @@
 
 <style lang="less" scoped>
   @import "../../styles/colors.less";
-
-  @-moz-keyframes green-blink {
-    0% {background-color: rgba(9, 186, 54, 1)}
-    50% {background-color: rgba(9, 186, 54, 0.5)}
-    100% {background-color: rgba(9, 186, 54, 1)}
-  }
-
-  @-webkit-keyframes green-blink {
-    0% {background-color: rgba(9, 186, 54, 1)}
-    50% {background-color: rgba(9, 186, 54, 0.5)}
-    100% {background-color: rgba(9, 186, 54, 1)}
-  }
-
-  @-ms-keyframes green-blink {
-    0% {background-color: rgba(9, 186, 54, 1)}
-    50% {background-color: rgba(9, 186, 54, 0.5)}
-    100% {background-color: rgba(9, 186, 54, 1)}
-  }
-
-  @keyframes green-blink {
-    0% {background-color: rgba(9, 186, 54, 1)}
-    50% {background-color: rgba(9, 186, 54, 0.5)}
-    100% {background-color: rgba(9, 186, 54, 1)}
-  }
-
-  @-moz-keyframes red-blink {
-    0% {background-color: rgba(240, 4, 3, 1)}
-    50% {background-color: rgba(240, 4, 3, 0.5)}
-    100% {background-color: rgba(240, 4, 3, 1)}
-  }
-
-  @-webkit-keyframes red-blink {
-    0% {background-color: rgba(240, 4, 3, 1)}
-    50% {background-color: rgba(240, 4, 3, 0.5)}
-    100% {background-color: rgba(240, 4, 3, 1)}
-  }
-
-  @-ms-keyframes red-blink {
-    0% {background-color: rgba(240, 4, 3, 1)}
-    50% {background-color: rgba(240, 4, 3, 0.5)}
-    100% {background-color: rgba(240, 4, 3, 1)}
-  }
-
-  @keyframes red-blink {
-    0% {background-color: rgba(240, 4, 3, 1)}
-    50% {background-color: rgba(240, 4, 3, 0.5)}
-    100% {background-color: rgba(240, 4, 3, 1)}
-  }
-
-  @-moz-keyframes grey-blink {
-    0% {background-color: rgba(88, 88, 88, 1)}
-    50% {background-color: rgba(88, 88, 88, 0.5)}
-    100% {background-color: rgba(88, 88, 88, 1)}
-  }
-
-  @-webkit-keyframes grey-blink {
-    0% {background-color: rgba(88, 88, 88, 1)}
-    50% {background-color: rgba(88, 88, 88, 0.5)}
-    100% {background-color: rgba(88, 88, 88, 1)}
-  }
-
-  @-ms-keyframes grey-blink {
-    0% {background-color: rgba(88, 88, 88, 1)}
-    50% {background-color: rgba(88, 88, 88, 0.5)}
-    100% {background-color: rgba(88, 88, 88, 1)}
-  }
-
-  @keyframes grey-blink {
-    0% {background-color: rgba(88, 88, 88, 1)}
-    50% {background-color: rgba(88, 88, 88, 0.5)}
-    100% {background-color: rgba(88, 88, 88, 1)}
-  }
+  @import "../../styles/progress-animations.less";
 
   .monitored-job {
     color: @white;
@@ -401,6 +333,12 @@
     -moz-animation: red-blink normal 3s infinite ease-in-out;
     -webkit-animation: red-blink normal 3s infinite ease-in-out;
     animation: red-blink normal 3s infinite ease-in-out;
+  }
+
+  .blink-yellow {
+    -moz-animation: yellow-blink normal 3s infinite ease-in-out;
+    -webkit-animation: yellow-blink normal 3s infinite ease-in-out;
+    animation: yellow-blink normal 3s infinite ease-in-out;
   }
 
   .blink-grey {
@@ -447,6 +385,10 @@
 
   .monitored-job-failed {
     background-color: @failure;
+  }
+
+  .monitored-job-unstable {
+    background-color: @unstable;
   }
 
   .monitored-job-aborted {

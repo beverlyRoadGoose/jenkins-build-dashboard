@@ -4,6 +4,7 @@
 - Fixed wrong logo & board title order
 - Display running pipeline stages
 - Switched to less for style pre-processing
+- Support for unstable builds
 
 #### v1.0.0-build.1567034395 ~ 2019.08.29
 - CSRF support

@@ -23,11 +23,12 @@
  *
  */
 
-let StatusColors = Object.freeze({
-  SUCCESS: '#068226',
-  FAILURE: '#A40302',
-  UNSTABLE: '#e6ac00',
-  NO_RESULT:'#3b3b3b'
+let BuildStatus = Object.freeze({
+  SUCCESS: 'SUCCESS',
+  FAILURE: 'FAILURE',
+  UNSTABLE: 'UNSTABLE',
+  NOT_BUILT: 'NOT_BUILT',
+  ABORTED: 'ABORTED'
 });
 
-export { StatusColors };
+export { BuildStatus };
