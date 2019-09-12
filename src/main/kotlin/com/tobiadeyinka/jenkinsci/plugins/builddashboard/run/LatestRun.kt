@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
  * Defines the latest run of a job, the run doesn't have to be completed. This would always be the latest run
  * of a job excluding queued runs.
  */
-class LatestRun constructor(@JsonIgnore private val run: hudson.model.Run<*, *>) : Run(run){
+class LatestRun constructor(@JsonIgnore private val run: hudson.model.Run<*,*>) : Run(run){
 
     /**
      * State of the run, running or not.

@@ -49,7 +49,7 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization.Monitored
  * @property[job] The jenkins job represented on the monitor
  */
 @JsonFilter(MonitoredJobPropertyFilter.NAME)
-class MonitoredJob constructor(@JsonIgnore private val job: Job<*, *>) {
+class MonitoredJob constructor(@JsonIgnore private val job: Job<*,*>) {
 
     /**
      * Display name of the job on the dashboard
@@ -90,9 +90,8 @@ class MonitoredJob constructor(@JsonIgnore private val job: Job<*, *>) {
     val isPipeline: Boolean = PluginManager().pipelinePluginIsInstalled() && job is WorkflowJob
 
     /**
-     * List of stages in the job if it is a pipeline, returns an empty list if it isn't
+     * List of currently running stages in the job if it is a pipeline, returns an empty list if it isn't
      */
-    val pipelineStages: List<PipelineStage> = PipelineUtils()
-        .getPipelineStages(this)
+    val runningStages: List<PipelineStage> = PipelineUtils().getRunningStages(job)
 
 }

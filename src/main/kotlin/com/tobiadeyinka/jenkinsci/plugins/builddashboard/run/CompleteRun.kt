@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 /**
  * Defines a completed run for a job on on a dashboard
  */
-class CompleteRun constructor(@JsonIgnore private val run: hudson.model.Run<*, *>) : Run(run) {
+class CompleteRun constructor(@JsonIgnore private val run: hudson.model.Run<*,*>) : Run(run) {
 
     /**
      * Result of the run. Defaults to [Result.NOT_BUILT] if the job has never been built.

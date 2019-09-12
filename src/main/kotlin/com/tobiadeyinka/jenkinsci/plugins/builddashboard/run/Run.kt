@@ -33,7 +33,7 @@ import hudson.model.Run
 /**
  * Defines general attributes of runs of a job.
  */
-open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
+open class Run constructor(@JsonIgnore private val run: Run<*,*>) {
 
     /**
      * Build number of this run.

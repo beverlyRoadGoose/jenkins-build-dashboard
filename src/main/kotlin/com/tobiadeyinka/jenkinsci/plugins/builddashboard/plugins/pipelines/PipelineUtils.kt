@@ -25,19 +25,46 @@
 
 package com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.pipelines
 
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
+import hudson.model.Job
+
+import org.jenkinsci.plugins.workflow.graph.FlowNode
+import org.jenkinsci.plugins.workflow.job.WorkflowJob
+import org.jenkinsci.plugins.workflow.job.WorkflowRun
+import org.jenkinsci.plugins.workflow.cps.nodes.StepStartNode
+import org.jenkinsci.plugins.workflow.support.steps.StageStep
+
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.PluginManager
+
+import java.util.*
 
 class PipelineUtils {
 
-    private val pluginManager: PluginManager =
-        PluginManager()
+    private val pluginManager: PluginManager = PluginManager()
 
-    fun getPipelineStages(job: MonitoredJob): List<PipelineStage> {
+    fun getRunningStages(job: Job<*,*>): List<PipelineStage> {
         val pipelineStages: MutableList<PipelineStage> = mutableListOf()
 
-        if (pluginManager.pipelinePluginIsInstalled() && job.isPipeline) {
-            // TODO
+        if (pluginManager.pipelinePluginIsInstalled() && job is WorkflowJob) {
+            val workflowJob: WorkflowJob = job
+
+            workflowJob.lastBuild?.let { build ->
+                val workflowRun: WorkflowRun = build
+                val nodes: Queue<FlowNode> = LinkedList<FlowNode>()
+                nodes.addAll(workflowRun.execution!!.currentHeads)
+
+                while (!nodes.isEmpty()) {
+                    nodes.remove().let {
+                        if (it is StepStartNode && it.descriptor!!.isSubTypeOf(StageStep::class.java)) {
+                            pipelineStages.add(
+                                PipelineStage(it.displayName)
+                            )
+                        }
+                        else {
+                            nodes.addAll(it.parents)
+                        }
+                    }
+                }
+            }
         }
 
         return pipelineStages
