@@ -180,7 +180,7 @@
 
 <style lang="less" scoped>
   @import "../../styles/colors.less";
-  
+
   #settings-widget {
     position: absolute;
     right: 0;
