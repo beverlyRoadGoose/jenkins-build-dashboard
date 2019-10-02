@@ -23,13 +23,20 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes
 
-import org.openqa.selenium.WebDriver
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.Page
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities.User
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.IndexPage
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
 
-class LoginPage(webDriver: WebDriver) : Page(webDriver) {
+abstract class Processes {
 
-    override fun url(): String = testConfig.config!!.server!!.address + "/login"
+    companion object {
+
+        fun login(loginPage: LoginPage, user: User): IndexPage {
+            return IndexPage(loginPage.webDriver)
+        }
+
+    }
 
 }

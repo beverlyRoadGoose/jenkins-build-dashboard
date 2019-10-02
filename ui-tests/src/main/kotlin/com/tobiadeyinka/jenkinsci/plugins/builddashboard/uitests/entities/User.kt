@@ -23,13 +23,7 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities
 
-import org.openqa.selenium.WebDriver
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.Page
-
-class LoginPage(webDriver: WebDriver) : Page(webDriver) {
-
-    override fun url(): String = testConfig.config!!.server!!.address + "/login"
-
+class User {
 }
