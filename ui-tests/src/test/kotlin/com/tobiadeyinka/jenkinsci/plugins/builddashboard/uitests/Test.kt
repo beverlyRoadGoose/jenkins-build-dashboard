@@ -28,11 +28,13 @@ package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfig
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities.User
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfigLoader
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.IndexPage
 
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes.Process
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.util.WebDriverManager
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
 
+import java.util.*
 import org.junit.Test
 import org.junit.AfterClass
 
@@ -44,9 +46,14 @@ class Test {
         testConfig.config!!.user!!.password
     )
 
-    @Test fun login() {
+    @Test fun smoke() {
         Process.login(LoginPage(webDriver), testUser)
+        Process.createFreestyleJob(webDriver, "Freestyle ${UUID.randomUUID()}")
+        Process.createPipelineJob(webDriver, "Pipeline ${UUID.randomUUID()}")
+        goToIndexPage()
     }
+
+    protected fun goToIndexPage(): IndexPage = IndexPage(webDriver)
 
     companion object {
         val webDriver = WebDriverManager().getWebDriver()

@@ -26,9 +26,13 @@
 package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes
 
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities.User
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.jenkins.JobType
+
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.IndexPage
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.jenkins.JobType
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.NewJobConfigurationPage
+
+import org.openqa.selenium.WebDriver
 
 abstract class Process {
 
@@ -42,12 +46,24 @@ abstract class Process {
             return IndexPage(loginPage.webDriver, false)
         }
 
-        fun createFreestyleJob(jobName: String) = createNewJob(jobName, JobType.FREESTYLE)
+        fun createFreestyleJob(webDriver: WebDriver, jobName: String) = createNewJob(webDriver, jobName, JobType.FREESTYLE)
 
-        fun createPipelineJob(jobName: String) = createNewJob(jobName, JobType.PIPELINE)
+        fun createPipelineJob(webDriver: WebDriver, jobName: String) = createNewJob(webDriver, jobName, JobType.PIPELINE)
 
-        private fun createNewJob(jobName: String, type: JobType) {
+        private fun createNewJob(webDriver: WebDriver, jobName: String, jobType: JobType) {
+            val newJobConfigurationPage = NewJobConfigurationPage(webDriver)
 
+            newJobConfigurationPage.itemNameField.typeIn(jobName)
+
+            if (jobType == JobType.FREESTYLE) {
+                newJobConfigurationPage.freestyleJobSelector.click()
+            }
+
+            if (jobType == JobType.PIPELINE) {
+                newJobConfigurationPage.pipelineJobSelector.click()
+            }
+
+            newJobConfigurationPage.okayButton.click()
         }
     }
 
