@@ -28,7 +28,10 @@ package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfig
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfigLoader
 
+import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.openqa.selenium.support.ui.ExpectedConditions
 
 abstract class Page(val webDriver: WebDriver, explicitLoad: Boolean = true) {
 
@@ -40,6 +43,9 @@ abstract class Page(val webDriver: WebDriver, explicitLoad: Boolean = true) {
             load()
         }
     }
+
+    fun waitForElementToBeDisplayed(locator: By) = WebDriverWait(webDriver, 10)
+        .until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator))
 
     private fun load() = webDriver.get(url())
 

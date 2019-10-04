@@ -43,6 +43,7 @@ class LoginPage(webDriver: WebDriver, explicitLoad: Boolean = true) : Page(webDr
     val signInButton: Button
 
     init {
+        waitForElementToBeDisplayed(signInButtonLocator)
         userNameField = TextField(webDriver, userNameFieldLocator)
         passwordField = TextField(webDriver, passwordFieldLocator)
         signInButton = Button(webDriver, signInButtonLocator)

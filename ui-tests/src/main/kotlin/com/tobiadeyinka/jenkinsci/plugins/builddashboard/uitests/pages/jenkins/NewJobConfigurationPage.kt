@@ -45,6 +45,7 @@ class NewJobConfigurationPage(webDriver: WebDriver, explicitLoad: Boolean = true
     val okayButton: Button
 
     init {
+        waitForElementToBeDisplayed(okayButtonLocator)
         itemNameField = TextField(webDriver, itemNameFieldLocator)
         freestyleJobSelector = Button(webDriver, freestyleJobSelectorLocator)
         pipelineJobSelector = Button(webDriver, pipelineJobSelectorLocator)

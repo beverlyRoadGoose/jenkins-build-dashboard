@@ -32,6 +32,8 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 
+import java.util.concurrent.TimeUnit
+
 /*
  * TODO support dynamic browsers
  */
@@ -39,7 +41,9 @@ class WebDriverManager {
 
     fun getWebDriver(): WebDriver {
         ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup()
-        return ChromeDriver(ChromeOptions())
+        val webDriver = ChromeDriver(ChromeOptions())
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+        return webDriver
     }
 
 }
