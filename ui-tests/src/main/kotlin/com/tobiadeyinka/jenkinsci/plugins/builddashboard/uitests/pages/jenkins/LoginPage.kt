@@ -25,11 +25,29 @@
 
 package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins
 
-import org.openqa.selenium.WebDriver
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.Page
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.pagecomponents.Button
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.pagecomponents.TextField
+
+import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
 
 class LoginPage(webDriver: WebDriver) : Page(webDriver) {
 
-    override fun url(): String = testConfig.config!!.server!!.address + "/login"
+    private val userNameFieldLocator: By = By.id("j_username")
+    private val passwordFieldLocator: By = By.name("j_password")
+    private val signInButtonLocator: By = By.name("Submit")
+
+    val userNameField: TextField
+    val passwordField: TextField
+    val signInButton: Button
+
+    init {
+        userNameField = TextField(webDriver, userNameFieldLocator)
+        passwordField = TextField(webDriver, passwordFieldLocator)
+        signInButton = Button(webDriver, signInButtonLocator)
+    }
+
+    override fun url(): String = "$serverUrl/login"
 
 }

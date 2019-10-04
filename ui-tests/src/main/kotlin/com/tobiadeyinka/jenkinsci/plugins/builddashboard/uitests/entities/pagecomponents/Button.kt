@@ -23,35 +23,13 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.pagecomponents
 
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfig
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities.User
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfigLoader
+import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
 
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes.Process
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.util.WebDriverManager
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
+class Button(webDriver: WebDriver, locator: By) : PageComponent(webDriver, locator) {
 
-import org.junit.Test
-import org.junit.AfterClass
-
-class Test {
-
-    protected val testConfig: TestConfig = TestConfigLoader().testConfig
-    protected val testUser: User = User(
-        testConfig.config!!.user!!.username,
-        testConfig.config!!.user!!.password
-    )
-
-    @Test fun login() {
-        Process.login(LoginPage(webDriver), testUser)
-    }
-
-    companion object {
-        val webDriver = WebDriverManager().getWebDriver()
-
-        @AfterClass @JvmStatic fun tearDown() = webDriver.quit()
-    }
+    fun click() = webElement.click()
 
 }

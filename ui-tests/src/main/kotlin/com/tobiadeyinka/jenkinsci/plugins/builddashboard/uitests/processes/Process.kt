@@ -23,35 +23,24 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes
 
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfig
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities.User
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConfigLoader
-
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes.Process
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.util.WebDriverManager
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.IndexPage
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
 
-import org.junit.Test
-import org.junit.AfterClass
-
-class Test {
-
-    protected val testConfig: TestConfig = TestConfigLoader().testConfig
-    protected val testUser: User = User(
-        testConfig.config!!.user!!.username,
-        testConfig.config!!.user!!.password
-    )
-
-    @Test fun login() {
-        Process.login(LoginPage(webDriver), testUser)
-    }
+abstract class Process {
 
     companion object {
-        val webDriver = WebDriverManager().getWebDriver()
 
-        @AfterClass @JvmStatic fun tearDown() = webDriver.quit()
+        fun login(loginPage: LoginPage, user: User): IndexPage {
+            loginPage.userNameField.typeIn(user.username)
+            loginPage.passwordField.typeIn(user.password)
+            loginPage.signInButton.click()
+
+            return IndexPage(loginPage.webDriver)
+        }
+
     }
 
 }

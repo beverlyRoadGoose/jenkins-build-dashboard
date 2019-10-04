@@ -23,20 +23,13 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.pagecomponents
 
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities.User
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.IndexPage
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
+import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
 
-abstract class Processes {
+class TextField(webDriver: WebDriver, locator: By) : PageComponent(webDriver, locator) {
 
-    companion object {
-
-        fun login(loginPage: LoginPage, user: User): IndexPage {
-            return IndexPage(loginPage.webDriver)
-        }
-
-    }
+    fun typeIn(text: String) = webElement.sendKeys(text)
 
 }

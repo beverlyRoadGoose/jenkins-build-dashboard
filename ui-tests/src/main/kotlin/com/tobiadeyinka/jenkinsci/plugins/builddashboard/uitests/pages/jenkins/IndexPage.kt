@@ -5,6 +5,6 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.Page
 
 class IndexPage(webDriver: WebDriver) : Page(webDriver) {
 
-    override fun url(): String = TODO("not implemented")
+    override fun url() = serverUrl
 
 }

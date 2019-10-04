@@ -32,7 +32,8 @@ import org.openqa.selenium.WebDriver
 
 abstract class Page(val webDriver: WebDriver) {
 
-    val testConfig: TestConfig = TestConfigLoader().testConfig
+    protected val testConfig: TestConfig = TestConfigLoader().testConfig
+    protected val serverUrl: String = testConfig.config!!.server!!.address
 
     init {
         load()
