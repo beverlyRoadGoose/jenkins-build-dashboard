@@ -23,32 +23,11 @@
  *
  */
 
-package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes
+package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.jenkins
 
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.entities.User
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.IndexPage
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.jenkins.JobType
+enum class JobType {
 
-abstract class Process {
-
-    companion object {
-
-        fun login(loginPage: LoginPage, user: User): IndexPage {
-            loginPage.userNameField.typeIn(user.username)
-            loginPage.passwordField.typeIn(user.password)
-            loginPage.signInButton.click()
-
-            return IndexPage(loginPage.webDriver, false)
-        }
-
-        fun createFreestyleJob(jobName: String) = createNewJob(jobName, JobType.FREESTYLE)
-
-        fun createPipelineJob(jobName: String) = createNewJob(jobName, JobType.PIPELINE)
-
-        private fun createNewJob(jobName: String, type: JobType) {
-
-        }
-    }
+    FREESTYLE,
+    PIPELINE
 
 }
