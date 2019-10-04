@@ -32,7 +32,7 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.pageco
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 
-class LoginPage(webDriver: WebDriver) : Page(webDriver) {
+class LoginPage(webDriver: WebDriver, explicitLoad: Boolean = true) : Page(webDriver, explicitLoad) {
 
     private val userNameFieldLocator: By = By.id("j_username")
     private val passwordFieldLocator: By = By.name("j_password")

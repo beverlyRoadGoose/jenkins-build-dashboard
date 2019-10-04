@@ -30,13 +30,15 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConf
 
 import org.openqa.selenium.WebDriver
 
-abstract class Page(val webDriver: WebDriver) {
+abstract class Page(val webDriver: WebDriver, explicitLoad: Boolean = true) {
 
     protected val testConfig: TestConfig = TestConfigLoader().testConfig
     protected val serverUrl: String = testConfig.config!!.server!!.address
 
     init {
-        load()
+        if (explicitLoad) {
+            load()
+        }
     }
 
     private fun load() = webDriver.get(url())

@@ -38,7 +38,7 @@ abstract class Process {
             loginPage.passwordField.typeIn(user.password)
             loginPage.signInButton.click()
 
-            return IndexPage(loginPage.webDriver)
+            return IndexPage(loginPage.webDriver, false)
         }
 
     }
