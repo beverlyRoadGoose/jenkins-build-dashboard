@@ -138,7 +138,7 @@ val deleteDocumentationTask by tasks.register<Exec>(deleteDocumentation) {
 
 val deleteBuiltPackageTask by tasks.register<Exec>(deleteBuiltPackage) {
     group = "Build"
-    description = "Deletes the  build-dashboard-plugin.jpi file"
+    description = "Deletes the build-dashboard-plugin.jpi file"
     commandLine = listOf("rm", "-f", "build-dashboard-plugin.jpi")
 }
 
