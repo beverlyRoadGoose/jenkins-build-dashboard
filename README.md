@@ -13,7 +13,7 @@ This is a [Jenkins](https://jenkins.io/) plugin for monitoring multiple jobs on 
 - Build stability indicator - optional
 - Build cause indicator - optional
 - Runs can be re-triggered from the board (requires the [rebuild plugin](https://github.com/jenkinsci/rebuild-plugin))
-- Pipeline stages being executed - optional (requires the [workflow aggregator](https://plugins.jenkins.io/workflow-aggregator))
+- Pipeline stages being executed - optional (requires the [workflow aggregator plugin](https://plugins.jenkins.io/workflow-aggregator))
 
 ## Running the plugin
 
