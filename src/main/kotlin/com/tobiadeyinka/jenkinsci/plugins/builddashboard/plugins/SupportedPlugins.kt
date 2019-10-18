@@ -33,7 +33,7 @@ package com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins
  */
 enum class SupportedPlugins(val artifactId: String, val isRequired: Boolean = false) {
 
-    REBUILD("rebuild"),
-    PIPELINE("workflow-aggregator")
+  REBUILD("rebuild"),
+  PIPELINE("workflow-aggregator")
 
 }

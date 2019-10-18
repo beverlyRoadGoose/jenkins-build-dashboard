@@ -38,27 +38,27 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 
 class SerializationUtils {
 
-    companion object {
+  companion object {
 
-        fun getObjectMapper(): ObjectMapper {
-            return ObjectMapper()
-                .registerModule(KotlinModule())
-                .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
-                .setVisibility(FIELD, JsonAutoDetect.Visibility.ANY)
-        }
-
-        fun getObjectWriter(): ObjectWriter {
-            val filterProvider = SimpleFilterProvider()
-                .setFailOnUnknownId(false)
-                .addFilter(
-                    MonitoredJobPropertyFilter.NAME,
-                    MonitoredJobPropertyFilter()
-                )
-
-            return getObjectMapper()
-                .writer(filterProvider)
-        }
-
+    fun getObjectMapper(): ObjectMapper {
+      return ObjectMapper()
+        .registerModule(KotlinModule())
+        .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+        .setVisibility(FIELD, JsonAutoDetect.Visibility.ANY)
     }
+
+    fun getObjectWriter(): ObjectWriter {
+      val filterProvider = SimpleFilterProvider()
+        .setFailOnUnknownId(false)
+        .addFilter(
+          MonitoredJobPropertyFilter.NAME,
+          MonitoredJobPropertyFilter()
+        )
+
+      return getObjectMapper()
+        .writer(filterProvider)
+    }
+
+  }
 
 }

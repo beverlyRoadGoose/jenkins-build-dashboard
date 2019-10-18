@@ -31,21 +31,21 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 class PluginManager {
 
-    @JsonProperty("rebuildPluginIsInstalled")
-    fun rebuildPluginIsInstalled(): Boolean = pluginIsInstalled(SupportedPlugins.REBUILD.artifactId)
+  @JsonProperty("rebuildPluginIsInstalled")
+  fun rebuildPluginIsInstalled(): Boolean = pluginIsInstalled(SupportedPlugins.REBUILD.artifactId)
 
-    @JsonProperty("pipelinePluginIsInstalled")
-    fun pipelinePluginIsInstalled(): Boolean = pluginIsInstalled(SupportedPlugins.PIPELINE.artifactId)
+  @JsonProperty("pipelinePluginIsInstalled")
+  fun pipelinePluginIsInstalled(): Boolean = pluginIsInstalled(SupportedPlugins.PIPELINE.artifactId)
 
-    /**
-     * Checks if a plugin is installed on the jenkins server
-     *
-     * @param[artifactId] Jenkins artifactid/shortname for the plugin
-     *
-     * @return true if the plugin is installed, false otherwise
-     */
-    private fun pluginIsInstalled(artifactId: String): Boolean = !Objects.isNull(
-        Jenkins.getInstance()?.getPlugin(artifactId)
-    )
+  /**
+   * Checks if a plugin is installed on the jenkins server
+   *
+   * @param[artifactId] Jenkins artifactid/shortname for the plugin
+   *
+   * @return true if the plugin is installed, false otherwise
+   */
+  private fun pluginIsInstalled(artifactId: String): Boolean = !Objects.isNull(
+    Jenkins.getInstance()?.getPlugin(artifactId)
+  )
 
 }

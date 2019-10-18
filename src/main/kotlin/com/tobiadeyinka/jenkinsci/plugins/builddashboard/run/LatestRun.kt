@@ -31,16 +31,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore
  * Defines the latest run of a job, the run doesn't have to be completed. This would always be the latest run
  * of a job excluding queued runs.
  */
-class LatestRun constructor(@JsonIgnore private val run: hudson.model.Run<*,*>) : Run(run){
+class LatestRun constructor(@JsonIgnore private val run: hudson.model.Run<*, *>) : Run(run) {
 
-    /**
-     * State of the run, running or not.
-     */
-    val isRunning: Boolean = run.isBuilding()
+  /**
+   * State of the run, running or not.
+   */
+  val isRunning: Boolean = run.isBuilding()
 
-    /**
-     * The estimated amount of time this run would take in milliseconds, if it is running.
-     */
-    val estimatedDuration: Long? = run.getEstimatedDuration()
+  /**
+   * The estimated amount of time this run would take in milliseconds, if it is running.
+   */
+  val estimatedDuration: Long? = run.getEstimatedDuration()
 
 }

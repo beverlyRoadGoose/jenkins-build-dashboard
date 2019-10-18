@@ -38,90 +38,90 @@ private const val TEST_BOARD_TITLE = "Dashboard title"
 
 class BuildDashboardTest {
 
-    private val jenkins: Jenkins = mockk(relaxed = true)
-    private val owner: ViewGroup = mockk(relaxed = true)
-    private val ownerItemGroup: ItemGroup<TopLevelItem> = mockk(relaxed = true)
+  private val jenkins: Jenkins = mockk(relaxed = true)
+  private val owner: ViewGroup = mockk(relaxed = true)
+  private val ownerItemGroup: ItemGroup<TopLevelItem> = mockk(relaxed = true)
 
-    @Before
-    fun setup() {
-        mockkStatic(Jenkins::class).run {
-            every { Jenkins.getInstance() } returns jenkins
-        }
+  @Before
+  fun setup() {
+    mockkStatic(Jenkins::class).run {
+      every { Jenkins.getInstance() } returns jenkins
+    }
+  }
+
+  @Test
+  fun createDashboardWithoutTitle() {
+    val dashboard = BuildDashboard(
+      TEST_BOARD_NAME,
+      null
+    )
+    assertThat(dashboard.getTitle()).isEqualTo(TEST_BOARD_NAME)
+  }
+
+  @Test
+  fun createDashboardWithTitle() {
+    val dashboard = BuildDashboard(
+      TEST_BOARD_NAME,
+      TEST_BOARD_TITLE
+    )
+    assertThat(dashboard.getTitle()).isEqualTo(TEST_BOARD_TITLE)
+  }
+
+  @Test
+  fun jobsListShouldBeEmptyOnNewBoards() {
+    val dashboard = BuildDashboard(
+      TEST_BOARD_NAME,
+      null
+    )
+
+    mockkObject(dashboard).run {
+      every { dashboard.owner } returns owner
+      every { dashboard.owner.itemGroup } returns ownerItemGroup
     }
 
-    @Test
-    fun createDashboardWithoutTitle() {
-        val dashboard = BuildDashboard(
-            TEST_BOARD_NAME,
-            null
-        )
-        assertThat(dashboard.getTitle()).isEqualTo(TEST_BOARD_NAME)
+    assertThat(dashboard.isEmpty())
+  }
+
+  @Test
+  fun addJobToBoard() {
+    val dashboard = BuildDashboard(
+      TEST_BOARD_NAME,
+      null
+    )
+    val job: TopLevelItem = mockk(relaxed = true)
+
+    mockkObject(dashboard).run {
+      every { dashboard.owner } returns owner
+      every { dashboard.owner.itemGroup } returns ownerItemGroup
     }
 
-    @Test
-    fun createDashboardWithTitle() {
-        val dashboard = BuildDashboard(
-            TEST_BOARD_NAME,
-            TEST_BOARD_TITLE
-        )
-        assertThat(dashboard.getTitle()).isEqualTo(TEST_BOARD_TITLE)
+    dashboard.add(job)
+    assertThat(dashboard.jobNamesContains(job))
+  }
+
+  @Test
+  fun removeJobFromBoard() {
+    val dashboard = BuildDashboard(
+      TEST_BOARD_NAME,
+      null
+    )
+    val job: TopLevelItem = mockk(relaxed = true)
+
+    mockkObject(dashboard).run {
+      every { dashboard.owner } returns owner
+      every { dashboard.owner.itemGroup } returns ownerItemGroup
     }
 
-    @Test
-    fun jobsListShouldBeEmptyOnNewBoards() {
-        val dashboard = BuildDashboard(
-            TEST_BOARD_NAME,
-            null
-        )
+    dashboard.add(job)
+    assertThat(dashboard.jobNamesContains(job))
 
-        mockkObject(dashboard).run {
-            every { dashboard.owner } returns owner
-            every { dashboard.owner.itemGroup } returns ownerItemGroup
-        }
+    dashboard.remove(job)
+    assertThat(!dashboard.jobNamesContains(job))
+  }
 
-        assertThat(dashboard.isEmpty())
-    }
-
-    @Test
-    fun addJobToBoard() {
-        val dashboard = BuildDashboard(
-            TEST_BOARD_NAME,
-            null
-        )
-        val job: TopLevelItem = mockk(relaxed = true)
-
-        mockkObject(dashboard).run {
-            every { dashboard.owner } returns owner
-            every { dashboard.owner.itemGroup } returns ownerItemGroup
-        }
-
-        dashboard.add(job)
-        assertThat(dashboard.jobNamesContains(job))
-    }
-
-    @Test
-    fun removeJobFromBoard() {
-        val dashboard = BuildDashboard(
-            TEST_BOARD_NAME,
-            null
-        )
-        val job: TopLevelItem = mockk(relaxed = true)
-
-        mockkObject(dashboard).run {
-            every { dashboard.owner } returns owner
-            every { dashboard.owner.itemGroup } returns ownerItemGroup
-        }
-
-        dashboard.add(job)
-        assertThat(dashboard.jobNamesContains(job))
-
-        dashboard.remove(job)
-        assertThat(!dashboard.jobNamesContains(job))
-    }
-
-    @After
-    fun tearDown() {
-        unmockkAll()
-    }
+  @After
+  fun tearDown() {
+    unmockkAll()
+  }
 
 }

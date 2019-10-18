@@ -39,36 +39,35 @@ import java.util.*
 
 class PipelineUtils {
 
-    private val pluginManager: PluginManager = PluginManager()
+  private val pluginManager: PluginManager = PluginManager()
 
-    fun getRunningStages(job: Job<*,*>): List<PipelineStage> {
-        val pipelineStages: MutableList<PipelineStage> = mutableListOf()
+  fun getRunningStages(job: Job<*, *>): List<PipelineStage> {
+    val pipelineStages: MutableList<PipelineStage> = mutableListOf()
 
-        if (pluginManager.pipelinePluginIsInstalled() && job is WorkflowJob) {
-            job.lastBuild?.let { build ->
-                val workflowRun: WorkflowRun = build
-                val nodes: Queue<FlowNode> = LinkedList<FlowNode>()
+    if (pluginManager.pipelinePluginIsInstalled() && job is WorkflowJob) {
+      job.lastBuild?.let { build ->
+        val workflowRun: WorkflowRun = build
+        val nodes: Queue<FlowNode> = LinkedList<FlowNode>()
 
-                workflowRun.execution?.let { run ->
-                    nodes.addAll(run.currentHeads)
+        workflowRun.execution?.let { run ->
+          nodes.addAll(run.currentHeads)
 
-                    while (!nodes.isEmpty()) {
-                        nodes.remove().let {
-                            if (it is StepStartNode && it.descriptor!!.isSubTypeOf(StageStep::class.java)) {
-                                pipelineStages.add(
-                                    PipelineStage(it.displayName)
-                                )
-                            }
-                            else {
-                                nodes.addAll(it.parents)
-                            }
-                        }
-                    }
-                }
+          while (!nodes.isEmpty()) {
+            nodes.remove().let {
+              if (it is StepStartNode && it.descriptor!!.isSubTypeOf(StageStep::class.java)) {
+                pipelineStages.add(
+                  PipelineStage(it.displayName)
+                )
+              } else {
+                nodes.addAll(it.parents)
+              }
             }
+          }
         }
-
-        return pipelineStages
+      }
     }
+
+    return pipelineStages
+  }
 
 }

@@ -31,8 +31,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 class RemoteRequestCrumb {
 
-    @JsonIgnore private val crumbIssuer: CrumbIssuer? = Jenkins.getInstance()?.getCrumbIssuer()
-    val fieldName: String? = crumbIssuer?.crumbRequestField
-    val crumbValue: String? = crumbIssuer?.crumb
+  @JsonIgnore
+  private val crumbIssuer: CrumbIssuer? = Jenkins.getInstance()?.getCrumbIssuer()
+  val fieldName: String? = crumbIssuer?.crumbRequestField
+  val crumbValue: String? = crumbIssuer?.crumb
 
 }

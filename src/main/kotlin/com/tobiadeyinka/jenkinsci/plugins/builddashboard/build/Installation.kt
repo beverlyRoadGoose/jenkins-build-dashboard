@@ -33,7 +33,7 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.plugins.PluginManager
  */
 class Installation {
 
-    val build: Build = BuildInfoLoader().buildInfo.build!!
-    val pluginManager: PluginManager = PluginManager()
+  val build: Build = BuildInfoLoader().buildInfo.build!!
+  val pluginManager: PluginManager = PluginManager()
 
 }

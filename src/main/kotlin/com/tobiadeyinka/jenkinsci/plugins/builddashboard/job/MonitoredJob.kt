@@ -49,49 +49,49 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.serialization.Monitored
  * @property[job] The jenkins job represented on the monitor
  */
 @JsonFilter(MonitoredJobPropertyFilter.NAME)
-class MonitoredJob constructor(@JsonIgnore private val job: Job<*,*>) {
+class MonitoredJob constructor(@JsonIgnore private val job: Job<*, *>) {
 
-    /**
-     * Display name of the job on the dashboard
-     */
-    val displayName: String = job.getDisplayName()
+  /**
+   * Display name of the job on the dashboard
+   */
+  val displayName: String = job.getDisplayName()
 
-    /**
-     * Last/current run of the job
-     */
-    val latestRun: LatestRun? = job.getLastBuild()?.let {
-        LatestRun(it)
-    }
+  /**
+   * Last/current run of the job
+   */
+  val latestRun: LatestRun? = job.getLastBuild()?.let {
+    LatestRun(it)
+  }
 
-    /**
-     * Last complete run of the job
-     */
-    val lastCompleteRun: CompleteRun? = job.getLastCompletedBuild()?.let {
-        CompleteRun(it)
-    }
+  /**
+   * Last complete run of the job
+   */
+  val lastCompleteRun: CompleteRun? = job.getLastCompletedBuild()?.let {
+    CompleteRun(it)
+  }
 
-    /**
-     * Indicates if the job is in a runnable state. (e.g not disabled/archived)
-     */
-    val isBuildable: Boolean = job.isBuildable()
+  /**
+   * Indicates if the job is in a runnable state. (e.g not disabled/archived)
+   */
+  val isBuildable: Boolean = job.isBuildable()
 
-    /**
-     * Health status of the job based on the results of the last 5 runs
-     */
-    val healthReport: HealthReport =
-        HealthReport(
-            job.getBuildHealth().getIconUrl("32x32"),
-            job.getBuildHealth().getDescription()
-        )
+  /**
+   * Health status of the job based on the results of the last 5 runs
+   */
+  val healthReport: HealthReport =
+    HealthReport(
+      job.getBuildHealth().getIconUrl("32x32"),
+      job.getBuildHealth().getDescription()
+    )
 
-    /**
-     * Indicates if the job is a pipeline. Requires the pipeline plugin to be installed on the jenkins server.
-     */
-    val isPipeline: Boolean = PluginManager().pipelinePluginIsInstalled() && job is WorkflowJob
+  /**
+   * Indicates if the job is a pipeline. Requires the pipeline plugin to be installed on the jenkins server.
+   */
+  val isPipeline: Boolean = PluginManager().pipelinePluginIsInstalled() && job is WorkflowJob
 
-    /**
-     * List of currently running stages in the job if it is a pipeline, returns an empty list if it isn't
-     */
-    val runningStages: List<PipelineStage> = PipelineUtils().getRunningStages(job)
+  /**
+   * List of currently running stages in the job if it is a pipeline, returns an empty list if it isn't
+   */
+  val runningStages: List<PipelineStage> = PipelineUtils().getRunningStages(job)
 
 }

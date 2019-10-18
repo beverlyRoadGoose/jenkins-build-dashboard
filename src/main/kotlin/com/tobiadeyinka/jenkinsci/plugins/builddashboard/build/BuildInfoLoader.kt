@@ -33,12 +33,12 @@ import org.yaml.snakeyaml.constructor.Constructor
  */
 class BuildInfoLoader {
 
-    val buildInfo: BuildInfo
+  val buildInfo: BuildInfo
 
-    init {
-        val yaml = Yaml(Constructor(BuildInfo::class.java))
-        buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
-    }
+  init {
+    val yaml = Yaml(Constructor(BuildInfo::class.java))
+    buildInfo = yaml.load(BuildInfoLoader::class.java.classLoader.getResourceAsStream("build.yml"))
+  }
 
 
 }

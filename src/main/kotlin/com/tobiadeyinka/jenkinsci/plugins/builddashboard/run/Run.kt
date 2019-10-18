@@ -33,48 +33,48 @@ import hudson.model.Run
 /**
  * Defines general attributes of runs of a job.
  */
-open class Run constructor(@JsonIgnore private val run: Run<*,*>) {
+open class Run constructor(@JsonIgnore private val run: Run<*, *>) {
 
-    /**
-     * Build number of this run.
-     */
-    val buildNumber: Int = run.number
+  /**
+   * Build number of this run.
+   */
+  val buildNumber: Int = run.number
 
-    /**
-     * Display name of this run
-     */
-    val displayName: String = run.getDisplayName()
+  /**
+   * Display name of this run
+   */
+  val displayName: String = run.getDisplayName()
 
-    /**
-     * Milliseconds representation of the time the run started
-     */
-    val startTime: Long? = run.getStartTimeInMillis()
+  /**
+   * Milliseconds representation of the time the run started
+   */
+  val startTime: Long? = run.getStartTimeInMillis()
 
-    /**
-     * Milliseconds representation of the time it took for the last complete run to finish
-     */
-    val duration: Long? = run.getDuration()
+  /**
+   * Milliseconds representation of the time it took for the last complete run to finish
+   */
+  val duration: Long? = run.getDuration()
 
-    /**
-     * A summary of the run, usually the description or build cause.
-     * Decides on what to return in this order:
-     * If there is description set for this run --> return the description.
-     * If there is no description, fall back to the build cause.
-     * If none of the 2 are available, return an empty string.
-     */
-    @JsonProperty("summary")
-    fun summary(): String {
-        if (isNotEmpty(run.getDescription())) {
-            return run.getDescription()
-        }
-
-        if (!run.getCauses().isEmpty()) {
-            return run.getCauses()[0].shortDescription
-        }
-
-        return ""
+  /**
+   * A summary of the run, usually the description or build cause.
+   * Decides on what to return in this order:
+   * If there is description set for this run --> return the description.
+   * If there is no description, fall back to the build cause.
+   * If none of the 2 are available, return an empty string.
+   */
+  @JsonProperty("summary")
+  fun summary(): String {
+    if (isNotEmpty(run.getDescription())) {
+      return run.getDescription()
     }
 
-    private fun isNotEmpty(string: String?): Boolean = string != null && string.isNotEmpty()
+    if (!run.getCauses().isEmpty()) {
+      return run.getCauses()[0].shortDescription
+    }
+
+    return ""
+  }
+
+  private fun isNotEmpty(string: String?): Boolean = string != null && string.isNotEmpty()
 
 }

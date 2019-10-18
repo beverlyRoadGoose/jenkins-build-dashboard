@@ -39,32 +39,31 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.job.MonitoredJob
  */
 class MonitoredJobPropertyFilter() : SimpleBeanPropertyFilter() {
 
-    private val fieldName: String = "pipelineStages"
+  private val fieldName: String = "pipelineStages"
 
-    override fun serializeAsField(
-        pojo: Any?,
-        jsonGenerator: JsonGenerator?,
-        provider: SerializerProvider?,
-        writer: PropertyWriter?
-    ) {
-        writer?.let {
-            if (include(writer)) {
-                if (writer.name != fieldName || (pojo as MonitoredJob).isPipeline) {
-                    writer.serializeAsField(pojo, jsonGenerator, provider)
-                }
-            }
-            else if (jsonGenerator != null && jsonGenerator.canOmitFields()) {
-                writer.serializeAsOmittedField(pojo, jsonGenerator, provider)
-            }
+  override fun serializeAsField(
+    pojo: Any?,
+    jsonGenerator: JsonGenerator?,
+    provider: SerializerProvider?,
+    writer: PropertyWriter?
+  ) {
+    writer?.let {
+      if (include(writer)) {
+        if (writer.name != fieldName || (pojo as MonitoredJob).isPipeline) {
+          writer.serializeAsField(pojo, jsonGenerator, provider)
         }
+      } else if (jsonGenerator != null && jsonGenerator.canOmitFields()) {
+        writer.serializeAsOmittedField(pojo, jsonGenerator, provider)
+      }
     }
+  }
 
-    override fun include(writer: PropertyWriter?): Boolean = true
+  override fun include(writer: PropertyWriter?): Boolean = true
 
-    override fun include(writer: BeanPropertyWriter?): Boolean = true
+  override fun include(writer: BeanPropertyWriter?): Boolean = true
 
-    companion object {
-        const val NAME: String = "monitoredJobFilter"
-    }
+  companion object {
+    const val NAME: String = "monitoredJobFilter"
+  }
 
 }

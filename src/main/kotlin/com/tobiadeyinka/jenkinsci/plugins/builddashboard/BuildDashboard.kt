@@ -60,93 +60,93 @@ import net.sf.json.JSONSerializer.toJSON
 class BuildDashboard
 @DataBoundConstructor constructor(private val name: String?, private var title: String?) : ListView(name) {
 
-    private val installation: Installation =
-        Installation()
+  private val installation: Installation =
+    Installation()
 
-    private val build: Build = installation.build
+  private val build: Build = installation.build
 
-    /**
-     * Handles the dashboard settings form data on submit
-     */
-    @Throws(ServletException::class, IOException::class, FormException::class)
-    override fun submit(request: StaplerRequest) {
-        super.submit(request)
-        title = request.getParameter("title")
+  /**
+   * Handles the dashboard settings form data on submit
+   */
+  @Throws(ServletException::class, IOException::class, FormException::class)
+  override fun submit(request: StaplerRequest) {
+    super.submit(request)
+    title = request.getParameter("title")
+  }
+
+  /**
+   * @return The title of the dashboard if it exists, if not, return the name.
+   */
+  fun getTitle(): String = title ?: displayName
+
+  /**
+   * @return true when then there are no jobs added to the dashboard
+   */
+  fun isEmpty(): Boolean = allItems.isEmpty()
+
+  /**
+   * @return true when there are no jobs configured on the jenkins instance
+   */
+  fun jenkinsInstanceHasNoJobsConfigured(): Boolean = Functions.getAllTopLevelItems(owner.itemGroup).isEmpty()
+
+  /**
+   * @return The installed version of the plugin
+   */
+  fun getBuildVersion(): String = build.version
+
+  /**
+   * @return The number of jobs on the board
+   */
+  fun getNumberOfJobs(): Int = getMonitoredJobs().size
+
+  /**
+   * Used by the vue webapp to retrieve JSON data of the jobs on the board. The javascript method annotation exposes
+   * the method to javascript calls.
+   *
+   * @return A JSON object representation of all the jobs on the board along with their status data
+   */
+  @JavaScriptMethod
+  fun getMonitoredJobsAsJSON(): JSONArray = toJSON(
+    SerializationUtils.getObjectWriter().writeValueAsString(getMonitoredJobs())
+  ) as JSONArray
+
+  @JavaScriptMethod
+  fun getInstallationAsJSON(): JSONObject = toJSON(
+    SerializationUtils.getObjectWriter().writeValueAsString(installation)
+  ) as JSONObject
+
+  fun getRemoteRequestCrumb(): JSONObject = toJSON(
+    SerializationUtils.getObjectWriter().writeValueAsString(
+      RemoteRequestCrumb()
+    )
+  ) as JSONObject
+
+  /**
+   * Creates [MonitoredJob] instances of all the jobs on the
+   * board and returns a list of these instances
+   */
+  private fun getMonitoredJobs(): List<MonitoredJob> {
+    val monitoredJobs: MutableList<MonitoredJob> = mutableListOf()
+    filter(allItems, Job::class.java).forEach {
+      monitoredJobs.add(MonitoredJob(it))
     }
+    return monitoredJobs
+  }
+
+  /**
+   * Integration point with jenkins
+   */
+  @Extension
+  class BuildDashboardDescriptor : hudson.model.ListView.DescriptorImpl() {
 
     /**
-     * @return The title of the dashboard if it exists, if not, return the name.
+     *  Sets the display name that jenkins identifies the plugin with
      */
-    fun getTitle(): String = title ?: displayName
+    override fun getDisplayName(): String = BuildInfoLoader()
+      .buildInfo
+      .build!!
+      .pluginName
 
-    /**
-     * @return true when then there are no jobs added to the dashboard
-     */
-    fun isEmpty(): Boolean = allItems.isEmpty()
-
-    /**
-     * @return true when there are no jobs configured on the jenkins instance
-     */
-    fun jenkinsInstanceHasNoJobsConfigured(): Boolean = Functions.getAllTopLevelItems(owner.itemGroup).isEmpty()
-
-    /**
-     * @return The installed version of the plugin
-     */
-    fun getBuildVersion(): String = build.version
-
-    /**
-     * @return The number of jobs on the board
-     */
-    fun getNumberOfJobs(): Int = getMonitoredJobs().size
-
-    /**
-     * Used by the vue webapp to retrieve JSON data of the jobs on the board. The javascript method annotation exposes
-     * the method to javascript calls.
-     *
-     * @return A JSON object representation of all the jobs on the board along with their status data
-     */
-    @JavaScriptMethod
-    fun getMonitoredJobsAsJSON(): JSONArray = toJSON(
-        SerializationUtils.getObjectWriter().writeValueAsString(getMonitoredJobs())
-    ) as JSONArray
-
-    @JavaScriptMethod
-    fun getInstallationAsJSON(): JSONObject = toJSON(
-        SerializationUtils.getObjectWriter().writeValueAsString(installation)
-    ) as JSONObject
-
-    fun getRemoteRequestCrumb(): JSONObject = toJSON(
-        SerializationUtils.getObjectWriter().writeValueAsString(
-            RemoteRequestCrumb()
-        )
-    ) as JSONObject
-
-    /**
-     * Creates [MonitoredJob] instances of all the jobs on the
-     * board and returns a list of these instances
-     */
-    private fun getMonitoredJobs(): List<MonitoredJob> {
-        val monitoredJobs: MutableList<MonitoredJob> = mutableListOf()
-        filter(allItems, Job::class.java).forEach {
-            monitoredJobs.add(MonitoredJob(it))
-        }
-        return monitoredJobs
-    }
-
-    /**
-     * Integration point with jenkins
-     */
-    @Extension
-    class BuildDashboardDescriptor : hudson.model.ListView.DescriptorImpl() {
-
-        /**
-         *  Sets the display name that jenkins identifies the plugin with
-         */
-        override fun getDisplayName(): String = BuildInfoLoader()
-            .buildInfo
-            .build!!
-            .pluginName
-
-    }
+  }
 
 }
