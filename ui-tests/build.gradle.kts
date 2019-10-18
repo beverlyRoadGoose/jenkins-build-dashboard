@@ -28,23 +28,23 @@ import org.jetbrains.kotlin.load.kotlin.JvmType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    java
-    kotlin("jvm")
+  java
+  kotlin("jvm")
 }
 
 buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
 
-    dependencies {
-        classpath("org.yaml:snakeyaml:1.24")
-    }
+  dependencies {
+    classpath("org.yaml:snakeyaml:1.24")
+  }
 }
 
 val buildInfo: MutableMap<String, JvmType.Object> = (Yaml().load(
-    File("src/main/resources/build.yml").inputStream()
+  File("src/main/resources/build.yml").inputStream()
 ) as MutableMap<String, JvmType.Object>)
 val build: MutableMap<String, JvmType.Object> = buildInfo["build"] as MutableMap<String, JvmType.Object>
 
@@ -52,24 +52,25 @@ group = "me.tobiadeyinka.jenkinsci.plugins"
 version = build["version"].toString()
 
 repositories {
-    jcenter()
-    mavenCentral()
+  jcenter()
+  mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    implementation("org.yaml:snakeyaml:1.24")
-    implementation("io.github.bonigarcia:webdrivermanager:3.6.2")
-    implementation("org.seleniumhq.selenium:selenium-java:3.141.59")
+  implementation("khttp:khttp:1.0.0")
+  implementation(kotlin("stdlib-jdk8"))
+  implementation("org.yaml:snakeyaml:1.24")
+  implementation("io.github.bonigarcia:webdrivermanager:3.6.2")
+  implementation("org.seleniumhq.selenium:selenium-java:3.141.59")
 
-    testImplementation("junit", "junit", "4.12")
-    testImplementation("org.assertj:assertj-core:3.11.1")
+  testImplementation("junit", "junit", "4.12")
+  testImplementation("org.assertj:assertj-core:3.11.1")
 }
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+  sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+  kotlinOptions.jvmTarget = "1.8"
 }

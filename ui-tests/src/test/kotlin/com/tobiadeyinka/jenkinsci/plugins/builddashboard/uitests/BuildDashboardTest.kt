@@ -40,6 +40,8 @@ import org.junit.Test
 import org.junit.AfterClass
 import org.junit.BeforeClass
 
+import org.assertj.core.api.Assertions.assertThat
+
 class BuildDashboardTest {
   companion object {
     private val webDriver = WebDriverManager().getWebDriver()
@@ -56,8 +58,10 @@ class BuildDashboardTest {
   }
 
   @Test fun shouldBeAbleToCreateDashboard() {
-    Process.createDashboardView(webDriver, "Dashboard ${UUID.randomUUID()}")
-    //TODO verify view url returns 200
+    val dashboardName = "Dashboard ${UUID.randomUUID()}"
+    val dashboardUrl = "${testConfig.config!!.server!!.address}/view/$dashboardName" 
+    Process.createDashboardView(webDriver, dashboardName)
+    assertThat(khttp.get(dashboardUrl).statusCode).isEqualTo(200)
   }
 
   fun goToIndexPage(): IndexPage = IndexPage(webDriver)
