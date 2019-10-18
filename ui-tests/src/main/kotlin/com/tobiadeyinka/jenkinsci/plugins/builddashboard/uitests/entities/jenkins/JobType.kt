@@ -27,7 +27,7 @@ package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.jenki
 
 enum class JobType {
 
-    FREESTYLE,
-    PIPELINE
+  FREESTYLE,
+  PIPELINE
 
 }

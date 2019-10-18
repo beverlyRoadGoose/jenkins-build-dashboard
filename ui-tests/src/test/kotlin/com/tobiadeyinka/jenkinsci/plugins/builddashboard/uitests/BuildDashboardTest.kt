@@ -35,24 +35,30 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.I
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
 
 import java.util.*
+
+import org.junit.Test
 import org.junit.AfterClass
+import org.junit.BeforeClass
 
 class BuildDashboardTest {
-
   companion object {
-    val webDriver = WebDriverManager().getWebDriver()
-    val testConfig: TestConfig = TestConfigLoader().testConfig
-    val testUser: User = User(testConfig.config!!.user!!.username, testConfig.config!!.user!!.password)
+    private val webDriver = WebDriverManager().getWebDriver()
+    private val testConfig: TestConfig = TestConfigLoader().testConfig
+    private val testUser: User = User(testConfig.config!!.user!!.username, testConfig.config!!.user!!.password)
 
-    fun createJobsForTests() {
+    @BeforeClass @JvmStatic fun createJobsForTests() {
       Process.login(LoginPage(webDriver), testUser)
       Process.createFreestyleJob(webDriver, "Freestyle ${UUID.randomUUID()}")
       Process.createPipelineJob(webDriver, "Pipeline ${UUID.randomUUID()}")
-      goToIndexPage()
     }
-
-    fun goToIndexPage(): IndexPage = IndexPage(webDriver)
 
     @AfterClass @JvmStatic fun tearDown() = webDriver.quit()
   }
+
+  @Test fun shouldBeAbleToCreateDashboard() {
+    Process.createDashboardView(webDriver, "Dashboard ${UUID.randomUUID()}")
+    //TODO verify view url returns 200
+  }
+
+  fun goToIndexPage(): IndexPage = IndexPage(webDriver)
 }

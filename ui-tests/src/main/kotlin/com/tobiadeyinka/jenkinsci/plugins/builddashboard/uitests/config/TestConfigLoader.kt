@@ -30,11 +30,11 @@ import org.yaml.snakeyaml.constructor.Constructor
 
 class TestConfigLoader {
 
-    val testConfig: TestConfig
+  val testConfig: TestConfig
 
-    init {
-        val yaml = Yaml(Constructor(TestConfig::class.java))
-        testConfig = yaml.load(TestConfigLoader::class.java.classLoader.getResourceAsStream("config.yml"))
-    }
+  init {
+    val yaml = Yaml(Constructor(TestConfig::class.java))
+    testConfig = yaml.load(TestConfigLoader::class.java.classLoader.getResourceAsStream("config.yml"))
+  }
 
 }

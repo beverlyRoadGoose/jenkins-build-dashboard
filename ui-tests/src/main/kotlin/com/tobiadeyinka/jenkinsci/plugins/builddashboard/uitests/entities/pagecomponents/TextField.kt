@@ -30,6 +30,6 @@ import org.openqa.selenium.WebDriver
 
 class TextField(webDriver: WebDriver, locator: By) : PageComponent(webDriver, locator) {
 
-    fun typeIn(text: String) = webElement.sendKeys(text)
+  fun typeIn(text: String) = webElement.sendKeys(text)
 
 }

@@ -30,25 +30,27 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConf
 
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.openqa.selenium.support.ui.ExpectedConditions
 
 abstract class Page(val webDriver: WebDriver, explicitLoad: Boolean = true) {
 
-    protected val testConfig: TestConfig = TestConfigLoader().testConfig
-    protected val serverUrl: String = testConfig.config!!.server!!.address
+  protected val testConfig: TestConfig = TestConfigLoader().testConfig
+  protected val serverUrl: String = testConfig.config!!.server!!.address
 
-    init {
-        if (explicitLoad) {
-            load()
-        }
+  init {
+    if (explicitLoad) {
+      load()
     }
+  }
 
-    fun waitForElementToBeDisplayed(locator: By) = WebDriverWait(webDriver, 10)
-        .until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator))
+  fun waitForElementToBeDisplayed(locator: By): MutableList<WebElement> = WebDriverWait(webDriver, 10).until(
+    ExpectedConditions.presenceOfAllElementsLocatedBy(locator)
+  )
 
-    private fun load() = webDriver.get(url())
+  private fun load() = webDriver.get(url())
 
-    abstract fun url(): String
+  abstract fun url(): String
 
 }

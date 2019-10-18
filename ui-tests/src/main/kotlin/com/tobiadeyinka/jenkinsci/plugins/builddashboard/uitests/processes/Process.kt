@@ -30,41 +30,37 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.jenkin
 
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.IndexPage
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.NewViewPage
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.NewJobConfigurationPage
 
 import org.openqa.selenium.WebDriver
 
 abstract class Process {
+  companion object {
+    fun login(loginPage: LoginPage, user: User): IndexPage {
+      loginPage.userNameField.typeIn(user.username)
+      loginPage.passwordField.typeIn(user.password)
+      loginPage.signInButton.click()
 
-    companion object {
-
-        fun login(loginPage: LoginPage, user: User): IndexPage {
-            loginPage.userNameField.typeIn(user.username)
-            loginPage.passwordField.typeIn(user.password)
-            loginPage.signInButton.click()
-
-            return IndexPage(loginPage.webDriver, false)
-        }
-
-        fun createFreestyleJob(webDriver: WebDriver, jobName: String) = createNewJob(webDriver, jobName, JobType.FREESTYLE)
-
-        fun createPipelineJob(webDriver: WebDriver, jobName: String) = createNewJob(webDriver, jobName, JobType.PIPELINE)
-
-        private fun createNewJob(webDriver: WebDriver, jobName: String, jobType: JobType) {
-            val newJobConfigurationPage = NewJobConfigurationPage(webDriver)
-
-            newJobConfigurationPage.itemNameField.typeIn(jobName)
-
-            if (jobType == JobType.FREESTYLE) {
-                newJobConfigurationPage.freestyleJobSelector.click()
-            }
-
-            if (jobType == JobType.PIPELINE) {
-                newJobConfigurationPage.pipelineJobSelector.click()
-            }
-
-            newJobConfigurationPage.okayButton.click()
-        }
+      return IndexPage(loginPage.webDriver, false)
     }
 
+    fun createFreestyleJob(webDriver: WebDriver, jobName: String) = createNewJob(webDriver, jobName, JobType.FREESTYLE)
+
+    fun createPipelineJob(webDriver: WebDriver, jobName: String) = createNewJob(webDriver, jobName, JobType.PIPELINE)
+
+    fun createDashboardView(webDriver: WebDriver, dashboardName: String) {
+      NewViewPage(webDriver)
+        .setViewName(dashboardName)
+        .selectBuildDashboard()
+        .save()
+    }
+
+    private fun createNewJob(webDriver: WebDriver, jobName: String, jobType: JobType) {
+      NewJobConfigurationPage(webDriver)
+        .setJobName(jobName)
+        .selectJobType(jobType)
+        .save()
+    }
+  }
 }

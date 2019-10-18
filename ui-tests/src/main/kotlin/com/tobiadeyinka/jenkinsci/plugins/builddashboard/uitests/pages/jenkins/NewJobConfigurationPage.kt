@@ -26,6 +26,7 @@
 package com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins
 
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.Page
+import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.jenkins.JobType
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.pagecomponents.Button
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.pagecomponents.TextField
 
@@ -33,25 +34,41 @@ import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 
 class NewJobConfigurationPage(webDriver: WebDriver, explicitLoad: Boolean = true) : Page(webDriver, explicitLoad) {
+  private val itemNameFieldLocator: By = By.id("name")
+  private val freestyleJobSelectorLocator: By = By.className("hudson_model_FreeStyleProject")
+  private val pipelineJobSelectorLocator: By = By.className("org_jenkinsci_plugins_workflow_job_WorkflowJob")
+  private val okayButtonLocator: By = By.id("ok-button")
 
-    private val itemNameFieldLocator: By = By.id("name")
-    private val freestyleJobSelectorLocator: By = By.className("hudson_model_FreeStyleProject")
-    private val pipelineJobSelectorLocator: By = By.className("org_jenkinsci_plugins_workflow_job_WorkflowJob")
-    private val okayButtonLocator: By = By.id("ok-button")
+  private val itemNameField: TextField
+  private val freestyleJobSelector: Button
+  private val pipelineJobSelector: Button
+  private val okayButton: Button
 
-    val itemNameField: TextField
-    val freestyleJobSelector: Button
-    val pipelineJobSelector: Button
-    val okayButton: Button
+  init {
+    waitForElementToBeDisplayed(okayButtonLocator)
+    itemNameField = TextField(webDriver, itemNameFieldLocator)
+    freestyleJobSelector = Button(webDriver, freestyleJobSelectorLocator)
+    pipelineJobSelector = Button(webDriver, pipelineJobSelectorLocator)
+    okayButton = Button(webDriver, okayButtonLocator)
+  }
 
-    init {
-        waitForElementToBeDisplayed(okayButtonLocator)
-        itemNameField = TextField(webDriver, itemNameFieldLocator)
-        freestyleJobSelector = Button(webDriver, freestyleJobSelectorLocator)
-        pipelineJobSelector = Button(webDriver, pipelineJobSelectorLocator)
-        okayButton = Button(webDriver, okayButtonLocator)
+  fun setJobName(jobName: String): NewJobConfigurationPage {
+    itemNameField.typeIn(jobName)
+    return this
+  }
+
+  fun selectJobType(jobType: JobType): NewJobConfigurationPage {
+    when(jobType) {
+      JobType.FREESTYLE -> freestyleJobSelector.click()
+      JobType.PIPELINE -> pipelineJobSelector.click()
     }
+    return this
+  }
 
-    override fun url(): String = "$serverUrl/view/all/newJob"
+  fun save() {
+    // TODO add required parameters validation
+    okayButton.click()
+  }
 
+  override fun url(): String = "$serverUrl/view/all/newJob"
 }

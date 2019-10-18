@@ -32,23 +32,38 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.entities.pageco
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 
-class LoginPage(webDriver: WebDriver, explicitLoad: Boolean = true) : Page(webDriver, explicitLoad) {
+class NewViewPage(webDriver: WebDriver, explicitLoad: Boolean = true) : Page(webDriver, explicitLoad) {
+  private val viewNameFieldLocator: By = By.id("name")
+  private val okayButtonLocator: By = By.id("ok-button")
+  private val buildDashboardViewRadioLocator: By = By.xpath(
+    "//input[@value='com.tobiadeyinka.jenkinsci.plugins.builddashboard.BuildDashboard']"
+  )
 
-  private val userNameFieldLocator: By = By.id("j_username")
-  private val passwordFieldLocator: By = By.name("j_password")
-  private val signInButtonLocator: By = By.name("Submit")
-
-  val userNameField: TextField
-  val passwordField: TextField
-  val signInButton: Button
+  private val viewNameField: TextField
+  private val buildDashboardViewRadio: Button
+  private val okayButton: Button
 
   init {
-    waitForElementToBeDisplayed(signInButtonLocator)
-    userNameField = TextField(webDriver, userNameFieldLocator)
-    passwordField = TextField(webDriver, passwordFieldLocator)
-    signInButton = Button(webDriver, signInButtonLocator)
+    waitForElementToBeDisplayed(okayButtonLocator)
+    viewNameField = TextField(webDriver, viewNameFieldLocator)
+    buildDashboardViewRadio = Button(webDriver, buildDashboardViewRadioLocator)
+    okayButton = Button(webDriver, okayButtonLocator)
   }
 
-  override fun url(): String = "$serverUrl/login"
+  fun setViewName(viewName: String): NewViewPage {
+    viewNameField.typeIn(viewName)
+    return this
+  }
 
+  fun selectBuildDashboard(): NewViewPage {
+    buildDashboardViewRadio.click()
+    return this
+  }
+
+  fun save() {
+    // TODO add required parameters validation
+    okayButton.click()
+  }
+
+  override fun url() = "$serverUrl/newView"
 }

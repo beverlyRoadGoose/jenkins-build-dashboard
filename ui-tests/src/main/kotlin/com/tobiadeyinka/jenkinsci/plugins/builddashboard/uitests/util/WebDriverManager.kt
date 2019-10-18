@@ -39,11 +39,11 @@ import java.util.concurrent.TimeUnit
  */
 class WebDriverManager {
 
-    fun getWebDriver(): WebDriver {
-        ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup()
-        val webDriver = ChromeDriver(ChromeOptions())
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
-        return webDriver
-    }
+  fun getWebDriver(): WebDriver {
+    ChromeDriverManager.getInstance(DriverManagerType.CHROME).setup()
+    val webDriver = ChromeDriver(ChromeOptions())
+    webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+    return webDriver
+  }
 
 }

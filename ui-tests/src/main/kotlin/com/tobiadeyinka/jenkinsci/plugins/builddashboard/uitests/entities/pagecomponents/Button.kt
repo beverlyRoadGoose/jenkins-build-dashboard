@@ -30,6 +30,6 @@ import org.openqa.selenium.WebDriver
 
 class Button(webDriver: WebDriver, locator: By) : PageComponent(webDriver, locator) {
 
-    fun click() = webElement.click()
+  fun click() = webElement.click()
 
 }

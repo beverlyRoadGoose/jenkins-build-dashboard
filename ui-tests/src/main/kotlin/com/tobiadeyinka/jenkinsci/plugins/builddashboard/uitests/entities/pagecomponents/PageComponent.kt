@@ -6,6 +6,6 @@ import org.openqa.selenium.WebElement
 
 open class PageComponent(webDriver: WebDriver, locator: By) {
 
-    protected val webElement: WebElement = webDriver.findElement(locator)
+  protected val webElement: WebElement = webDriver.findElement(locator)
 
 }
