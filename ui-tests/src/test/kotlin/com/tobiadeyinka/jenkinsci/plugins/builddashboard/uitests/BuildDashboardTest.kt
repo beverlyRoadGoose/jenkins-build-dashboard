@@ -31,15 +31,13 @@ import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.config.TestConf
 
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.processes.Process
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.util.WebDriverManager
-import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.IndexPage
 import com.tobiadeyinka.jenkinsci.plugins.builddashboard.uitests.pages.jenkins.LoginPage
+
+import khttp.structures.authorization.BasicAuthorization
 
 import java.util.*
 
-import org.junit.Test
-import org.junit.AfterClass
-import org.junit.BeforeClass
-
+import org.junit.*
 import org.assertj.core.api.Assertions.assertThat
 
 class BuildDashboardTest {
@@ -50,19 +48,22 @@ class BuildDashboardTest {
 
     @BeforeClass @JvmStatic fun createJobsForTests() {
       Process.login(LoginPage(webDriver), testUser)
-      Process.createFreestyleJob(webDriver, "Freestyle ${UUID.randomUUID()}")
-      Process.createPipelineJob(webDriver, "Pipeline ${UUID.randomUUID()}")
+      Process.createFreestyleJob(webDriver, "Freestyle_${UUID.randomUUID()}")
+      Process.createPipelineJob(webDriver, "Pipeline_${UUID.randomUUID()}")
     }
 
     @AfterClass @JvmStatic fun tearDown() = webDriver.quit()
   }
 
   @Test fun shouldBeAbleToCreateDashboard() {
-    val dashboardName = "Dashboard ${UUID.randomUUID()}"
-    val dashboardUrl = "${testConfig.config!!.server!!.address}/view/$dashboardName" 
-    Process.createDashboardView(webDriver, dashboardName)
-    assertThat(khttp.get(dashboardUrl).statusCode).isEqualTo(200)
-  }
+    val dashboardName = "Dashboard_${UUID.randomUUID()}"
+    val dashboardUrl = "${testConfig.config!!.server!!.address}/view/$dashboardName"
 
-  fun goToIndexPage(): IndexPage = IndexPage(webDriver)
+    Process.createDashboardView(webDriver, dashboardName)
+    Process.goToIndexPage(webDriver)
+
+    assertThat(khttp.get(
+      dashboardUrl, auth=BasicAuthorization(testUser.username, testUser.password)
+    ).statusCode).isEqualTo(200)
+  }
 }

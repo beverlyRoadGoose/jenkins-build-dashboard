@@ -37,6 +37,8 @@ import org.openqa.selenium.WebDriver
 
 abstract class Process {
   companion object {
+    fun goToIndexPage(webDriver: WebDriver): IndexPage = IndexPage(webDriver)
+
     fun login(loginPage: LoginPage, user: User): IndexPage {
       loginPage.userNameField.typeIn(user.username)
       loginPage.passwordField.typeIn(user.password)
