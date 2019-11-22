@@ -1,5 +1,8 @@
 ## Change Log
 
+#### Next Release
+- Updated frontend dependencies
+
 #### v1.1.0-build.1568371653 ~ 2019.09.13
 - Fixed wrong logo & board title order
 - Display running pipeline stages
