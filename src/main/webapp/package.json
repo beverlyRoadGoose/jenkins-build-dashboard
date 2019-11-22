@@ -19,28 +19,28 @@
   },
   "homepage": "https://github.com/beverlyRoadGoose/jenkins-build-dashboard#readme",
   "dependencies": {
-    "pretty-ms": "^5.0.0",
-    "typed.js": "^2.0.10",
+    "pretty-ms": "^5.1.0",
+    "typed.js": "^2.0.11",
     "vue": "^2.6.10",
-    "vue-analytics": "^5.17.0",
+    "vue-analytics": "^5.18.0",
     "vue-head": "^2.1.2",
     "vue-resource": "^1.5.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.7.2",
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
-    "css-loader": "^3.1.0",
+    "css-loader": "^3.2.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "file-loader": "^4.1.0",
-    "image-webpack-loader": "^5.0.0",
-    "url-loader": "^2.1.0",
-    "vue-loader": "^15.7.1",
+    "file-loader": "^4.3.0",
+    "image-webpack-loader": "^6.0.0",
+    "url-loader": "^2.3.0",
+    "vue-loader": "^15.7.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
